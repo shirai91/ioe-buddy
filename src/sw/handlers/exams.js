@@ -1,4 +1,4 @@
-import { loadSentenceChoices, loadWords } from '../content.js'
+import { loadCountWords, loadSentenceChoices, loadWords } from '../content.js'
 import { add } from '../db.js'
 import { examGenerators } from '../exams/index.js'
 import { badRequest, notFound } from '../httpError.js'
@@ -17,9 +17,9 @@ function generatorFor(type) {
 
 export async function getExam({ params }) {
   const generate = generatorFor(params.type)
-  const [allWords, progressByWordId] = await Promise.all([loadWords(), readProgressByWordId()])
+  const [allWords, progressByWordId, profile] = await Promise.all([loadWords(), readProgressByWordId(), readProfile()])
   const words = examPool({ words: allWords, progressByWordId })
-  const questions = await generate({ words, allWords, count: QUESTIONS_PER_EXAM, loadSentenceChoices })
+  const questions = await generate({ words, allWords, count: QUESTIONS_PER_EXAM, stars: profile.stars, loadSentenceChoices, loadCountWords })
   return { type: params.type, questions }
 }
 

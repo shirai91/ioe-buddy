@@ -17,7 +17,7 @@ Hidden fields:
 
 | Field | Meaning |
 |---|---|
-| `unit` | Book unit number, 1-16. |
+| `unit` | Book unit number, 1-16. Starters topic number, 17-27. |
 | `lesson` | First lesson (1-3) of that unit where the word or pattern is printed. Vocabulary words not found in a lesson get 1. |
 | `rank` | `unit * 1000 + lesson * 100 + position`. `position` is the order of first appearance in that lesson (book order). Lower rank = taught earlier. Ranks are unique. |
 
@@ -28,6 +28,7 @@ No screen shows `unit`, `lesson` or `rank`. No API route takes a unit.
 - Book words: the unit vocabulary line plus the glossary words of that unit. The sentence comes from the unit patterns.
 - Sight words: `content/clean/extra-words.md`. These are greetings, verbs, adjectives and small words that the children say in the songs, chants and speech bubbles (hi, bye, have, like, look, see, sunny, he, she...). Each row gives the word, an optional id, ipa, vi, unit, lesson and the book sentence. These words get `sight: true`.
 - A sight word goes in the lesson from its row. Its picture is `images/web/<id>.png` (Twemoji), or none.
+- Starters words: `content/clean/starters-words.md`. These are the labelled pictures of the Cambridge Pre A1 Starters Wordlist Picture Book. Each row gives the word, an optional id, ipa, vi, unit (17-27) and a sentence. All Starters words are in lesson 1, in the row order. Their picture is `images/starters/<id>.png`.
 - An id must be unique. Use the `Id` column when two words have the same spelling (`can` the noun, `can-verb` the verb).
 - Articles (a, an, the) and "is", "are", "at", "to" are not cards.
 

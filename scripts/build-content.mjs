@@ -101,6 +101,28 @@ function parseExtraWords(markdown) {
     }))
 }
 
+const STARTERS_WORD_COLUMNS = 6
+const FIRST_STARTERS_UNIT = UNIT_COUNT + 1
+
+export function parseStartersWords(markdown) {
+  return tableRows(markdown)
+    .filter((cells) => cells.length === STARTERS_WORD_COLUMNS && /^\d+$/.test(cells[4]))
+    .map(([word, id, ipa, vi, unit, sentence]) => ({
+      word,
+      id: id || kebabCase(word),
+      ipa: ipa || null,
+      vi: vi || null,
+      unit: Number(unit),
+      sentence,
+    }))
+}
+
+function startersWordProblem(entry) {
+  if (entry.unit < FIRST_STARTERS_UNIT) return `has unit ${entry.unit}, but Starters units start at ${FIRST_STARTERS_UNIT}`
+  if (!entry.sentence) return 'has no sentence'
+  return null
+}
+
 export const BLANK = '___'
 const SENTENCE_CHOICE_COLUMNS = 7
 
@@ -114,6 +136,29 @@ export function parseSentenceChoices(markdown) {
       wordId,
       unit: Number(unit),
     }))
+}
+
+const COUNT_WORD_COLUMNS = 3
+
+export function parseCountWords(markdown) {
+  return tableRows(markdown)
+    .filter((cells) => cells.length === COUNT_WORD_COLUMNS && /^\d+$/.test(cells[2]))
+    .map(([wordId, plural, unit]) => ({ wordId, plural, unit: Number(unit) }))
+}
+
+export function buildCountWords(rows, words) {
+  const wordById = new Map(words.map((word) => [word.id, word]))
+  const checked = rows.map((row) => {
+    const word = wordById.get(row.wordId)
+    if (!word) throw new Error(`Count word "${row.wordId}" is not a known word`)
+    if (!row.plural) throw new Error(`Count word "${row.wordId}" has no plural`)
+    return { row, word }
+  })
+  const hasPicture = ({ word }) => Boolean(word.image) && !word.sight
+  return {
+    countWords: checked.filter(hasPicture).map(({ row, word }) => ({ wordId: row.wordId, word: word.word, plural: row.plural, unit: row.unit })),
+    countWordsWithoutPicture: checked.filter((entry) => !hasPicture(entry)).map(({ row }) => row.wordId),
+  }
 }
 
 function sentenceChoiceProblem(row, wordIds) {
@@ -466,7 +511,10 @@ export function buildContent({
 } = {}) {
   const glossary = parseGlossary(readText(path.join(contentDir, 'glossary.md')))
   const extraWords = parseExtraWords(readText(path.join(contentDir, 'extra-words.md')))
-  const sentenceChoiceRows = parseSentenceChoices(readText(path.join(contentDir, 'sentence-choice.md')))
+  const startersWords = parseStartersWords(readText(path.join(contentDir, 'starters-words.md')))
+  const sentenceChoiceMarkdown = readText(path.join(contentDir, 'sentence-choice.md'))
+  const sentenceChoiceRows = parseSentenceChoices(sentenceChoiceMarkdown)
+  const countWordRows = parseCountWords(sentenceChoiceMarkdown)
   const bookMap = parseBookMap(readText(path.join(contentDir, 'book-map.md')))
   const imageFolders = listImageFolders(imagesDir)
 
@@ -542,17 +590,30 @@ export function buildContent({
     return placeInLessons(unit.number, words, appearanceOf)
   })
 
+  const buildStartersWord = (entry) => {
+    const problem = startersWordProblem(entry)
+    if (problem) throw new Error(`Starters word "${entry.word}" ${problem}`)
+    return buildWord({ ...entry, wordId: entry.id, unitNumber: entry.unit, imageNames: [entry.id] })
+  }
+
+  const startersUnitNumbers = [...new Set(startersWords.map((entry) => entry.unit))]
+  const unsortedStartersWords = startersUnitNumbers.flatMap((unitNumber) => {
+    const unitEntries = startersWords.filter((entry) => entry.unit === unitNumber).map(buildStartersWord)
+    return placeInLessons(unitNumber, unitEntries, () => ({ lesson: DEFAULT_WORD_LESSON, index: 0 }))
+  })
+
   const unsortedGrammar = units.flatMap((unit) => {
     const patterns = unit.patterns.map((pattern) => ({ id: uniqueId(kebabCase(pattern), usedPatternIds), pattern }))
     const appearanceOf = (entry) => appearanceInLessons(unit.lessons, patternAppearanceMatchers(entry.pattern), DEFAULT_PATTERN_LESSON)
     return placeInLessons(unit.number, patterns, appearanceOf)
   })
 
-  const words = sortedByUniqueRank(unsortedWords, 'word')
+  const words = sortedByUniqueRank([...unsortedWords, ...unsortedStartersWords], 'word')
   const grammar = sortedByUniqueRank(unsortedGrammar, 'pattern')
 
   const sentenceChoices = buildSentenceChoices(sentenceChoiceRows, words)
-  const phrasesWithoutClip = copyClips(spokenPhrases(words, sentenceChoices), audioDir, path.join(outDir, 'audio'))
+  const { countWords, countWordsWithoutPicture } = buildCountWords(countWordRows, words)
+  const phrasesWithoutClip = copyClips(spokenPhrases(words, sentenceChoices, countWords), audioDir, path.join(outDir, 'audio'))
   const index = {
     version: 2,
     wordCount: words.length,
@@ -561,15 +622,18 @@ export function buildContent({
     grammar: 'content/grammar.json',
     sentenceChoiceCount: sentenceChoices.length,
     sentenceChoices: 'content/sentence-choices.json',
+    countWordCount: countWords.length,
+    countWords: 'content/count-words.json',
     credits,
     fileVersions: { pictures: folderFingerprint(path.join(outDir, 'images')), audio: folderFingerprint(path.join(outDir, 'audio')) },
   }
   writeJson(path.join(outDir, 'words.json'), words)
   writeJson(path.join(outDir, 'grammar.json'), grammar)
   writeJson(path.join(outDir, 'sentence-choices.json'), sentenceChoices)
+  writeJson(path.join(outDir, 'count-words.json'), countWords)
   writeJson(path.join(outDir, 'index.json'), index)
 
-  return { index, words, grammar, sentenceChoices, imageCount: copiedImageIds.size, wordsWithoutImage, sentencesFromFallback, phrasesWithoutClip }
+  return { index, words, grammar, sentenceChoices, countWords, countWordsWithoutPicture, imageCount: copiedImageIds.size, wordsWithoutImage, sentencesFromFallback, phrasesWithoutClip }
 }
 
 const FINGERPRINT_LENGTH = 12
@@ -593,7 +657,8 @@ function copyClips(phrases, audioDir, clipsOutDir) {
 const REPORT_PREVIEW_SIZE = 12
 
 function printReport(result) {
-  console.log(`Content built: ${result.words.length} words, ${result.grammar.length} patterns, ${result.sentenceChoices.length} sentence choices, ${result.imageCount} images, ${result.index.credits.length} credits`)
+  console.log(`Content built: ${result.words.length} words, ${result.grammar.length} patterns, ${result.sentenceChoices.length} sentence choices, ${result.countWords.length} count words, ${result.imageCount} images, ${result.index.credits.length} credits`)
+  console.log(`Count words skipped, no picture (${result.countWordsWithoutPicture.length}): ${result.countWordsWithoutPicture.join(', ') || 'none'}`)
   console.log(`Words without image (${result.wordsWithoutImage.length}): ${result.wordsWithoutImage.join(', ') || 'none'}`)
   console.log(`Phrases without audio clip (${result.phrasesWithoutClip.length}): ${result.phrasesWithoutClip.join(', ') || 'none'}`)
   if (result.phrasesWithoutClip.length > 0) console.log('Run npm run audio to make the missing clips.')

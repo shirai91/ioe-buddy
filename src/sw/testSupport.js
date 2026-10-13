@@ -45,6 +45,8 @@ export const sentenceChoices = [
   { id: 'this-is-a-dog', before: 'This is ', after: ' dog.', answer: 'a', wrong: ['an', 'I', 'is'], wordId: 'dog', unit: 3, sentence: 'This is a dog.' },
 ]
 
+export const countWords = [{ wordId: 'car', word: 'car', plural: 'cars', unit: 2 }]
+
 export const contentIndex = {
   version: 2,
   wordCount: words.length,
@@ -53,6 +55,8 @@ export const contentIndex = {
   grammar: 'content/grammar.json',
   sentenceChoiceCount: sentenceChoices.length,
   sentenceChoices: 'content/sentence-choices.json',
+  countWordCount: countWords.length,
+  countWords: 'content/count-words.json',
   credits: [{ word: 'ball', image: 'content/images/ball.png', source: 'test', author: 'me', license: 'CC0' }],
 }
 
@@ -61,6 +65,7 @@ export const contentFiles = {
   [`${SCOPE}content/words.json`]: [...words].reverse(),
   [`${SCOPE}content/grammar.json`]: [...grammar].reverse(),
   [`${SCOPE}content/sentence-choices.json`]: sentenceChoices,
+  [`${SCOPE}content/count-words.json`]: countWords,
 }
 
 export function contentFetch() {

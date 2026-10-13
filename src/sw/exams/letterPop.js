@@ -1,4 +1,5 @@
-import { playableWords, wordSequence } from './wordTools.js'
+import { pictureChance } from '../stars.js'
+import { hidePictures, playableWords, wordSequence } from './wordTools.js'
 
 export const SNEAKY_LETTERS = 'bcdfghklmnoprstuwz'.split('')
 export const MAX_WORD_LENGTH = 6
@@ -32,6 +33,7 @@ function toQuestion(entry, random) {
   }
 }
 
-export function generate({ words, allWords, count = 10, random = Math.random }) {
-  return wordSequence(wordPool(words, allWords), count, random).map((entry) => toQuestion(entry, random))
+export function generate({ words, allWords, count = 10, stars = 0, random = Math.random }) {
+  const questions = wordSequence(wordPool(words, allWords), count, random).map((entry) => toQuestion(entry, random))
+  return hidePictures(questions, pictureChance(stars), random)
 }

@@ -15,11 +15,11 @@ class FakeWorker extends EventTarget {
 }
 
 class FakeRegistration extends EventTarget {
-  constructor({ active, waiting = null }) {
+  constructor({ active, waiting = null, installing = null }) {
     super()
     this.active = active
     this.waiting = waiting
-    this.installing = null
+    this.installing = installing
     this.update = vi.fn(async () => {})
   }
 }
@@ -86,6 +86,18 @@ describe('update detection', () => {
     const newWorker = new FakeWorker('installing')
     registration.installing = newWorker
     registration.dispatchEvent(new Event('updatefound'))
+    registration.waiting = newWorker
+    newWorker.becomes('installed')
+
+    expect(listener).toHaveBeenCalledTimes(1)
+  })
+
+  it('reports an update when a new version was already downloading at start', async () => {
+    const newWorker = new FakeWorker('installing')
+    await startWith({ active: new FakeWorker('activated'), installing: newWorker })
+    const listener = vi.fn()
+    client.onUpdateReady(listener)
+
     registration.waiting = newWorker
     newWorker.becomes('installed')
 

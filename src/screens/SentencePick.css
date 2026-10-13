@@ -26,6 +26,14 @@
   box-shadow: 0 4px 0 var(--ink);
 }
 
+.sentence-pick__count {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
 .sentence-pick__sentence {
   margin: 0;
   font-family: var(--font-heading);

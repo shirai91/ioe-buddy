@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { loadGrammar, loadIndex, loadSentenceChoices, loadWords } from './content.js'
-import { SCOPE, contentIndex, grammar, sentenceChoices, useFreshBackend, words } from './testSupport.js'
+import { loadCountWords, loadGrammar, loadIndex, loadSentenceChoices, loadWords } from './content.js'
+import { SCOPE, contentIndex, countWords, grammar, sentenceChoices, useFreshBackend, words } from './testSupport.js'
 
 let fetchMock
 
@@ -34,6 +34,17 @@ describe('content', () => {
   it('loads the sentence choices', async () => {
     expect(await loadSentenceChoices()).toEqual(sentenceChoices)
     expect(fetchMock).toHaveBeenCalledWith(`${SCOPE}content/sentence-choices.json`)
+  })
+
+  it('loads the count words', async () => {
+    expect(await loadCountWords()).toEqual(countWords)
+    expect(fetchMock).toHaveBeenCalledWith(`${SCOPE}content/count-words.json`)
+  })
+
+  it('gives no count words when the index has no count word file', async () => {
+    fetchMock.mockResolvedValueOnce(Response.json({ ...contentIndex, countWords: undefined }))
+
+    expect(await loadCountWords()).toEqual([])
   })
 
   it('gives no sentence choices when the index has no sentence choice file', async () => {

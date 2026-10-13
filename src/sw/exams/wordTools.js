@@ -62,6 +62,15 @@ export function wordSequence(pool, count, random = Math.random) {
   return sequence.slice(0, count)
 }
 
+export const HIDDEN_PICTURE = { image: null, letter: '?' }
+
+export function hidePictures(questions, chance, random = Math.random) {
+  const shownCount = Math.round(questions.length * chance)
+  if (shownCount >= questions.length) return questions
+  const shownIndexes = new Set(shuffle([...questions.keys()], random).slice(0, shownCount))
+  return questions.map((question, index) => (shownIndexes.has(index) ? question : { ...question, ...HIDDEN_PICTURE }))
+}
+
 export function playableWords(words = []) {
   const byText = new Map()
   for (const entry of words) {

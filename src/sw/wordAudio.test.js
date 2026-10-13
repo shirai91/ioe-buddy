@@ -1,12 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { loadIndex, loadSentenceChoices, loadWords } from './content.js'
+import { loadCountWords, loadIndex, loadSentenceChoices, loadWords } from './content.js'
 import { fakeCacheStorage } from './testSupport.js'
 import { isWordAudio, respondWithWordAudio, wordAudioToKeep } from './wordAudio.js'
 
 vi.hoisted(() => {
   globalThis.self ??= globalThis
 })
-vi.mock('./content.js', () => ({ loadIndex: vi.fn(), loadSentenceChoices: vi.fn(), loadWords: vi.fn() }))
+vi.mock('./content.js', () => ({ loadCountWords: vi.fn(), loadIndex: vi.fn(), loadSentenceChoices: vi.fn(), loadWords: vi.fn() }))
 
 const SCOPE = 'https://example.test/ioe-buddy/'
 
@@ -53,13 +53,14 @@ describe('respondWithWordAudio', () => {
 describe('wordAudioToKeep', () => {
   it('lists the clip of every phrase the app can say and deletes old audio versions', async () => {
     vi.mocked(loadWords).mockResolvedValue([{ word: 'ball', sentence: 'I see a ball.' }])
+    vi.mocked(loadCountWords).mockResolvedValue([{ word: 'book', plural: 'books' }])
     vi.mocked(loadSentenceChoices).mockResolvedValue([{ before: 'How many ', after: '?', sentence: 'How many pots?' }])
     await caches.open('word-audio-v1')
 
     const { cacheName, paths } = await wordAudioToKeep()
 
     expect(cacheName).toBe('word-audio-def456')
-    for (const name of ['ball', 'i-see-a-ball', 'how-many-pots', 'how-many-what', 'find-the-ball', 'great-job', 'try-again', 'super', 'a']) {
+    for (const name of ['ball', 'i-see-a-ball', 'how-many-pots', 'how-many-what', 'i-can-see-three-books', 'find-the-ball', 'great-job', 'try-again', 'super', 'a']) {
       expect(paths).toContain(`content/audio/${name}.mp3`)
     }
     expect(cacheStorage.caches.has('word-audio-v1')).toBe(false)

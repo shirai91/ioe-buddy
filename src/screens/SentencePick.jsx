@@ -45,6 +45,16 @@ function OptionBadge({ state }) {
   )
 }
 
+function CountPictures({ count }) {
+  return (
+    <div className="sentence-pick__count" role="img" aria-label={`${count.number} ${count.picture.word}`}>
+      {Array.from({ length: count.number }, (_, pictureIndex) => (
+        <WordPicture key={pictureIndex} word={count.picture} size={64} framed={false} />
+      ))}
+    </div>
+  )
+}
+
 function SentenceCard({ question, solved, picked }) {
   const blank = blankFor(question, solved, picked)
   const blankClass = ['sentence-pick__blank', `sentence-pick__blank--${blank.state}`, blank.animation].filter(Boolean).join(' ')
@@ -59,6 +69,7 @@ function SentenceCard({ question, solved, picked }) {
           className="sentence-pick__listen"
         />
       </div>
+      {question.count && <CountPictures count={question.count} />}
       <p className="sentence-pick__sentence">
         <span>{question.before}</span>
         <span key={blank.state} className={blankClass}>

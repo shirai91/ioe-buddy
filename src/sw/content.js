@@ -73,6 +73,15 @@ export function loadGrammar() {
   return rememberedGrammar()
 }
 
+const rememberedCountWords = rememberUntilFailure(async () => {
+  const { countWords } = await loadIndex()
+  return countWords ? fetchJson(countWords) : []
+})
+
+export function loadCountWords() {
+  return rememberedCountWords()
+}
+
 export function loadSentenceChoices() {
   return rememberedSentenceChoices()
 }
@@ -82,4 +91,5 @@ export function clearContentCache() {
   rememberedWords.forget()
   rememberedGrammar.forget()
   rememberedSentenceChoices.forget()
+  rememberedCountWords.forget()
 }

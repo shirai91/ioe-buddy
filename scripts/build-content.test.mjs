@@ -3,8 +3,9 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { after, before, describe, test } from 'node:test'
-import { buildContent, buildSentenceChoices, folderFingerprint, isSameWord } from './build-content.mjs'
+import { buildContent, buildCountWords, buildSentenceChoices, folderFingerprint, isSameWord } from './build-content.mjs'
 
+const LAST_STARTERS_UNIT = 27
 const temporaryDirs = []
 
 function makeTemporaryDir(prefix) {
@@ -27,6 +28,7 @@ describe('build-content with the book content', () => {
   let grammar
   let index
   let sentenceChoices
+  let countWords
 
   before(() => {
     outDir = makeTemporaryDir('ioe-content-')
@@ -36,6 +38,7 @@ describe('build-content with the book content', () => {
     grammar = readJson(path.join(outDir, 'grammar.json'))
     index = readJson(path.join(outDir, 'index.json'))
     sentenceChoices = readJson(path.join(outDir, 'sentence-choices.json'))
+    countWords = readJson(path.join(outDir, 'count-words.json'))
   })
 
   const findWord = (text) => words.find((word) => word.word === text)
@@ -72,6 +75,18 @@ describe('build-content with the book content', () => {
     assert.equal(new Set(sentenceChoices.map((choice) => choice.id)).size, sentenceChoices.length)
   })
 
+  test('count words name known words with a picture and a plural', () => {
+    assert.equal(index.countWords, 'content/count-words.json')
+    assert.equal(index.countWordCount, countWords.length)
+    assert.ok(countWords.length >= 20)
+    const pictured = new Set(words.filter((word) => word.image && !word.sight).map((word) => word.id))
+    for (const countWord of countWords) {
+      assert.ok(pictured.has(countWord.wordId), countWord.wordId)
+      assert.ok(countWord.plural)
+    }
+    assert.equal(countWords.find((countWord) => countWord.wordId === 'bus').plural, 'buses')
+  })
+
   test('words are sorted by rank and ranks are unique', () => {
     assertSortedByUniqueRank(words)
   })
@@ -90,7 +105,7 @@ describe('build-content with the book content', () => {
       assert.match(word.letter, /^[A-Z][a-z]$/)
       assert.equal(word.letter[1], word.word[0].toLowerCase())
       assert.ok(word.sentence)
-      assert.ok(Number.isInteger(word.unit) && word.unit >= 1 && word.unit <= 16)
+      assert.ok(Number.isInteger(word.unit) && word.unit >= 1 && word.unit <= LAST_STARTERS_UNIT)
       assert.ok(Number.isInteger(word.lesson) && word.lesson >= 1 && word.lesson <= 3)
       assert.equal(Math.floor(word.rank / 100), word.unit * 10 + word.lesson)
     }
@@ -202,7 +217,8 @@ describe('build-content extra words', () => {
     assert.equal(hi.ipa, '/haɪ/')
     assert.equal(hi.vi, 'xin chào')
     assert.equal(hi.image, 'content/images/hi.png')
-    assert.equal(findWord('in').image, null)
+    assert.equal(findWord('in').image, 'content/images/in.png')
+    assert.equal(findWord('it').image, null)
   })
 
   test('the verb can has its own id and picture next to the noun can', () => {
@@ -213,6 +229,43 @@ describe('build-content extra words', () => {
     const canNoun = words.find((word) => word.id === 'can')
     assert.equal(canNoun.unit, 3)
     assert.equal(canNoun.sight, undefined)
+  })
+})
+
+describe('build-content Starters words', () => {
+  let words
+
+  before(() => {
+    const outDir = makeTemporaryDir('ioe-content-')
+    buildContent({ outDir })
+    words = readJson(path.join(outDir, 'words.json'))
+  })
+
+  const findWord = (id) => words.find((word) => word.id === id)
+
+  test('come after all book words, in the row order of each topic', () => {
+    const firstStartersIndex = words.findIndex((word) => word.unit > 16)
+    assert.ok(words.slice(firstStartersIndex).every((word) => word.unit > 16))
+    assert.deepEqual(
+      words.slice(firstStartersIndex, firstStartersIndex + 3).map(({ id, unit, lesson, rank }) => `${id} ${unit}.${lesson} ${rank}`),
+      ['arm 17.1 17101', 'leg 17.1 17102', 'body 17.1 17103'],
+    )
+  })
+
+  test('keep the row id, ipa, vi, sentence and the Starters picture', () => {
+    const tShirt = findWord('t-shirt')
+    assert.equal(tShirt.word, 'T-shirt')
+    assert.equal(tShirt.ipa, '/ˈtiː ʃɜːt/')
+    assert.equal(tShirt.vi, 'áo phông')
+    assert.equal(tShirt.sentence, "It's a red T-shirt.")
+    assert.equal(tShirt.image, 'content/images/t-shirt.png')
+    assert.equal(tShirt.sight, undefined)
+    assert.equal(findWord('in-front-of').unit, 27)
+  })
+
+  test('are not cards that the book already has', () => {
+    assert.equal(words.filter((word) => word.word === 'hand').length, 1)
+    assert.equal(findWord('hand').unit, 8)
   })
 })
 
@@ -312,5 +365,26 @@ describe('buildSentenceChoices', () => {
     assert.throws(() => buildSentenceChoices([{ ...row, sentence: 'I have a car.' }], words), /one ___/)
     assert.throws(() => buildSentenceChoices([{ ...row, wrong: ['Car', 'cup', 'cake'] }], words), /same option/)
     assert.throws(() => buildSentenceChoices([{ ...row, wordId: 'bus' }], words), /unknown word/)
+  })
+})
+
+describe('buildCountWords', () => {
+  const words = [{ id: 'book', word: 'book', image: 'content/images/book.png' }, { id: 'in', word: 'in', image: null, sight: true }]
+
+  test('keeps the word text and the plural, and skips words with no game picture', () => {
+    const rows = [
+      { wordId: 'book', plural: 'books', unit: 1 },
+      { wordId: 'in', plural: 'ins', unit: 3 },
+    ]
+
+    assert.deepEqual(buildCountWords(rows, words), {
+      countWords: [{ wordId: 'book', word: 'book', plural: 'books', unit: 1 }],
+      countWordsWithoutPicture: ['in'],
+    })
+  })
+
+  test('rejects bad rows', () => {
+    assert.throws(() => buildCountWords([{ wordId: 'bus', plural: 'buses', unit: 11 }], words), /not a known word/)
+    assert.throws(() => buildCountWords([{ wordId: 'book', plural: '', unit: 1 }], words), /no plural/)
   })
 })

@@ -14,6 +14,7 @@ The MVP has no login. All progress stays on the device.
 - `src/sw/router.js` matches the method and path and returns JSON. An unknown route gives 404. A handler error gives 500.
 - `src/sw/handlers/` holds one file per resource: profile, flashcards, exams, word of the day, credits, reset.
 - `src/sw/exams/` holds one question generator per game: Picture Pick, Letter Pop, Match Up, Fill In, Sentence Quiz. Each call gives a new random set of 10 questions.
+- Letter Pop and Fill In show fewer pictures as the stars go up: all pictures at 0 stars, 3 of 10 at 100 stars, none from 200 stars (`pictureChance` in `src/sw/stars.js`). A hidden picture shows a "?" tile, and the child uses the listen button.
 - `src/sw/srs.js` schedules flash cards (Leitner boxes 0-5).
 - `src/sw/pool.js` builds each 10-card session and the game word pool. See [docs/flashcard-pool.md](docs/flashcard-pool.md).
 - The React app calls the backend only through `src/api/client.js`. It waits until the service worker controls the page before the first call.
@@ -38,6 +39,7 @@ The MVP has no login. All progress stays on the device.
 
 - `scripts/build-content.mjs` reads `content/clean/*.md` and writes JSON to `public/content/` (ignored by git).
 - `public/content/words.json` holds all words and `public/content/grammar.json` all sentence patterns. `public/content/index.json` points to them and lists the picture credits.
+- `content/clean/starters-words.md` adds the words of the Cambridge Pre A1 Starters Wordlist Picture Book as units 17-27, after the 16 book units. Their pictures are in `images/starters/`, cut from the book pages. `images/starters/manifest.json` gives the page and the box of each picture.
 - `content/clean/sentence-choice.md` is the Sentence Quiz question bank. The build checks each row and writes `public/content/sentence-choices.json`. A question comes only after the learner sees its word.
 - Units and lessons are hidden metadata (`unit`, `lesson`, `rank`). The app never shows them. `rank` sets the order in which new words come in.
 - Each word gets its picture from `images/unit-XX/` first, then from any other `images/` folder. The script copies only the pictures that words use, to `public/content/images/<id>.png`.

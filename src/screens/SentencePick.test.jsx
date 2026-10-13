@@ -16,6 +16,24 @@ vi.mock('../lib/speak.js', () => ({ speak: vi.fn() }))
 
 const MILK = { id: 'milk', word: 'milk', letter: 'Mm', image: 'content/images/milk.png' }
 
+const CAT = { id: 'cat', word: 'cat', letter: 'Cc', image: 'content/images/cat.png' }
+
+const COUNT_QUESTION = {
+  id: 'sentence-pick-count',
+  before: 'I can see ',
+  after: '.',
+  answer: 'three cats',
+  count: { number: 3, picture: CAT },
+  options: [
+    { text: 'a cat', picture: null },
+    { text: 'two cats', picture: null },
+    { text: 'three cats', picture: null },
+    { text: 'four cats', picture: null },
+  ],
+  sentence: 'I can see three cats.',
+  prompt: 'I can see ... what?',
+}
+
 const QUESTIONS = [
   {
     id: 'sentence-pick-1',
@@ -100,6 +118,26 @@ describe('SentencePick screen', () => {
     expect(screen.getByRole('status').textContent).toBe('Which word fits?')
     expect(screen.getByRole('progressbar', { name: 'Question 1 of 2' })).toBeTruthy()
     expect(nextButton().disabled).toBe(true)
+  })
+
+  it('shows no count pictures for a normal question', async () => {
+    const { container } = renderScreen()
+    await screen.findByRole('button', { name: 'A: fish' })
+    expect(container.querySelector('.sentence-pick__count')).toBeNull()
+  })
+
+  it('shows the count picture once per counted thing and no option pictures', async () => {
+    vi.mocked(getExam).mockResolvedValue({ type: 'sentence-pick', questions: [COUNT_QUESTION] })
+    const { container } = renderScreen()
+    await screen.findByRole('button', { name: 'A: a cat' })
+    const row = screen.getByRole('img', { name: '3 cat' })
+    expect(row.className).toBe('sentence-pick__count')
+    const images = row.querySelectorAll('.word-picture__image')
+    expect(images).toHaveLength(3)
+    images.forEach((image) => expect(image.getAttribute('src')).toBe('content/images/cat.png'))
+    expect(container.querySelector('.sentence-pick__sentence').textContent).toBe('I can see ?.')
+    const answers = screen.getByRole('group', { name: 'Answers' })
+    expect(answers.querySelector('.word-picture')).toBeNull()
   })
 
   it('shows the picked word in the blank and says oops on a wrong pick', async () => {

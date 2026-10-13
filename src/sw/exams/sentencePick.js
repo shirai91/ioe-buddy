@@ -1,7 +1,9 @@
-import { askBlank } from '../../lib/clips.js'
+import { askBlank, COUNT_AFTER, COUNT_BEFORE, COUNT_RANGE, countPhrase, countSentence } from '../../lib/clips.js'
 import { hasGamePicture, shuffle, toChoice, wordKey } from './wordTools.js'
 
 const MINIMUM_OPEN_CHOICES = 2
+export const COUNT_SHARE = 0.2
+export const COUNT_NUMBER_WORD_IDS = ['two', 'three', 'four']
 
 function openChoices(choices, words) {
   const seenWordIds = new Set(words.map((word) => word.id))
@@ -32,21 +34,62 @@ function toOption(text, pictureByText) {
   return { text, picture: pictureByText.get(text.toLowerCase()) ?? null }
 }
 
-function toQuestion(choice, number, pictureByText, random) {
+function openCountWords(countWords, words) {
+  const seenWordIds = new Set(words.map((word) => word.id))
+  const knowsNumbers = COUNT_NUMBER_WORD_IDS.every((id) => seenWordIds.has(id))
+  return knowsNumbers ? countWords.filter((countWord) => seenWordIds.has(countWord.wordId)) : []
+}
+
+function countChoice(countWord, pictureByText, random) {
+  const number = COUNT_RANGE[Math.floor(random() * COUNT_RANGE.length)]
   return {
-    id: `sentence-pick-${number}`,
+    before: COUNT_BEFORE,
+    after: COUNT_AFTER,
+    answer: countPhrase(countWord, number),
+    options: COUNT_RANGE.map((option) => ({ text: countPhrase(countWord, option), picture: null })),
+    sentence: countSentence(countWord, number),
+    prompt: askBlank({ before: COUNT_BEFORE, after: COUNT_AFTER }),
+    count: { number, picture: pictureByText.get(countWord.word.toLowerCase()) ?? null },
+  }
+}
+
+function plainChoice(choice, pictureByText, random) {
+  return {
     before: choice.before,
     after: choice.after,
     answer: choice.answer,
     options: shuffle([choice.answer, ...choice.wrong], random).map((text) => toOption(text, pictureByText)),
     sentence: choice.sentence,
     prompt: askBlank(choice),
+    count: null,
   }
 }
 
-export async function generate({ words = [], allWords = [], count = 10, random = Math.random, loadSentenceChoices }) {
-  const choices = await loadSentenceChoices()
+function countQuestions(countWords, words, slots, pictureByText, random) {
+  const open = shuffle(openCountWords(countWords, words), random).slice(0, slots)
+  return open.map((countWord) => countChoice(countWord, pictureByText, random))
+}
+
+function insertAtRandomPlaces(sequence, extras, random) {
+  const mixed = sequence.slice()
+  for (const extra of extras) mixed.splice(Math.floor(random() * (mixed.length + 1)), 0, extra)
+  return mixed
+}
+
+export async function generate({
+  words = [],
+  allWords = [],
+  count = 10,
+  random = Math.random,
+  loadSentenceChoices,
+  loadCountWords = async () => [],
+}) {
+  const [choices, countWords] = await Promise.all([loadSentenceChoices(), loadCountWords()])
   const pictureByText = picturesByText(allWords)
-  const sequence = choiceSequence(openChoices(choices, words), count, random)
-  return sequence.map((choice, index) => toQuestion(choice, index + 1, pictureByText, random))
+  const counted = countQuestions(countWords, words, Math.round(count * COUNT_SHARE), pictureByText, random)
+  const plain = choiceSequence(openChoices(choices, words), count - counted.length, random).map((choice) =>
+    plainChoice(choice, pictureByText, random),
+  )
+  const mixed = plain.length > 0 ? insertAtRandomPlaces(plain, counted, random) : []
+  return mixed.map((question, index) => ({ id: `sentence-pick-${index + 1}`, ...question }))
 }

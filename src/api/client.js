@@ -78,14 +78,16 @@ function reportUpdateWhenWaiting(container, registration) {
   for (const listener of updateListeners) listener()
 }
 
+function followNewWorker(container, registration, worker) {
+  worker?.addEventListener('statechange', () => {
+    if (worker.state === 'installed') reportUpdateWhenWaiting(container, registration)
+  })
+}
+
 function watchForUpdates(container, registration) {
   reportUpdateWhenWaiting(container, registration)
-  registration.addEventListener('updatefound', () => {
-    const worker = registration.installing
-    worker?.addEventListener('statechange', () => {
-      if (worker.state === 'installed') reportUpdateWhenWaiting(container, registration)
-    })
-  })
+  followNewWorker(container, registration, registration.installing)
+  registration.addEventListener('updatefound', () => followNewWorker(container, registration, registration.installing))
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') registration.update().catch(() => {})
   })

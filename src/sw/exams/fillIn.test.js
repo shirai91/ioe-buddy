@@ -68,4 +68,23 @@ describe('fill in generator', () => {
   it('returns no questions when there are no playable words', () => {
     expect(generate({ words: [unitWords[3]], allWords: [unitWords[3]], count: 10 })).toEqual([])
   })
+
+  it('shows every picture at 0 stars', () => {
+    const questions = generate({ words: unitWords, allWords, count: 10, stars: 0 })
+    expect(questions.filter((question) => question.letter === '?')).toHaveLength(0)
+  })
+
+  it('shows the picture in 3 of 10 questions at 100 stars and hides the others behind a ? tile', () => {
+    for (let run = 0; run < 20; run++) {
+      const questions = generate({ words: unitWords, allWords, count: 10, stars: 100 })
+      const hidden = questions.filter((question) => question.letter === '?')
+      expect(hidden).toHaveLength(7)
+      hidden.forEach((question) => expect(question.image).toBeNull())
+    }
+  })
+
+  it('hides every picture from 200 stars', () => {
+    const questions = generate({ words: unitWords, allWords, count: 10, stars: 200 })
+    questions.forEach((question) => expect(question).toMatchObject({ image: null, letter: '?' }))
+  })
 })

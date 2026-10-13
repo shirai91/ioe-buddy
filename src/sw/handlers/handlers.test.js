@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { getAll, put } from '../db.js'
-import { loadSentenceChoices } from '../content.js'
+import { loadCountWords, loadSentenceChoices } from '../content.js'
 import { examGenerators } from '../exams/index.js'
 import { handleApiRequest } from '../router.js'
 import { MILLISECONDS_PER_DAY } from '../srs.js'
@@ -158,14 +158,23 @@ describe('word of the day', () => {
 })
 
 describe('exams', () => {
-  it('gives the generator the first 6 words for a fresh learner, all words and count 10', async () => {
+  it('gives the generator the first 6 words for a fresh learner, all words, count 10 and the stars', async () => {
     const questions = [{ id: 'q1' }]
     const generate = vi.spyOn(examGenerators, 'match-up').mockReturnValue(questions)
 
     const { body } = await call('exams/match-up')
 
     expect(body).toEqual({ type: 'match-up', questions })
-    expect(generate).toHaveBeenCalledWith({ words: words.slice(0, 6), allWords: words, count: 10, loadSentenceChoices })
+    expect(generate).toHaveBeenCalledWith({ words: words.slice(0, 6), allWords: words, count: 10, stars: 0, loadSentenceChoices, loadCountWords })
+  })
+
+  it('hides the Fill In pictures when the learner has 200 stars', async () => {
+    await put('profile', 'me', { name: 'Buddy', stars: 200 })
+
+    const { body } = await call('exams/fill-in')
+
+    expect(body.questions.length).toBeGreaterThan(0)
+    body.questions.forEach((question) => expect(question).toMatchObject({ image: null, letter: '?' }))
   })
 
   it('puts tricky words first and tops up with unseen words by rank', async () => {

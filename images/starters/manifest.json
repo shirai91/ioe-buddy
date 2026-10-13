@@ -1,0 +1,2600 @@
+[
+  {
+    "word": "arm",
+    "file": "arm.png",
+    "pdfPage": 6,
+    "dpi": 600,
+    "box": {
+      "x": 540,
+      "y": 2280,
+      "w": 1220,
+      "h": 640
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, My body top scene, red-haired girl",
+    "quality": "good",
+    "note": "Girl's outstretched arm and hand, from shoulder to fingers"
+  },
+  {
+    "word": "body",
+    "file": "body.png",
+    "pdfPage": 6,
+    "dpi": 600,
+    "box": {
+      "x": 270,
+      "y": 5480,
+      "w": 990,
+      "h": 1150
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, My body panel, labelled girl",
+    "quality": "ok",
+    "note": "Whole girl, arms out; short leader-line stubs near hand and feet"
+  },
+  {
+    "word": "leg",
+    "file": "leg.png",
+    "pdfPage": 6,
+    "dpi": 600,
+    "box": {
+      "x": 1960,
+      "y": 3150,
+      "w": 800,
+      "h": 1230
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, My body top scene, blond boy",
+    "quality": "good",
+    "note": "Boy's bent bare leg from shorts to foot"
+  },
+  {
+    "word": "eye",
+    "file": "eye.png",
+    "pdfPage": 6,
+    "dpi": 600,
+    "box": {
+      "x": 2860,
+      "y": 1570,
+      "w": 330,
+      "h": 330
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, My body top scene, blond boy face",
+    "quality": "good",
+    "note": "One big blue eye with eyebrow"
+  },
+  {
+    "word": "ear",
+    "file": "ear.png",
+    "pdfPage": 6,
+    "dpi": 600,
+    "box": {
+      "x": 3950,
+      "y": 2480,
+      "w": 340,
+      "h": 330
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, My body top scene, brown-haired boy",
+    "quality": "good",
+    "note": "Boy's ear under his brown hair"
+  },
+  {
+    "word": "mouth",
+    "file": "mouth.png",
+    "pdfPage": 6,
+    "dpi": 600,
+    "box": {
+      "x": 2640,
+      "y": 1840,
+      "w": 400,
+      "h": 340
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, My body top scene, blond boy face",
+    "quality": "good",
+    "note": "Open laughing mouth with teeth and tongue, nose above"
+  },
+  {
+    "word": "nose",
+    "file": "nose.png",
+    "pdfPage": 6,
+    "dpi": 600,
+    "box": {
+      "x": 2700,
+      "y": 1750,
+      "w": 320,
+      "h": 300
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, My body top scene, blond boy face",
+    "quality": "good",
+    "note": "Round nose in the centre, edges of eyes and mouth around it"
+  },
+  {
+    "word": "smile",
+    "file": "smile.png",
+    "pdfPage": 6,
+    "dpi": 600,
+    "box": {
+      "x": 3420,
+      "y": 2510,
+      "w": 490,
+      "h": 370
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, My body top scene, brown-haired boy",
+    "quality": "good",
+    "note": "Big happy smile on the boy's lower face"
+  },
+  {
+    "word": "cow",
+    "file": "cow.png",
+    "pdfPage": 7,
+    "dpi": 600,
+    "box": {
+      "x": 2600,
+      "y": 4860,
+      "w": 710,
+      "h": 520
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled cow",
+    "quality": "good",
+    "note": "Black-and-white cow standing, side view"
+  },
+  {
+    "word": "frog",
+    "file": "frog.png",
+    "pdfPage": 7,
+    "dpi": 600,
+    "box": {
+      "x": 320,
+      "y": 5390,
+      "w": 390,
+      "h": 390
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled frog",
+    "quality": "good",
+    "note": "Smiling green frog sitting"
+  },
+  {
+    "word": "bird",
+    "file": "bird.png",
+    "pdfPage": 7,
+    "dpi": 600,
+    "box": {
+      "x": 3060,
+      "y": 5520,
+      "w": 450,
+      "h": 520
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled bird",
+    "quality": "good",
+    "note": "Small brown bird standing"
+  },
+  {
+    "word": "sheep",
+    "file": "sheep.png",
+    "pdfPage": 7,
+    "dpi": 600,
+    "box": {
+      "x": 1110,
+      "y": 5830,
+      "w": 610,
+      "h": 490
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled sheep",
+    "quality": "good",
+    "note": "Fluffy white sheep with grey face"
+  },
+  {
+    "word": "lizard",
+    "file": "lizard.png",
+    "pdfPage": 7,
+    "dpi": 600,
+    "box": {
+      "x": 3420,
+      "y": 6210,
+      "w": 500,
+      "h": 580
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled lizard",
+    "quality": "good",
+    "note": "Orange lizard seen from above, legs spread"
+  },
+  {
+    "word": "spider",
+    "file": "spider.png",
+    "pdfPage": 7,
+    "dpi": 600,
+    "box": {
+      "x": 3800,
+      "y": 2760,
+      "w": 320,
+      "h": 300
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo top scene, spider by the door",
+    "quality": "ok",
+    "note": "Purple spider on its thread; edge of door and a hand at the corners"
+  },
+  {
+    "word": "tail",
+    "file": "tail.png",
+    "pdfPage": 7,
+    "dpi": 600,
+    "box": {
+      "x": 1980,
+      "y": 2380,
+      "w": 500,
+      "h": 820
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo top scene, tiger tail over roof edge",
+    "quality": "good",
+    "note": "Striped tiger tail with white tip hanging down"
+  },
+  {
+    "word": "snake",
+    "file": "snake.png",
+    "pdfPage": 8,
+    "dpi": 600,
+    "box": {
+      "x": 960,
+      "y": 4980,
+      "w": 540,
+      "h": 540
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled snake",
+    "quality": "good",
+    "note": "Red snake with yellow spots wrapped on a branch"
+  },
+  {
+    "word": "crocodile",
+    "file": "crocodile.png",
+    "pdfPage": 8,
+    "dpi": 600,
+    "box": {
+      "x": 1790,
+      "y": 4970,
+      "w": 880,
+      "h": 630
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled crocodile",
+    "quality": "good",
+    "note": "Green crocodile swimming, tail up"
+  },
+  {
+    "word": "giraffe",
+    "file": "giraffe.png",
+    "pdfPage": 8,
+    "dpi": 600,
+    "box": {
+      "x": 1180,
+      "y": 5590,
+      "w": 520,
+      "h": 1310
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled giraffe",
+    "quality": "good",
+    "note": "Whole tall giraffe standing"
+  },
+  {
+    "word": "hippo",
+    "file": "hippo.png",
+    "pdfPage": 8,
+    "dpi": 600,
+    "box": {
+      "x": 320,
+      "y": 6150,
+      "w": 620,
+      "h": 570
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled hippo",
+    "quality": "ok",
+    "note": "Hippo head in water; short leader-line stub at top left"
+  },
+  {
+    "word": "elephant",
+    "file": "elephant.png",
+    "pdfPage": 8,
+    "dpi": 600,
+    "box": {
+      "x": 1860,
+      "y": 5850,
+      "w": 750,
+      "h": 870
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, At the zoo panel, labelled elephant",
+    "quality": "good",
+    "note": "Grey elephant sitting, trunk up"
+  },
+  {
+    "word": "glasses",
+    "file": "glasses.png",
+    "pdfPage": 9,
+    "dpi": 600,
+    "box": {
+      "x": 170,
+      "y": 5320,
+      "w": 500,
+      "h": 560
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: purple glasses",
+    "quality": "good",
+    "note": "Woman's face with big purple glasses"
+  },
+  {
+    "word": "clothes",
+    "file": "clothes.png",
+    "pdfPage": 9,
+    "dpi": 600,
+    "box": {
+      "x": 1470,
+      "y": 5570,
+      "w": 820,
+      "h": 1090
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: clothes",
+    "quality": "ok",
+    "note": "Woman carrying a big pile of clothes; items are small"
+  },
+  {
+    "word": "jacket",
+    "file": "jacket.png",
+    "pdfPage": 9,
+    "dpi": 600,
+    "box": {
+      "x": 2720,
+      "y": 5250,
+      "w": 620,
+      "h": 820
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: blue jacket",
+    "quality": "good",
+    "note": "Blue jacket on a hanger"
+  },
+  {
+    "word": "skirt",
+    "file": "skirt.png",
+    "pdfPage": 9,
+    "dpi": 600,
+    "box": {
+      "x": 4040,
+      "y": 740,
+      "w": 480,
+      "h": 370
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, scene: shop display tile, top right",
+    "quality": "good",
+    "note": "Green skirt icon on a green display tile"
+  },
+  {
+    "word": "shoe",
+    "file": "shoe.png",
+    "pdfPage": 10,
+    "dpi": 600,
+    "box": {
+      "x": 1430,
+      "y": 2370,
+      "w": 420,
+      "h": 320
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, scene: shoe shelf, middle left",
+    "quality": "ok",
+    "note": "Red and white sneaker; edges of other shoes at corners"
+  },
+  {
+    "word": "sock",
+    "file": "sock.png",
+    "pdfPage": 9,
+    "dpi": 600,
+    "box": {
+      "x": 3760,
+      "y": 6300,
+      "w": 460,
+      "h": 540
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: sock",
+    "quality": "good",
+    "note": "Green sock"
+  },
+  {
+    "word": "handbag",
+    "file": "handbag.png",
+    "pdfPage": 9,
+    "dpi": 600,
+    "box": {
+      "x": 2280,
+      "y": 6270,
+      "w": 490,
+      "h": 560
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: pink handbag",
+    "quality": "good",
+    "note": "Pink handbag with long strap"
+  },
+  {
+    "word": "watch",
+    "file": "watch.png",
+    "pdfPage": 10,
+    "dpi": 600,
+    "box": {
+      "x": 120,
+      "y": 4850,
+      "w": 310,
+      "h": 390
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: watch",
+    "quality": "good",
+    "note": "Red wrist watch"
+  },
+  {
+    "word": "trousers",
+    "file": "trousers.png",
+    "pdfPage": 10,
+    "dpi": 600,
+    "box": {
+      "x": 880,
+      "y": 4790,
+      "w": 530,
+      "h": 690
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: grey/gray trousers",
+    "quality": "good",
+    "note": "Grey trousers with blue shoes"
+  },
+  {
+    "word": "shirt",
+    "file": "shirt.png",
+    "pdfPage": 10,
+    "dpi": 600,
+    "box": {
+      "x": 1735,
+      "y": 5080,
+      "w": 630,
+      "h": 830
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: yellow shirt",
+    "quality": "good",
+    "note": "Yellow button shirt on a hanger"
+  },
+  {
+    "word": "t-shirt",
+    "file": "t-shirt.png",
+    "pdfPage": 9,
+    "dpi": 600,
+    "box": {
+      "x": 3395,
+      "y": 390,
+      "w": 440,
+      "h": 355
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, scene: shop display tile, top middle",
+    "quality": "good",
+    "note": "Yellow T-shirt icon on a yellow display tile"
+  },
+  {
+    "word": "jeans",
+    "file": "jeans.png",
+    "pdfPage": 10,
+    "dpi": 600,
+    "box": {
+      "x": 420,
+      "y": 4060,
+      "w": 880,
+      "h": 660
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, scene: boy on floor, bottom left",
+    "quality": "good",
+    "note": "Boy's green jeans, edge of red T-shirt and shoe"
+  },
+  {
+    "word": "dress",
+    "file": "dress.png",
+    "pdfPage": 10,
+    "dpi": 600,
+    "box": {
+      "x": 2450,
+      "y": 6260,
+      "w": 600,
+      "h": 560
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: orange dress",
+    "quality": "ok",
+    "note": "Orange dress; edge of the purple talk bubble behind it"
+  },
+  {
+    "word": "angry",
+    "file": "angry.png",
+    "pdfPage": 10,
+    "dpi": 600,
+    "box": {
+      "x": 20,
+      "y": 5540,
+      "w": 720,
+      "h": 760
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: angry man",
+    "quality": "good",
+    "note": "Angry man's face and upper body, pointing"
+  },
+  {
+    "word": "alien",
+    "file": "alien.png",
+    "pdfPage": 11,
+    "dpi": 600,
+    "box": {
+      "x": 180,
+      "y": 5370,
+      "w": 520,
+      "h": 680
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p11 bottom label",
+    "quality": "good",
+    "note": "Green alien holding a remote control."
+  },
+  {
+    "word": "monster",
+    "file": "monster.png",
+    "pdfPage": 11,
+    "dpi": 600,
+    "box": {
+      "x": 800,
+      "y": 5280,
+      "w": 580,
+      "h": 700
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p11 bottom label",
+    "quality": "good",
+    "note": "Brown furry monster with horns in a red shirt."
+  },
+  {
+    "word": "balloon",
+    "file": "balloon.png",
+    "pdfPage": 11,
+    "dpi": 600,
+    "box": {
+      "x": 700,
+      "y": 6140,
+      "w": 460,
+      "h": 460
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p11 bottom label",
+    "quality": "good",
+    "note": "Yellow balloon with its string."
+  },
+  {
+    "word": "man",
+    "file": "man.png",
+    "pdfPage": 11,
+    "dpi": 600,
+    "box": {
+      "x": 1370,
+      "y": 5805,
+      "w": 460,
+      "h": 850
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p11 bottom label",
+    "quality": "ok",
+    "note": "Man in a green shirt with a cup; a second man's cup at the right edge, tall box."
+  },
+  {
+    "word": "woman",
+    "file": "woman.png",
+    "pdfPage": 11,
+    "dpi": 600,
+    "box": {
+      "x": 2450,
+      "y": 5860,
+      "w": 450,
+      "h": 810
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p11 bottom label",
+    "quality": "ok",
+    "note": "Woman holding a baby; edge of grandma at left, short leader lines, tall box."
+  },
+  {
+    "word": "baby",
+    "file": "baby.png",
+    "pdfPage": 11,
+    "dpi": 600,
+    "box": {
+      "x": 1450,
+      "y": 1480,
+      "w": 620,
+      "h": 610
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p11 scene, top left",
+    "quality": "good",
+    "note": "Smiling baby in yellow held in mum's arms."
+  },
+  {
+    "word": "child",
+    "file": "child.png",
+    "pdfPage": 11,
+    "dpi": 600,
+    "box": {
+      "x": 2910,
+      "y": 6090,
+      "w": 780,
+      "h": 590
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p11 bottom label",
+    "quality": "ok",
+    "note": "Running boy; a leader line crosses near his head and a girl's foot shows at right."
+  },
+  {
+    "word": "people",
+    "file": "people.png",
+    "pdfPage": 11,
+    "dpi": 600,
+    "box": {
+      "x": 1390,
+      "y": 5790,
+      "w": 1490,
+      "h": 890
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p11 bottom label",
+    "quality": "ok",
+    "note": "Two men and two women standing together; short leader lines at top."
+  },
+  {
+    "word": "robot",
+    "file": "robot.png",
+    "pdfPage": 11,
+    "dpi": 600,
+    "box": {
+      "x": 4150,
+      "y": 5790,
+      "w": 430,
+      "h": 600
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p11 bottom label",
+    "quality": "ok",
+    "note": "Grey toy robot held by a man's hands; leader line at top left."
+  },
+  {
+    "word": "family",
+    "file": "family.png",
+    "pdfPage": 12,
+    "dpi": 600,
+    "box": {
+      "x": 50,
+      "y": 5215,
+      "w": 2320,
+      "h": 1290
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p12 bottom framed picture",
+    "quality": "ok",
+    "note": "Framed picture of a whole family; leader lines cross the frame."
+  },
+  {
+    "word": "dad",
+    "file": "dad.png",
+    "pdfPage": 12,
+    "dpi": 600,
+    "box": {
+      "x": 380,
+      "y": 5270,
+      "w": 560,
+      "h": 840
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p12 family picture",
+    "quality": "ok",
+    "note": "Dad in a white shirt; sister and mum partly at the edges."
+  },
+  {
+    "word": "mum",
+    "file": "mum.png",
+    "pdfPage": 12,
+    "dpi": 600,
+    "box": {
+      "x": 780,
+      "y": 5410,
+      "w": 460,
+      "h": 640
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p12 family picture",
+    "quality": "good",
+    "note": "Mum with blonde hair in a green top."
+  },
+  {
+    "word": "sister",
+    "file": "sister.png",
+    "pdfPage": 12,
+    "dpi": 600,
+    "box": {
+      "x": 90,
+      "y": 5630,
+      "w": 530,
+      "h": 820
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p12 family picture",
+    "quality": "ok",
+    "note": "Girl with a pink heart jumper; dad's arm at right, leader line."
+  },
+  {
+    "word": "brother",
+    "file": "brother.png",
+    "pdfPage": 12,
+    "dpi": 600,
+    "box": {
+      "x": 980,
+      "y": 5990,
+      "w": 480,
+      "h": 450
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p12 family picture",
+    "quality": "good",
+    "note": "Small boy in a red T-shirt with open arms."
+  },
+  {
+    "word": "grandmother",
+    "file": "grandmother.png",
+    "pdfPage": 12,
+    "dpi": 600,
+    "box": {
+      "x": 1150,
+      "y": 5410,
+      "w": 520,
+      "h": 760
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p12 family picture",
+    "quality": "good",
+    "note": "Grandma with grey curly hair and a pink cardigan."
+  },
+  {
+    "word": "grandfather",
+    "file": "grandfather.png",
+    "pdfPage": 12,
+    "dpi": 600,
+    "box": {
+      "x": 1490,
+      "y": 5420,
+      "w": 510,
+      "h": 800
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p12 family picture",
+    "quality": "good",
+    "note": "Grandpa with glasses, moustache and a tie."
+  },
+  {
+    "word": "cousin",
+    "file": "cousin.png",
+    "pdfPage": 12,
+    "dpi": 600,
+    "box": {
+      "x": 1840,
+      "y": 5760,
+      "w": 490,
+      "h": 680
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p12 family picture",
+    "quality": "good",
+    "note": "Boy in a red T-shirt and green shorts."
+  },
+  {
+    "word": "grapes",
+    "file": "grapes.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 820,
+      "y": 5510,
+      "w": 320,
+      "h": 300
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom fruit bowl",
+    "quality": "ok",
+    "note": "Bunch of green grapes; orange and banana edges below it, partly hidden by them"
+  },
+  {
+    "word": "orange",
+    "file": "orange.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 880,
+      "y": 5680,
+      "w": 300,
+      "h": 290
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom fruit bowl",
+    "quality": "good",
+    "note": "One orange in the red bowl, grapes and banana at the edges"
+  },
+  {
+    "word": "rice",
+    "file": "rice.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 1240,
+      "y": 6010,
+      "w": 500,
+      "h": 380
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "good",
+    "note": "Bowl of rice; thin leader line ends on the rice"
+  },
+  {
+    "word": "peas",
+    "file": "peas.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 160,
+      "y": 6345,
+      "w": 350,
+      "h": 215
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "good",
+    "note": "Small pile of green peas"
+  },
+  {
+    "word": "fruit",
+    "file": "fruit.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 380,
+      "y": 5500,
+      "w": 850,
+      "h": 740
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "good",
+    "note": "Red bowl full of fruit: apples, bananas, grapes, orange"
+  },
+  {
+    "word": "bread",
+    "file": "bread.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 850,
+      "y": 6320,
+      "w": 470,
+      "h": 500
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "good",
+    "note": "Round loaf and a long baguette"
+  },
+  {
+    "word": "lime",
+    "file": "lime.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 2480,
+      "y": 5680,
+      "w": 330,
+      "h": 290
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom fruit bowl",
+    "quality": "ok",
+    "note": "Two green limes in a bowl; lemon and mango edges at the sides"
+  },
+  {
+    "word": "pear",
+    "file": "pear.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 2215,
+      "y": 5875,
+      "w": 290,
+      "h": 335
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "good",
+    "note": "One green pear in front of the green bowl"
+  },
+  {
+    "word": "pineapple",
+    "file": "pineapple.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 2870,
+      "y": 5660,
+      "w": 470,
+      "h": 560
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "ok",
+    "note": "Whole pineapple; mango and bowl edge at top left"
+  },
+  {
+    "word": "coconut",
+    "file": "coconut.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 1630,
+      "y": 6325,
+      "w": 470,
+      "h": 347
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "good",
+    "note": "Half-open brown coconut with white flesh (box ends above the label, --keep-text)"
+  },
+  {
+    "word": "onion",
+    "file": "onion.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 2440,
+      "y": 6420,
+      "w": 380,
+      "h": 420
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "good",
+    "note": "Whole brown onion; cut onion edge at right"
+  },
+  {
+    "word": "tomato",
+    "file": "tomato.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 2870,
+      "y": 6440,
+      "w": 450,
+      "h": 380
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "ok",
+    "note": "Three red tomatoes; cut onion edge at left"
+  },
+  {
+    "word": "potato",
+    "file": "potato.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 1750,
+      "y": 3610,
+      "w": 380,
+      "h": 320
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 scene, dinner plate on green table",
+    "quality": "ok",
+    "note": "Boiled potatoes on a plate with green beans over them"
+  },
+  {
+    "word": "meat",
+    "file": "meat.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 2120,
+      "y": 3660,
+      "w": 440,
+      "h": 380
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 scene, dinner plate on green table",
+    "quality": "good",
+    "note": "Grilled steak on a plate"
+  },
+  {
+    "word": "dinner",
+    "file": "dinner.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 4180,
+      "y": 4900,
+      "w": 770,
+      "h": 500
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "good",
+    "note": "Dinner plate: potatoes, green beans and steak"
+  },
+  {
+    "word": "sausage",
+    "file": "sausage.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 260,
+      "y": 2530,
+      "w": 400,
+      "h": 310
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 scene, plate on blue table",
+    "quality": "good",
+    "note": "Two sausages on a plate, beans at left edge"
+  },
+  {
+    "word": "egg",
+    "file": "egg.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 4420,
+      "y": 650,
+      "w": 370,
+      "h": 310
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 scene, picture on wall",
+    "quality": "good",
+    "note": "Three brown eggs"
+  },
+  {
+    "word": "beans",
+    "file": "beans.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 20,
+      "y": 2520,
+      "w": 440,
+      "h": 340
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 scene, plate on blue table",
+    "quality": "good",
+    "note": "Baked beans on a plate, sausage at right edge"
+  },
+  {
+    "word": "breakfast",
+    "file": "breakfast.png",
+    "pdfPage": 13,
+    "dpi": 600,
+    "box": {
+      "x": 4180,
+      "y": 6230,
+      "w": 710,
+      "h": 470
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p13 bottom labelled picture",
+    "quality": "good",
+    "note": "Breakfast plate: sausages, beans, fried egg, mushrooms"
+  },
+  {
+    "word": "watermelon",
+    "file": "watermelon.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 180,
+      "y": 4800,
+      "w": 570,
+      "h": 360
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 bottom labelled picture",
+    "quality": "good",
+    "note": "Whole striped watermelon"
+  },
+  {
+    "word": "sweets",
+    "file": "sweets.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 980,
+      "y": 4810,
+      "w": 410,
+      "h": 570
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 bottom labelled picture",
+    "quality": "good",
+    "note": "Glass jar full of wrapped sweets"
+  },
+  {
+    "word": "chocolate",
+    "file": "chocolate.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 2150,
+      "y": 4740,
+      "w": 520,
+      "h": 330
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 bottom labelled picture",
+    "quality": "ok",
+    "note": "Chocolate bar in purple wrapper; wrapper art shows the letters CHOCO"
+  },
+  {
+    "word": "juice",
+    "file": "juice.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 1790,
+      "y": 5770,
+      "w": 320,
+      "h": 410
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 bottom labelled picture",
+    "quality": "good",
+    "note": "Glass of orange juice"
+  },
+  {
+    "word": "lemonade",
+    "file": "lemonade.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 830,
+      "y": 5760,
+      "w": 260,
+      "h": 340
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 bottom labelled picture",
+    "quality": "good",
+    "note": "Glass of pale yellow lemonade"
+  },
+  {
+    "word": "burger",
+    "file": "burger.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 575,
+      "y": 6255,
+      "w": 330,
+      "h": 300
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 bottom lunch picture",
+    "quality": "good",
+    "note": "Burger held in two hands"
+  },
+  {
+    "word": "ice-cream",
+    "file": "ice-cream.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 1450,
+      "y": 6190,
+      "w": 550,
+      "h": 610
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 bottom labelled picture",
+    "quality": "good",
+    "note": "Ice-cream sundae in a glass dish"
+  },
+  {
+    "word": "lunch",
+    "file": "lunch.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 170,
+      "y": 5880,
+      "w": 830,
+      "h": 880
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 bottom labelled picture",
+    "quality": "good",
+    "note": "Boy eating a burger and chips; lemonade glass corner painted white"
+  },
+  {
+    "word": "carrot",
+    "file": "carrot.png",
+    "pdfPage": 14,
+    "dpi": 600,
+    "box": {
+      "x": 2470,
+      "y": 6420,
+      "w": 650,
+      "h": 480
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p14 bottom labelled picture",
+    "quality": "ok",
+    "note": "Two carrots; edge of the purple bubble at top right"
+  },
+  {
+    "word": "box",
+    "file": "box.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 690,
+      "y": 2800,
+      "w": 290,
+      "h": 220
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, kitchen",
+    "quality": "good",
+    "note": "pink spotty box on top of the kitchen cupboard"
+  },
+  {
+    "word": "cupboard",
+    "file": "cupboard.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 610,
+      "y": 2968,
+      "w": 690,
+      "h": 312
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, kitchen",
+    "quality": "ok",
+    "note": "yellow wall cupboard with two doors; bottom edge trimmed to hide the woman's head"
+  },
+  {
+    "word": "radio",
+    "file": "radio.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 980,
+      "y": 3320,
+      "w": 310,
+      "h": 280
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, kitchen",
+    "quality": "good",
+    "note": "yellow radio with aerial on the worktop"
+  },
+  {
+    "word": "kitchen",
+    "file": "kitchen.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 200,
+      "y": 5330,
+      "w": 800,
+      "h": 1110
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 bottom, kitchen picture",
+    "quality": "ok",
+    "note": "kitchen with cooker, cupboards, clock and radio; short leader lines remain"
+  },
+  {
+    "word": "mirror",
+    "file": "mirror.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 2830,
+      "y": 1370,
+      "w": 320,
+      "h": 570
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, bathroom",
+    "quality": "good",
+    "note": "tall bathroom mirror on the wall"
+  },
+  {
+    "word": "bath",
+    "file": "bath.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 3200,
+      "y": 1800,
+      "w": 910,
+      "h": 660
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, bathroom",
+    "quality": "good",
+    "note": "white bath with a boy in bubbles"
+  },
+  {
+    "word": "bathroom",
+    "file": "bathroom.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 2180,
+      "y": 4900,
+      "w": 1040,
+      "h": 850
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 bottom, bathroom picture",
+    "quality": "ok",
+    "note": "bathroom with mirror, picture and bath; two short leader lines remain"
+  },
+  {
+    "word": "bed",
+    "file": "bed.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 280,
+      "y": 1680,
+      "w": 1310,
+      "h": 900
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, bedroom",
+    "quality": "good",
+    "note": "girl asleep in a purple bed"
+  },
+  {
+    "word": "doll",
+    "file": "doll.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 2240,
+      "y": 1420,
+      "w": 320,
+      "h": 360
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, bedroom",
+    "quality": "good",
+    "note": "doll sitting on top of the bookcase"
+  },
+  {
+    "word": "bookcase",
+    "file": "bookcase.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 2150,
+      "y": 1420,
+      "w": 600,
+      "h": 1100
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, bedroom",
+    "quality": "ok",
+    "note": "purple bookcase full of books; the doll sits on top"
+  },
+  {
+    "word": "bedroom",
+    "file": "bedroom.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 1290,
+      "y": 5950,
+      "w": 1160,
+      "h": 760
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 bottom, bedroom picture",
+    "quality": "ok",
+    "note": "bed, curtain and bookcase; leader lines from bed and doll remain"
+  },
+  {
+    "word": "house",
+    "file": "house.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 3020,
+      "y": 6200,
+      "w": 640,
+      "h": 500
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 bottom, house/home",
+    "quality": "good",
+    "note": "brown brick house"
+  },
+  {
+    "word": "dining-room",
+    "file": "dining-room.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 3890,
+      "y": 4935,
+      "w": 900,
+      "h": 1060
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 bottom, dining room picture",
+    "quality": "ok",
+    "note": "boy and woman eating at a table by a window; leader lines remain"
+  },
+  {
+    "word": "chair",
+    "file": "chair.png",
+    "pdfPage": 16,
+    "dpi": 600,
+    "box": {
+      "x": 2280,
+      "y": 600,
+      "w": 440,
+      "h": 870
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p16 scene, dining room",
+    "quality": "ok",
+    "note": "boy sitting on a brown dining chair; no empty chair on these pages"
+  },
+  {
+    "word": "table",
+    "file": "table.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 1620,
+      "y": 1860,
+      "w": 510,
+      "h": 610
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, bedroom",
+    "quality": "ok",
+    "note": "small purple table with a goldfish bowl on top"
+  },
+  {
+    "word": "flat",
+    "file": "flat.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 4420,
+      "y": 6120,
+      "w": 400,
+      "h": 620
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 bottom, apartment/flat",
+    "quality": "good",
+    "note": "tall block of flats; tiny leader stub at left"
+  },
+  {
+    "word": "hall",
+    "file": "hall.png",
+    "pdfPage": 16,
+    "dpi": 600,
+    "box": {
+      "x": 145,
+      "y": 4925,
+      "w": 780,
+      "h": 1070
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p16 bottom, hall picture",
+    "quality": "ok",
+    "note": "hall with coats, phone, green door and mat; leader lines remain"
+  },
+  {
+    "word": "phone",
+    "file": "phone.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 3830,
+      "y": 3490,
+      "w": 300,
+      "h": 290
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, hall",
+    "quality": "good",
+    "note": "grey phone on its stand on the hall cabinet"
+  },
+  {
+    "word": "flower",
+    "file": "flower.png",
+    "pdfPage": 16,
+    "dpi": 600,
+    "box": {
+      "x": 1510,
+      "y": 4050,
+      "w": 515,
+      "h": 550
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p16 scene, garden wall",
+    "quality": "good",
+    "note": "pink flowers growing by a garden wall"
+  },
+  {
+    "word": "painting",
+    "file": "painting.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 1960,
+      "y": 2990,
+      "w": 630,
+      "h": 470
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, living room",
+    "quality": "good",
+    "note": "framed painting of pink flowers on the wall"
+  },
+  {
+    "word": "sofa",
+    "file": "sofa.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 1830,
+      "y": 3480,
+      "w": 950,
+      "h": 700
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, living room",
+    "quality": "ok",
+    "note": "yellow sofa with two children sitting on it"
+  },
+  {
+    "word": "television",
+    "file": "television.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 2760,
+      "y": 3470,
+      "w": 425,
+      "h": 810
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, living room",
+    "quality": "good",
+    "note": "TV showing fish, on a stand"
+  },
+  {
+    "word": "armchair",
+    "file": "armchair.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 1390,
+      "y": 3520,
+      "w": 590,
+      "h": 710
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, living room",
+    "quality": "ok",
+    "note": "yellow armchair; lamp top in front at the bottom"
+  },
+  {
+    "word": "lamp",
+    "file": "lamp.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 1410,
+      "y": 4020,
+      "w": 310,
+      "h": 380
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, living room",
+    "quality": "good",
+    "note": "red table lamp on a small table"
+  },
+  {
+    "word": "rug",
+    "file": "rug.png",
+    "pdfPage": 15,
+    "dpi": 600,
+    "box": {
+      "x": 1850,
+      "y": 4185,
+      "w": 1070,
+      "h": 300
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p15 scene, living room",
+    "quality": "good",
+    "note": "red rug with orange spots"
+  },
+  {
+    "word": "living-room",
+    "file": "living-room.png",
+    "pdfPage": 16,
+    "dpi": 600,
+    "box": {
+      "x": 1270,
+      "y": 5780,
+      "w": 1080,
+      "h": 920
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p16 bottom, living room picture",
+    "quality": "ok",
+    "note": "sofa, armchair, lamp, TV, rug and painting; leader lines remain"
+  },
+  {
+    "word": "draw",
+    "file": "draw.png",
+    "pdfPage": 17,
+    "dpi": 600,
+    "box": {
+      "x": 478,
+      "y": 5400,
+      "w": 762,
+      "h": 750
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p17 bottom, draw/do a drawing",
+    "quality": "good",
+    "note": "Girl at a desk drawing with a red pencil."
+  },
+  {
+    "word": "ruler",
+    "file": "ruler.png",
+    "pdfPage": 17,
+    "dpi": 600,
+    "box": {
+      "x": 150,
+      "y": 6010,
+      "w": 340,
+      "h": 420
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p17 bottom, ruler",
+    "quality": "good",
+    "note": "A ruler on its own."
+  },
+  {
+    "word": "rubber",
+    "file": "rubber.png",
+    "pdfPage": 17,
+    "dpi": 600,
+    "box": {
+      "x": 1250,
+      "y": 6510,
+      "w": 310,
+      "h": 180
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p17 bottom, eraser/rubber",
+    "quality": "good",
+    "note": "An orange and blue rubber on its own."
+  },
+  {
+    "word": "hockey",
+    "file": "hockey.png",
+    "pdfPage": 18,
+    "dpi": 600,
+    "box": {
+      "x": 3600,
+      "y": 0,
+      "w": 1361,
+      "h": 1020
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p18 top scene, hockey pitch",
+    "quality": "good",
+    "note": "Two girls with hockey sticks, a ball and a goal."
+  },
+  {
+    "word": "teacher",
+    "file": "teacher.png",
+    "pdfPage": 17,
+    "dpi": 600,
+    "box": {
+      "x": 3640,
+      "y": 5170,
+      "w": 560,
+      "h": 650
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p17 bottom, classroom picture",
+    "quality": "ok",
+    "note": "Male teacher pointing at the board; one leader line and part of the alphabet chart show."
+  },
+  {
+    "word": "alphabet",
+    "file": "alphabet.png",
+    "pdfPage": 18,
+    "dpi": 600,
+    "box": {
+      "x": 190,
+      "y": 1800,
+      "w": 1360,
+      "h": 860
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p18 scene, classroom wall",
+    "quality": "good",
+    "note": "Alphabet chart Aa to Zz; teacher's head at lower left."
+  },
+  {
+    "word": "board",
+    "file": "board.png",
+    "pdfPage": 17,
+    "dpi": 600,
+    "box": {
+      "x": 3180,
+      "y": 1820,
+      "w": 1781,
+      "h": 1120
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p17 scene, right classroom",
+    "quality": "good",
+    "note": "White board with 'tennis', rackets and ball; teacher's pointer at right."
+  },
+  {
+    "word": "classroom",
+    "file": "classroom.png",
+    "pdfPage": 17,
+    "dpi": 600,
+    "box": {
+      "x": 2950,
+      "y": 4980,
+      "w": 1580,
+      "h": 870
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p17 bottom, classroom picture",
+    "quality": "ok",
+    "note": "Whole classroom with teacher, board and pupils; several leader lines show."
+  },
+  {
+    "word": "basketball",
+    "file": "basketball.png",
+    "pdfPage": 17,
+    "dpi": 600,
+    "box": {
+      "x": 4300,
+      "y": 6220,
+      "w": 360,
+      "h": 610
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p17 bottom, basketball",
+    "quality": "good",
+    "note": "Basketball hoop on a pole with an orange ball."
+  },
+  {
+    "word": "computer",
+    "file": "computer.png",
+    "pdfPage": 17,
+    "dpi": 600,
+    "box": {
+      "x": 1225,
+      "y": 2610,
+      "w": 540,
+      "h": 530
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p17 scene, left classroom",
+    "quality": "good",
+    "note": "Computer screen with a pie chart and keyboard below."
+  },
+  {
+    "word": "keyboard",
+    "file": "keyboard.png",
+    "pdfPage": 18,
+    "dpi": 600,
+    "box": {
+      "x": 830,
+      "y": 5240,
+      "w": 360,
+      "h": 280
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p18 bottom, keyboard",
+    "quality": "good",
+    "note": "Keyboard with a hand typing on it."
+  },
+  {
+    "word": "close",
+    "file": "close.png",
+    "pdfPage": 17,
+    "dpi": 600,
+    "box": {
+      "x": 1680,
+      "y": 3030,
+      "w": 790,
+      "h": 620
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p17 scene, left classroom",
+    "quality": "good",
+    "note": "Girl pushing a drawer closed, with an arrow."
+  },
+  {
+    "word": "open",
+    "file": "open.png",
+    "pdfPage": 18,
+    "dpi": 600,
+    "box": {
+      "x": 1780,
+      "y": 6018,
+      "w": 690,
+      "h": 812
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p18 bottom, open",
+    "quality": "good",
+    "note": "Woman opening a door."
+  },
+  {
+    "word": "music",
+    "file": "music.png",
+    "pdfPage": 18,
+    "dpi": 600,
+    "box": {
+      "x": 130,
+      "y": 6020,
+      "w": 620,
+      "h": 380
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p18 bottom, music",
+    "quality": "good",
+    "note": "Treble clef and music notes on a staff."
+  },
+  {
+    "word": "tick",
+    "file": "tick.png",
+    "pdfPage": 18,
+    "dpi": 600,
+    "box": {
+      "x": 990,
+      "y": 6170,
+      "w": 245,
+      "h": 235
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p18 bottom, tick",
+    "quality": "good",
+    "note": "Yellow box with a red tick."
+  },
+  {
+    "word": "cross",
+    "file": "cross.png",
+    "pdfPage": 18,
+    "dpi": 600,
+    "box": {
+      "x": 990,
+      "y": 6410,
+      "w": 245,
+      "h": 235
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p18 bottom, cross",
+    "quality": "good",
+    "note": "Yellow box with a red cross."
+  },
+  {
+    "word": "hit",
+    "file": "hit.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 170,
+      "y": 5540,
+      "w": 540,
+      "h": 710
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: hit a ball",
+    "quality": "ok",
+    "note": "Boy swinging a baseball bat; ball not in view, small leader line at top"
+  },
+  {
+    "word": "baseball",
+    "file": "baseball.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 170,
+      "y": 5280,
+      "w": 1130,
+      "h": 980
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: hit a ball / baseball",
+    "quality": "ok",
+    "note": "Batter with bat, ball in the air and a fielder running; small leader line"
+  },
+  {
+    "word": "walk",
+    "file": "walk.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 1330,
+      "y": 5370,
+      "w": 590,
+      "h": 710
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: walk",
+    "quality": "good",
+    "note": "Grandma walking"
+  },
+  {
+    "word": "paint",
+    "file": "paint.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 1950,
+      "y": 5320,
+      "w": 730,
+      "h": 575
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: paint(ing)",
+    "quality": "ok",
+    "note": "Man with paintbrush at an easel; leader line and faint blue wind lines in corner"
+  },
+  {
+    "word": "table-tennis",
+    "file": "table-tennis.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 970,
+      "y": 6240,
+      "w": 890,
+      "h": 680
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: table tennis",
+    "quality": "good",
+    "note": "Two boys playing table tennis at a green table"
+  },
+  {
+    "word": "fishing",
+    "file": "fishing.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 2070,
+      "y": 6140,
+      "w": 605,
+      "h": 740
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: fishing",
+    "quality": "good",
+    "note": "Boy holding a bent fishing rod"
+  },
+  {
+    "word": "piano",
+    "file": "piano.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 2990,
+      "y": 4880,
+      "w": 700,
+      "h": 470
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: piano",
+    "quality": "good",
+    "note": "Man playing a grand piano"
+  },
+  {
+    "word": "guitar",
+    "file": "guitar.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 3440,
+      "y": 5400,
+      "w": 480,
+      "h": 540
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: guitar",
+    "quality": "good",
+    "note": "Man playing a yellow guitar; tiny leader line"
+  },
+  {
+    "word": "sing",
+    "file": "sing.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 2480,
+      "y": 5800,
+      "w": 600,
+      "h": 550
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: sing a song",
+    "quality": "ok",
+    "note": "Woman in red dress singing; small white gap on her arm where the label was hidden"
+  },
+  {
+    "word": "camera",
+    "file": "camera.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 4180,
+      "y": 3560,
+      "w": 781,
+      "h": 800
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, scene: boy with camera, bottom right",
+    "quality": "good",
+    "note": "Close-up of a red camera held up by a boy"
+  },
+  {
+    "word": "kick",
+    "file": "kick.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 3980,
+      "y": 5130,
+      "w": 880,
+      "h": 620
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: kick a ball",
+    "quality": "ok",
+    "note": "Boy kicking a football that bounces away; small leader line"
+  },
+  {
+    "word": "jump",
+    "file": "jump.png",
+    "pdfPage": 19,
+    "dpi": 600,
+    "box": {
+      "x": 3150,
+      "y": 560,
+      "w": 750,
+      "h": 700
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, scene: bouncy castle, top right",
+    "quality": "good",
+    "note": "Boy jumping high in a bouncy castle"
+  },
+  {
+    "word": "throw",
+    "file": "throw.png",
+    "pdfPage": 20,
+    "dpi": 600,
+    "box": {
+      "x": 340,
+      "y": 4770,
+      "w": 488,
+      "h": 800
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: throw a ball",
+    "quality": "ok",
+    "note": "Boy throwing a beach ball up; leader line at left"
+  },
+  {
+    "word": "catch",
+    "file": "catch.png",
+    "pdfPage": 20,
+    "dpi": 600,
+    "box": {
+      "x": 680,
+      "y": 4770,
+      "w": 450,
+      "h": 770
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: catch a ball",
+    "quality": "ok",
+    "note": "Girl reaching up to catch a beach ball; edge of thrower's hands and a leader line"
+  },
+  {
+    "word": "kite",
+    "file": "kite.png",
+    "pdfPage": 20,
+    "dpi": 600,
+    "box": {
+      "x": 2270,
+      "y": 4770,
+      "w": 570,
+      "h": 410
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: kite",
+    "quality": "good",
+    "note": "Red and yellow kite with tail and string"
+  },
+  {
+    "word": "tennis",
+    "file": "tennis.png",
+    "pdfPage": 20,
+    "dpi": 600,
+    "box": {
+      "x": 150,
+      "y": 5560,
+      "w": 1210,
+      "h": 620
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: sport (tennis)",
+    "quality": "ok",
+    "note": "Two children with tennis rackets across a net; figures small, part of leader line"
+  },
+  {
+    "word": "badminton",
+    "file": "badminton.png",
+    "pdfPage": 20,
+    "dpi": 600,
+    "box": {
+      "x": 1560,
+      "y": 5300,
+      "w": 1050,
+      "h": 650
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: badminton",
+    "quality": "ok",
+    "note": "Two children with rackets over a net and a shuttlecock; one leader line"
+  },
+  {
+    "word": "sand",
+    "file": "sand.png",
+    "pdfPage": 20,
+    "dpi": 600,
+    "box": {
+      "x": 100,
+      "y": 6400,
+      "w": 660,
+      "h": 440
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: sand",
+    "quality": "ok",
+    "note": "Boy making sandcastles; one leader line"
+  },
+  {
+    "word": "swim",
+    "file": "swim.png",
+    "pdfPage": 20,
+    "dpi": 600,
+    "box": {
+      "x": 2050,
+      "y": 1720,
+      "w": 1470,
+      "h": 560
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, scene: swimmer in the sea",
+    "quality": "ok",
+    "note": "Person swimming front crawl; thin fishing line crosses the water"
+  },
+  {
+    "word": "sea",
+    "file": "sea.png",
+    "pdfPage": 20,
+    "dpi": 600,
+    "box": {
+      "x": 760,
+      "y": 6250,
+      "w": 1120,
+      "h": 400
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: sea strip",
+    "quality": "ok",
+    "note": "Blue sea with a swimmer; two leader lines at the bottom"
+  },
+  {
+    "word": "shell",
+    "file": "shell.png",
+    "pdfPage": 20,
+    "dpi": 600,
+    "box": {
+      "x": 2450,
+      "y": 6350,
+      "w": 330,
+      "h": 300
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, bottom: shell",
+    "quality": "good",
+    "note": "Orange scallop shell"
+  },
+  {
+    "word": "tree",
+    "file": "tree.png",
+    "pdfPage": 21,
+    "dpi": 600,
+    "box": {
+      "x": 3268,
+      "y": 5045,
+      "w": 700,
+      "h": 700
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p20",
+    "quality": "good",
+    "note": "Green leafy tree on white"
+  },
+  {
+    "word": "park",
+    "file": "park.png",
+    "pdfPage": 21,
+    "dpi": 600,
+    "box": {
+      "x": 3990,
+      "y": 5000,
+      "w": 820,
+      "h": 660
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p20",
+    "quality": "good",
+    "note": "Park gate with PARK arch, fence and path; label hidden"
+  },
+  {
+    "word": "train",
+    "file": "train.png",
+    "pdfPage": 21,
+    "dpi": 600,
+    "box": {
+      "x": 2340,
+      "y": 5430,
+      "w": 840,
+      "h": 170
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p20",
+    "quality": "ok",
+    "note": "Front of a long red-and-white train; source art is very thin, so only the engine and part of a coach"
+  },
+  {
+    "word": "bookshop",
+    "file": "bookshop.png",
+    "pdfPage": 21,
+    "dpi": 600,
+    "box": {
+      "x": 540,
+      "y": 5650,
+      "w": 810,
+      "h": 1070
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p20",
+    "quality": "good",
+    "note": "Shop front with BOOKS sign and books in the window"
+  },
+  {
+    "word": "boat",
+    "file": "boat.png",
+    "pdfPage": 22,
+    "dpi": 600,
+    "box": {
+      "x": 1010,
+      "y": 4840,
+      "w": 510,
+      "h": 450
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p21",
+    "quality": "good",
+    "note": "Sailing boat with red, yellow and white sails"
+  },
+  {
+    "word": "plane",
+    "file": "plane.png",
+    "pdfPage": 22,
+    "dpi": 600,
+    "box": {
+      "x": 1750,
+      "y": 4800,
+      "w": 590,
+      "h": 400
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p21 (fly a plane)",
+    "quality": "good",
+    "note": "Flying aeroplane with part of its trail"
+  },
+  {
+    "word": "drive",
+    "file": "drive.png",
+    "pdfPage": 22,
+    "dpi": 600,
+    "box": {
+      "x": 1590,
+      "y": 5200,
+      "w": 690,
+      "h": 378
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p21 (drive a car)",
+    "quality": "good",
+    "note": "Red car side view; wheel bottoms trimmed a few px"
+  },
+  {
+    "word": "helicopter",
+    "file": "helicopter.png",
+    "pdfPage": 22,
+    "dpi": 600,
+    "box": {
+      "x": 990,
+      "y": 5690,
+      "w": 550,
+      "h": 415
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p21",
+    "quality": "good",
+    "note": "Orange and white helicopter with blue rotor"
+  },
+  {
+    "word": "motorbike",
+    "file": "motorbike.png",
+    "pdfPage": 22,
+    "dpi": 600,
+    "box": {
+      "x": 300,
+      "y": 6200,
+      "w": 580,
+      "h": 470
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p21",
+    "quality": "good",
+    "note": "Rider in red helmet on a yellow motorbike"
+  },
+  {
+    "word": "ride",
+    "file": "ride.png",
+    "pdfPage": 22,
+    "dpi": 600,
+    "box": {
+      "x": 1730,
+      "y": 6090,
+      "w": 520,
+      "h": 710
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, word list strip, p21 (ride a bike)",
+    "quality": "good",
+    "note": "Boy in blue helmet riding a blue bike"
+  },
+  {
+    "word": "eleven",
+    "file": "eleven.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 1174,
+      "w": 676,
+      "h": 507
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 11"
+  },
+  {
+    "word": "twelve",
+    "file": "twelve.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 1700,
+      "w": 676,
+      "h": 506
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 12"
+  },
+  {
+    "word": "thirteen",
+    "file": "thirteen.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 2225,
+      "w": 676,
+      "h": 506
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 13"
+  },
+  {
+    "word": "fourteen",
+    "file": "fourteen.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 2750,
+      "w": 676,
+      "h": 507
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 14"
+  },
+  {
+    "word": "fifteen",
+    "file": "fifteen.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 3276,
+      "w": 676,
+      "h": 506
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 15"
+  },
+  {
+    "word": "sixteen",
+    "file": "sixteen.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 3801,
+      "w": 676,
+      "h": 506
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 16"
+  },
+  {
+    "word": "seventeen",
+    "file": "seventeen.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 4326,
+      "w": 676,
+      "h": 472
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 17"
+  },
+  {
+    "word": "eighteen",
+    "file": "eighteen.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 4817,
+      "w": 676,
+      "h": 506
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 18"
+  },
+  {
+    "word": "nineteen",
+    "file": "nineteen.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 5342,
+      "w": 676,
+      "h": 554
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 19"
+  },
+  {
+    "word": "twenty",
+    "file": "twenty.png",
+    "pdfPage": 24,
+    "dpi": 600,
+    "box": {
+      "x": 3709,
+      "y": 5915,
+      "w": 676,
+      "h": 506
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Which number? right column",
+    "quality": "good",
+    "note": "Coloured tile with the number 20"
+  },
+  {
+    "word": "between",
+    "file": "between.png",
+    "pdfPage": 25,
+    "dpi": 600,
+    "box": {
+      "x": 3212,
+      "y": 1730,
+      "w": 1068,
+      "h": 765
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Where is Monkey? picture 1",
+    "quality": "ok",
+    "note": "Monkey standing between two banana boxes; balloons with printed words cut off above, right box cut by card edge"
+  },
+  {
+    "word": "next-to",
+    "file": "next-to.png",
+    "pdfPage": 25,
+    "dpi": 600,
+    "box": {
+      "x": 685,
+      "y": 1880,
+      "w": 1100,
+      "h": 1118
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Where is Monkey? picture 2",
+    "quality": "good",
+    "note": "Monkey standing next to a banana box, touching it"
+  },
+  {
+    "word": "in",
+    "file": "in.png",
+    "pdfPage": 25,
+    "dpi": 600,
+    "box": {
+      "x": 1926,
+      "y": 1877,
+      "w": 1100,
+      "h": 1110
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Where is Monkey? picture 3",
+    "quality": "good",
+    "note": "Banana box with only the monkey tail sticking out"
+  },
+  {
+    "word": "in-front-of",
+    "file": "in-front-of.png",
+    "pdfPage": 25,
+    "dpi": 600,
+    "box": {
+      "x": 1050,
+      "y": 3400,
+      "w": 1700,
+      "h": 1060
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Where is Monkey? picture 4",
+    "quality": "good",
+    "note": "Waving monkey standing in front of a banana box"
+  },
+  {
+    "word": "on",
+    "file": "on.png",
+    "pdfPage": 25,
+    "dpi": 600,
+    "box": {
+      "x": 3183,
+      "y": 3086,
+      "w": 1117,
+      "h": 1408
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Where is Monkey? picture 5",
+    "quality": "good",
+    "note": "Monkey doing a handstand on top of a banana box"
+  },
+  {
+    "word": "behind",
+    "file": "behind.png",
+    "pdfPage": 25,
+    "dpi": 600,
+    "box": {
+      "x": 880,
+      "y": 4960,
+      "w": 1230,
+      "h": 1080
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Where is Monkey? picture 6",
+    "quality": "good",
+    "note": "Waving monkey peeking out behind a banana box"
+  },
+  {
+    "word": "under",
+    "file": "under.png",
+    "pdfPage": 25,
+    "dpi": 600,
+    "box": {
+      "x": 2720,
+      "y": 4950,
+      "w": 1340,
+      "h": 1108
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, Where is Monkey? picture 7",
+    "quality": "good",
+    "note": "Monkey hanging upside down under a banana box"
+  },
+  {
+    "word": "black",
+    "file": "black.png",
+    "source": "Made for IOE Buddy with ImageMagick",
+    "quality": "good",
+    "note": "Plain black circle."
+  },
+  {
+    "word": "white",
+    "file": "white.png",
+    "source": "Made for IOE Buddy with ImageMagick",
+    "quality": "good",
+    "note": "Plain white circle."
+  },
+  {
+    "word": "blue",
+    "file": "blue.png",
+    "source": "Made for IOE Buddy with ImageMagick",
+    "quality": "good",
+    "note": "Plain blue circle."
+  },
+  {
+    "word": "green",
+    "file": "green.png",
+    "source": "Made for IOE Buddy with ImageMagick",
+    "quality": "good",
+    "note": "Plain green circle."
+  },
+  {
+    "word": "yellow",
+    "file": "yellow.png",
+    "source": "Made for IOE Buddy with ImageMagick",
+    "quality": "good",
+    "note": "Plain yellow circle."
+  },
+  {
+    "word": "pink",
+    "file": "pink.png",
+    "source": "Made for IOE Buddy with ImageMagick",
+    "quality": "good",
+    "note": "Plain pink circle."
+  },
+  {
+    "word": "purple",
+    "file": "purple.png",
+    "source": "Made for IOE Buddy with ImageMagick",
+    "quality": "good",
+    "note": "Plain purple circle."
+  },
+  {
+    "word": "brown",
+    "file": "brown.png",
+    "source": "Made for IOE Buddy with ImageMagick",
+    "quality": "good",
+    "note": "Plain brown circle."
+  },
+  {
+    "word": "grey",
+    "file": "grey.png",
+    "source": "Made for IOE Buddy with ImageMagick",
+    "quality": "good",
+    "note": "Plain grey circle."
+  }
+]
