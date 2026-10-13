@@ -80,13 +80,16 @@
   box-shadow: 0 9px 0 var(--ink);
 }
 
-.flash-card__face--front {
+.flash-card__face--back {
+  transform: rotateY(180deg);
+}
+
+.flash-card__face--picture {
   gap: 22px;
 }
 
-.flash-card__face--back {
+.flash-card__face--word {
   gap: 18px;
-  transform: rotateY(180deg);
 }
 
 .flash-card__sticker {

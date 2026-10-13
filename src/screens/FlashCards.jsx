@@ -100,7 +100,7 @@ function NewWordSticker() {
 }
 
 function cardLabel(card, flipped) {
-  const sideLabel = flipped ? `Word: ${card.word}. ${card.sentence} Tap to see the picture` : 'Picture card. Tap to see the word'
+  const sideLabel = flipped ? 'Picture card. Tap to see the word' : `Word: ${card.word}. ${card.sentence} Tap to see the picture`
   return isNewWord(card) ? `New word! ${sideLabel}` : sideLabel
 }
 
@@ -109,20 +109,20 @@ function CardFaces({ card, color, flipped, onFlip, animateDeal }) {
   return (
     <button type="button" className={`flash-card${animateDeal ? ' deal' : ''}`} aria-label={label} onClick={onFlip} style={{ '--card-bg': color }}>
       <div className={`flash-card__turn${flipped ? ' flash-card__turn--flipped' : ''}`}>
-        <div className="flash-card__face flash-card__face--front" aria-hidden={flipped ? 'true' : 'false'}>
+        <div className="flash-card__face flash-card__face--front flash-card__face--word" aria-hidden={flipped ? 'true' : 'false'}>
           {isNewWord(card) && <NewWordSticker />}
-          <div className="flash-card__picture-frame">
-            <WordPicture word={card} size={176} framed={false} />
-          </div>
-          <TapHint>Tap to see the word</TapHint>
-        </div>
-        <div className="flash-card__face flash-card__face--back" aria-hidden={flipped ? 'false' : 'true'}>
           <span className="flash-card__letter">{card.letter}</span>
           <span className="flash-card__word" style={{ '--word-size': `${wordFontSize(card.word)}px` }}>
             {card.word}
           </span>
           <span className="flash-card__sentence">{card.sentence}</span>
           <TapHint>Tap to see the picture</TapHint>
+        </div>
+        <div className="flash-card__face flash-card__face--back flash-card__face--picture" aria-hidden={flipped ? 'false' : 'true'}>
+          <div className="flash-card__picture-frame">
+            <WordPicture word={card} size={176} framed={false} />
+          </div>
+          <TapHint>Tap to see the word</TapHint>
         </div>
       </div>
     </button>

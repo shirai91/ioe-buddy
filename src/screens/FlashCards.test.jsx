@@ -94,13 +94,16 @@ describe('FlashCards screen', () => {
     expect(cheers[0]).not.toBe(cheers[1])
   })
 
-  it('loads the session and shows the picture side of the first card', async () => {
+  it('loads the session and shows the word side of the first card', async () => {
     const { container } = renderScreen()
     expect(await screen.findByText('1 / 10')).toBeTruthy()
     expect(getFlashcards).toHaveBeenCalledWith()
-    expect(screen.getByRole('button', { name: 'Picture card. Tap to see the word' })).toBeTruthy()
+    expect(screen.getByRole('button', { name: 'Word: dog. I see a dog. Tap to see the picture' })).toBeTruthy()
     expect(frontFace(container).getAttribute('aria-hidden')).toBe('false')
-    expect(frontFace(container).querySelector('img').getAttribute('src')).toBe('content/images/dog.png')
+    expect(frontFace(container).textContent).toContain('Dd')
+    expect(frontFace(container).textContent).toContain('I see a dog.')
+    expect(frontFace(container).querySelector('img')).toBeNull()
+    expect(screen.getByText('What is it? Say it out loud!')).toBeTruthy()
     expect(sticker(container)).toBeNull()
     expect(screen.getByRole('button', { name: 'Previous card' })).toBeTruthy()
     expect(screen.getByRole('button', { name: 'Next card' })).toBeTruthy()
@@ -112,24 +115,23 @@ describe('FlashCards screen', () => {
     expect(screen.getByText('2 / 10')).toBeTruthy()
     expect(sticker(container).textContent).toBe('New word!')
     expect(frontFace(container).contains(sticker(container))).toBe(true)
-    expect(screen.getByRole('button', { name: 'New word! Picture card. Tap to see the word' })).toBeTruthy()
-    fireEvent.click(screen.getByRole('button', { name: 'Flip' }))
     expect(screen.getByRole('button', { name: 'New word! Word: ball. I see a ball. Tap to see the picture' })).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Flip' }))
+    expect(screen.getByRole('button', { name: 'New word! Picture card. Tap to see the word' })).toBeTruthy()
   })
 
-  it('flips the card to show the word, letter and sentence with rate buttons', async () => {
+  it('flips the card to show the picture with rate buttons', async () => {
     const { container } = renderScreen()
     fireEvent.click(await screen.findByRole('button', { name: 'Flip' }))
     expect(backFace(container).getAttribute('aria-hidden')).toBe('false')
     expect(frontFace(container).getAttribute('aria-hidden')).toBe('true')
-    expect(backFace(container).textContent).toContain('Dd')
-    expect(backFace(container).textContent).toContain('I see a dog.')
-    expect(screen.getByRole('button', { name: 'Word: dog. I see a dog. Tap to see the picture' })).toBeTruthy()
+    expect(backFace(container).querySelector('img').getAttribute('src')).toBe('content/images/dog.png')
+    expect(screen.getByRole('button', { name: 'Picture card. Tap to see the word' })).toBeTruthy()
     expect(screen.getByRole('group', { name: 'Rate this card' })).toBeTruthy()
     expect(screen.getByRole('button', { name: 'Listen to the word and sentence' })).toBeTruthy()
   })
 
-  it('rating a card saves it and deals the next card on its picture side', async () => {
+  it('rating a card saves it and deals the next card on its word side', async () => {
     const { container } = renderScreen()
     await screen.findByText('1 / 10')
     rateCurrentCard('easy')
@@ -146,7 +148,8 @@ describe('FlashCards screen', () => {
     for (const level of SESSION_RATINGS.slice(0, 5)) rateCurrentCard(level)
     expect(screen.getByText('6 / 10')).toBeTruthy()
     expect(sticker(container)).toBeNull()
-    expect(frontFace(container).querySelector('img').getAttribute('src')).toBe('content/images/ball.png')
+    expect(frontFace(container).textContent).toContain('ball')
+    expect(backFace(container).querySelector('img').getAttribute('src')).toBe('content/images/ball.png')
     rateCurrentCard('easy')
     expect(rateCard.mock.calls.filter(([wordId]) => wordId === 'ball')).toEqual([
       ['ball', 'hard'],
@@ -177,7 +180,7 @@ describe('FlashCards screen', () => {
     fireEvent.click(screen.getByRole('button', { name: 'New cards' }))
     expect(await screen.findByText('1 / 10')).toBeTruthy()
     expect(getFlashcards).toHaveBeenCalledTimes(2)
-    expect(frontFace(container).querySelector('img').getAttribute('src')).toBe('content/images/kite.png')
+    expect(backFace(container).querySelector('img').getAttribute('src')).toBe('content/images/kite.png')
     expect(sticker(container).textContent).toBe('New word!')
   })
 
