@@ -105,6 +105,16 @@ describe('build-content with the book content', () => {
     assert.ok(grammar.some((pattern) => pattern.pattern === 'This is my ___.'))
   })
 
+  test('no two words show the same picture', () => {
+    const wordsByPicture = new Map()
+    for (const word of words.filter((entry) => entry.image)) {
+      const picture = fs.readFileSync(path.join(outDir, word.image.replace(/^content\//, ''))).toString('base64')
+      wordsByPicture.set(picture, [...(wordsByPicture.get(picture) ?? []), word.word])
+    }
+
+    assert.deepEqual([...wordsByPicture.values()].filter((sharing) => sharing.length > 1), [])
+  })
+
   test('every image file exists on disk', () => {
     for (const word of words.filter((item) => item.image)) {
       assert.equal(word.image, `content/images/${word.id}.png`)

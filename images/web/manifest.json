@@ -50,34 +50,34 @@
   {
     "word": "hi",
     "file": "hi.png",
-    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f467.svg + https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
-    "note": "Waving hand emoji, rendered from SVG to 512x512 PNG on a white background"
+    "note": "Adapted: girl emoji (1f467) and waving hand emoji (1f44b) combined into one SVG, rendered to 512x512 PNG on a white background"
   },
   {
     "word": "hello",
     "file": "hello.png",
-    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f603.svg",
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
-    "note": "Waving hand emoji, rendered from SVG to 512x512 PNG on a white background"
+    "note": "Grinning face with big eyes emoji, rendered from SVG to 512x512 PNG on a white background"
   },
   {
     "word": "bye",
     "file": "bye.png",
-    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f6b6-200d-2640-fe0f.svg + https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
-    "note": "Waving hand emoji, rendered from SVG to 512x512 PNG on a white background"
+    "note": "Adapted: woman walking emoji (1f6b6-200d-2640-fe0f) and waving hand emoji (1f44b) combined into one SVG, rendered to 512x512 PNG on a white background"
   },
   {
     "word": "goodbye",
     "file": "goodbye.png",
-    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f618.svg",
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
-    "note": "Waving hand emoji, rendered from SVG to 512x512 PNG on a white background"
+    "note": "Face blowing a kiss emoji, rendered from SVG to 512x512 PNG on a white background"
   },
   {
     "word": "I",
@@ -130,10 +130,10 @@
   {
     "word": "he",
     "file": "he.png",
-    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f466.svg",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f449.svg + https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f466.svg",
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
-    "note": "Boy emoji, rendered from SVG to 512x512 PNG on a white background"
+    "note": "Adapted: hand pointing right emoji (1f449) and boy emoji (1f466) combined into one SVG, rendered to 512x512 PNG on a white background"
   },
   {
     "word": "boy",
@@ -162,10 +162,10 @@
   {
     "word": "your",
     "file": "your.png",
-    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1faf5.svg",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1faf5.svg + https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f392.svg",
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
-    "note": "Hand pointing at the viewer emoji, rendered from SVG to 512x512 PNG on a white background"
+    "note": "Adapted: hand pointing at the viewer emoji (1faf5) and school backpack emoji (1f392) combined into one SVG, rendered to 512x512 PNG on a white background"
   },
   {
     "word": "you",
@@ -178,10 +178,10 @@
   {
     "word": "that",
     "file": "that.png",
-    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f449.svg",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f448.svg",
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
-    "note": "Hand pointing right emoji, rendered from SVG to 512x512 PNG on a white background"
+    "note": "Hand pointing left emoji, rendered from SVG to 512x512 PNG on a white background"
   },
   {
     "word": "point",
