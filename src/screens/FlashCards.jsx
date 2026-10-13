@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getFlashcards, rateCard } from '../api/client.js'
 import AppHeader from '../components/AppHeader.jsx'
@@ -8,15 +8,16 @@ import Mascot from '../components/Mascot.jsx'
 import Page from '../components/Page.jsx'
 import WordPicture from '../components/WordPicture.jsx'
 import { RefreshIcon } from '../components/icons.jsx'
+import { pickCheer } from '../lib/cheers.js'
 import { LETTER_TILE_COLORS } from '../lib/letterTile.js'
 import { speak } from '../lib/speak.js'
 import { useApi } from '../lib/useApi.js'
 import './FlashCards.css'
 
 const RATINGS = [
-  { level: 'easy', title: 'Easy', hint: 'I know it!', cheer: 'Super!' },
-  { level: 'medium', title: 'Medium', hint: 'Almost', cheer: 'Good try!' },
-  { level: 'hard', title: 'Hard', hint: 'Not yet', cheer: 'We will practice it again.' },
+  { level: 'easy', title: 'Easy', hint: 'I know it!' },
+  { level: 'medium', title: 'Medium', hint: 'Almost' },
+  { level: 'hard', title: 'Hard', hint: 'Not yet' },
 ]
 
 const FACE_MOUTHS = {
@@ -226,6 +227,7 @@ function CounterPill({ text }) {
 
 function FlashCardSession({ cards, onNewCards }) {
   const [round, setRound] = useState(() => freshRound(cards, 0))
+  const lastCheer = useRef()
   const { deck, position, flipped, finished, ratings, deal } = round
   const card = deck[Math.min(position, deck.length - 1)]
   const colorIndex = cards.findIndex((sessionCard) => sessionCard.key === card.key)
@@ -242,7 +244,8 @@ function FlashCardSession({ cards, onNewCards }) {
   }
 
   function rate(level) {
-    speak(RATINGS.find((rating) => rating.level === level).cheer)
+    lastCheer.current = pickCheer(level, lastCheer.current)
+    speak(lastCheer.current)
     rateCard(card.id, level).catch(() => {})
     const nextRatings = { ...ratings, [card.key]: level }
     if (position >= deck.length - 1) setRound({ ...round, ratings: nextRatings, flipped: false, finished: true })

@@ -2,12 +2,16 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { getFlashcards, rateCard } from '../api/client.js'
+import { CHEERS } from '../lib/cheers.js'
+import { speak } from '../lib/speak.js'
 import FlashCards from './FlashCards.jsx'
 
 vi.mock('../api/client.js', () => ({
   getFlashcards: vi.fn(),
   rateCard: vi.fn(),
 }))
+
+vi.mock('../lib/speak.js', () => ({ speak: vi.fn() }))
 
 function sessionCard(word, letter, kind, copy = 1) {
   return {
@@ -75,6 +79,19 @@ describe('FlashCards screen', () => {
   beforeEach(() => {
     vi.mocked(getFlashcards).mockReset().mockResolvedValue({ cards: SESSION })
     vi.mocked(rateCard).mockReset().mockResolvedValue({ ok: true })
+    vi.mocked(speak).mockReset()
+  })
+
+  it('says a different cheer for the rating each time a card gets the same rating', async () => {
+    renderScreen()
+    await screen.findByText('1 / 10')
+
+    rateCurrentCard('easy')
+    rateCurrentCard('easy')
+
+    const cheers = vi.mocked(speak).mock.calls.map(([text]) => text).filter((text) => CHEERS.easy.includes(text))
+    expect(cheers).toHaveLength(2)
+    expect(cheers[0]).not.toBe(cheers[1])
   })
 
   it('loads the session and shows the picture side of the first card', async () => {
