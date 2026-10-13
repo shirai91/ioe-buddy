@@ -3,6 +3,8 @@ import { get, getAll, put } from '../db.js'
 import { badRequest, notFound } from '../httpError.js'
 import { buildSession } from '../pool.js'
 import { isRating, nextReview } from '../srs.js'
+import { unlockedWordCount } from '../stars.js'
+import { readProfile } from './profile.js'
 
 export const CARDS_STORE = 'cards'
 
@@ -12,8 +14,8 @@ export async function readProgressByWordId() {
 }
 
 export async function listFlashcards() {
-  const [words, progressByWordId] = await Promise.all([loadWords(), readProgressByWordId()])
-  return { cards: buildSession({ words, progressByWordId, now: Date.now() }) }
+  const [words, progressByWordId, profile] = await Promise.all([loadWords(), readProgressByWordId(), readProfile()])
+  return { cards: buildSession({ words, progressByWordId, now: Date.now(), unlockedWords: unlockedWordCount(profile.stars) }) }
 }
 
 async function assertWordExists(wordId) {

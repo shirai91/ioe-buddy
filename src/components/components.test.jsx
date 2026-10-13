@@ -36,11 +36,33 @@ describe('shared components', () => {
     expect(screen.getByRole('status').textContent).toBe('Great job!')
   })
 
-  it('ResultCard shows the score and both actions', () => {
-    inRouter(<ResultCard stars={7} total={10} onPlayAgain={() => {}} />)
+  it('ResultCard shows the score, the star gain and both actions', () => {
+    inRouter(<ResultCard correct={7} total={10} change={2} onPlayAgain={() => {}} />)
     expect(screen.getByRole('heading', { name: 'You did it!' })).toBeTruthy()
-    expect(screen.getByText('You got 7 of 10 stars')).toBeTruthy()
+    expect(screen.getByText('You got 7 of 10 right')).toBeTruthy()
+    expect(screen.getByText('+2 stars').className).toContain('result-card__change--up')
     expect(screen.getByRole('button', { name: 'Play again' })).toBeTruthy()
     expect(screen.getByRole('link', { name: 'More games' }).getAttribute('href')).toBe('/practice')
+  })
+
+  it('ResultCard shows no star change line while the result is pending', () => {
+    const { container } = inRouter(<ResultCard correct={7} total={10} change={null} onPlayAgain={() => {}} />)
+    expect(screen.getByText('You got 7 of 10 right')).toBeTruthy()
+    expect(container.querySelector('.result-card__change')).toBeNull()
+  })
+
+  it('ResultCard shows a star loss', () => {
+    inRouter(<ResultCard correct={1} total={10} change={-4} onPlayAgain={() => {}} />)
+    expect(screen.getByText('-4 stars').className).toContain('result-card__change--down')
+  })
+
+  it('ResultCard uses one star for a change of one', () => {
+    inRouter(<ResultCard correct={4} total={10} change={-1} onPlayAgain={() => {}} />)
+    expect(screen.getByText('-1 star')).toBeTruthy()
+  })
+
+  it('ResultCard says when the stars do not change', () => {
+    inRouter(<ResultCard correct={5} total={10} change={0} onPlayAgain={() => {}} />)
+    expect(screen.getByText('No star change').className).toContain('result-card__change--same')
   })
 })

@@ -1,14 +1,10 @@
-import { localDateKey } from './calendar.js'
 import { MILLISECONDS_PER_DAY, TOP_BOX } from './srs.js'
 
 export const SESSION_SIZE = 10
 export const MAX_NEW_PER_SESSION = 4
-export const MAX_NEW_PER_DAY = 8
 export const MAX_TRICKY_PER_SESSION = 4
 export const MIN_RECALL_GAP = 3
 export const NEW_CARD_SHARE_OF_SESSION = 0.6
-export const LOAD_FOR_ONE_NEW_WORD = 5
-export const LOAD_FOR_NO_NEW_WORDS = 8
 export const EXAM_POOL_MINIMUM = 6
 export const WORD_OF_THE_DAY_UNSEEN_PREVIEW = 3
 const SLOTS_PER_NEW_WORD = 2
@@ -40,27 +36,12 @@ export function cardState(progress, now = Date.now()) {
   return 'resting'
 }
 
-function countsTowardLearningLoad(progress) {
-  return Boolean(progress) && (isTricky(progress) || boxOf(progress) <= 1)
+function seenWordCount(words, progressByWordId) {
+  return words.filter((word) => progressByWordId.has(word.id)).length
 }
 
-export function learningLoad(words, progressByWordId) {
-  return words.filter((word) => countsTowardLearningLoad(progressByWordId.get(word.id))).length
-}
-
-function newWordLimitForLoad(load) {
-  if (load >= LOAD_FOR_NO_NEW_WORDS) return 0
-  if (load >= LOAD_FOR_ONE_NEW_WORD) return 1
-  return Infinity
-}
-
-function wordsIntroducedOn(dayKey, progressByWordId) {
-  return [...progressByWordId.values()].filter((progress) => progress?.introducedAt != null && localDateKey(progress.introducedAt) === dayKey).length
-}
-
-function newWordLimit({ words, progressByWordId, now }) {
-  const leftForToday = MAX_NEW_PER_DAY - wordsIntroducedOn(localDateKey(now), progressByWordId)
-  return Math.max(0, Math.min(leftForToday, newWordLimitForLoad(learningLoad(words, progressByWordId))))
+function newWordLimit({ words, progressByWordId, unlockedWords }) {
+  return Math.max(0, unlockedWords - seenWordCount(words, progressByWordId))
 }
 
 function groupWordsByState(words, progressByWordId, now) {
@@ -147,11 +128,11 @@ function addRepeats(plan) {
   for (const card of trickyFirst.slice(0, plan.freeSlots())) plan.add(card.word, 'repeat', card.key, MIN_REPEAT_GAP)
 }
 
-function selectSessionCards({ words, progressByWordId, now, random }) {
+function selectSessionCards({ words, progressByWordId, now, random, unlockedWords }) {
   const progressOf = (word) => progressByWordId.get(word.id)
   const groups = groupWordsByState(words, progressByWordId, now)
   const unseenWords = [...groups.new]
-  const totalNewLimit = newWordLimit({ words, progressByWordId, now })
+  const totalNewLimit = newWordLimit({ words, progressByWordId, unlockedWords })
   const sessionNewLimit = Math.min(MAX_NEW_PER_SESSION, totalNewLimit)
   const plan = createSessionPlan()
 
@@ -253,8 +234,8 @@ function arrangeCards(cards) {
   return ordered
 }
 
-export function buildSession({ words, progressByWordId = new Map(), now = Date.now(), random = Math.random }) {
-  const cards = selectSessionCards({ words, progressByWordId, now, random })
+export function buildSession({ words, progressByWordId = new Map(), now = Date.now(), random = Math.random, unlockedWords = Infinity }) {
+  const cards = selectSessionCards({ words, progressByWordId, now, random, unlockedWords })
   return arrangeCards(cards).map(({ word, key, kind }) => ({ ...word, key, kind, box: boxOf(progressByWordId.get(word.id)) }))
 }
 

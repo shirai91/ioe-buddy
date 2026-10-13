@@ -25,7 +25,7 @@ The MVP has no login. All progress stays on the device.
 | GET | `api/flashcards` | one session of 10 cards from the pool |
 | POST | `api/flashcards/:wordId/rate` | `{ rating: "easy" \| "medium" \| "hard" }` |
 | GET | `api/exams/:type` | 10 questions for a game, from the words the learner has seen |
-| POST | `api/exams/:type/results` | `{ correct, total }`, adds stars |
+| POST | `api/exams/:type/results` | `{ correct, total }`, moves stars up or down, returns `{ stars, change }` |
 | GET | `api/credits` | picture credits |
 | POST | `api/reset` | clears progress and stars, keeps the name |
 

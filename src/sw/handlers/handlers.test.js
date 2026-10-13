@@ -190,17 +190,33 @@ describe('exams', () => {
     expect((await call('exams/toString')).status).toBe(404)
   })
 
-  it('adds correct answers to the stars and stores a result row without a unit', async () => {
+  it('moves the stars by the score and stores a result row without a unit', async () => {
     useClock(new Date(2026, 9, 13, 10))
 
-    expect(await call('exams/letter-pop/results', jsonInit('POST', { correct: 7, total: 10 }))).toEqual({ status: 200, body: { stars: 7 } })
-    expect((await call('exams/picture-pick/results', jsonInit('POST', { correct: 3, total: 10, unitId: 'unit-02' }))).body).toEqual({ stars: 10 })
-    expect((await call('profile')).body.stars).toBe(10)
+    expect(await call('exams/letter-pop/results', jsonInit('POST', { correct: 10, total: 10 }))).toEqual({ status: 200, body: { stars: 5, change: 5 } })
+    expect((await call('exams/picture-pick/results', jsonInit('POST', { correct: 3, total: 10, unitId: 'unit-02' }))).body).toEqual({ stars: 3, change: -2 })
+    expect((await call('profile')).body.stars).toBe(3)
 
     expect(await getAll('results')).toEqual([
-      { id: expect.any(Number), type: 'letter-pop', correct: 7, total: 10, time: Date.now() },
+      { id: expect.any(Number), type: 'letter-pop', correct: 10, total: 10, time: Date.now() },
       { id: expect.any(Number), type: 'picture-pick', correct: 3, total: 10, time: Date.now() },
     ])
+  })
+
+  it('never takes the stars below 0 and reports the real change', async () => {
+    expect((await call('exams/fill-in/results', jsonInit('POST', { correct: 8, total: 10 }))).body).toEqual({ stars: 3, change: 3 })
+    expect((await call('exams/fill-in/results', jsonInit('POST', { correct: 0, total: 10 }))).body).toEqual({ stars: 0, change: -3 })
+    expect((await call('exams/fill-in/results', jsonInit('POST', { correct: 0, total: 0 }))).body).toEqual({ stars: 0, change: 0 })
+  })
+
+  it('opens new flash card words as the stars go up', async () => {
+    useClock(new Date(2026, 9, 13, 9))
+    for (const word of words.slice(0, 5)) await rate(word.id, 'easy')
+    const newCardIds = async () => (await call('flashcards')).body.cards.filter((card) => card.kind === 'new').map((card) => card.id)
+
+    expect(await newCardIds()).toEqual([])
+    await call('exams/match-up/results', jsonInit('POST', { correct: 10, total: 10 }))
+    expect(await newCardIds()).toEqual(words.slice(5, 7).map((word) => word.id))
   })
 
   it('rejects bad scores and unknown exam types', async () => {

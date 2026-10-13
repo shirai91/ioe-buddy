@@ -6,7 +6,6 @@ import {
   buildSession,
   cardState,
   examPool,
-  learningLoad,
   warmupWeight,
   wordOfTheDayPool,
 } from './pool.js'
@@ -54,8 +53,8 @@ function seededRandom(seed) {
   }
 }
 
-function session(words, progressByWordId = new Map(), random = seededRandom(1)) {
-  return buildSession({ words, progressByWordId, now: NOW, random })
+function session(words, progressByWordId = new Map(), random = seededRandom(1), unlockedWords = Infinity) {
+  return buildSession({ words, progressByWordId, now: NOW, random, unlockedWords })
 }
 
 function idsOfKind(cards, kind) {
@@ -83,7 +82,7 @@ function expectRecallsSpacedOut(cards) {
   })
 }
 
-describe('cardState and learningLoad', () => {
+describe('cardState', () => {
   it('names each state from the progress row', () => {
     expect(cardState(undefined, NOW)).toBe('new')
     expect(cardState(progressRow({ rating: 'hard', box: 0, dueAt: NOW }), NOW)).toBe('tricky')
@@ -92,16 +91,6 @@ describe('cardState and learningLoad', () => {
     expect(cardState(progressRow({ box: 2, dueAt: daysFromNow(1) }), NOW)).toBe('resting')
   })
 
-  it('counts tricky and box 0-1 words as learning load', () => {
-    const words = numberedWords(5)
-    const progress = progressFor([
-      [words[0], { rating: 'hard', box: 0 }],
-      [words[1], { box: 1, dueAt: NOW - 1 }],
-      [words[2], { box: 0, rating: 'medium' }],
-      [words[3], { box: 2 }],
-    ])
-    expect(learningLoad(words, progress)).toBe(3)
-  })
 })
 
 describe('buildSession for a fresh learner', () => {
@@ -157,44 +146,32 @@ describe('buildSession limits', () => {
     trickyPositions.slice(1).forEach((position, index) => expect(position - trickyPositions[index]).toBeGreaterThan(1))
   })
 
-  it('allows only 1 new word for a learning load of 5 to 7', () => {
+  it('adds new words only up to the unlocked word count', () => {
     const words = numberedWords(25)
-    for (const load of [5, 7]) {
-      const learning = words.slice(0, load).map((word) => [word, { box: 1, dueAt: daysFromNow(1) }])
-      const cards = session(words, progressFor(learning))
-      expect(cards).toHaveLength(SESSION_SIZE)
-      expect(idsOfKind(cards, 'new')).toEqual([words[load].id])
-      expectWellFormed(cards)
-    }
+    const seen = progressFor(words.slice(0, 6).map((word) => [word, { box: 1, dueAt: daysFromNow(1) }]))
+    const sessionWithUnlocked = (unlockedWords) => session(words, seen, seededRandom(1), unlockedWords)
+
+    expect(idsOfKind(sessionWithUnlocked(6), 'new')).toEqual([])
+    expect(idsOfKind(sessionWithUnlocked(4), 'new')).toEqual([])
+    expect(idsOfKind(sessionWithUnlocked(7), 'new')).toEqual(['w07'])
+    expect(idsOfKind(sessionWithUnlocked(8), 'new')).toEqual(['w07', 'w08'])
+    expectWellFormed(sessionWithUnlocked(6))
   })
 
-  it('allows no new words for a learning load of 8 or more', () => {
+  it('does not slow new words for a high learning load when words are unlocked', () => {
     const words = numberedWords(25)
-    const learning = words.slice(0, 8).map((word) => [word, { box: 1, dueAt: daysFromNow(1) }])
+    const learning = words.slice(0, 8).map((word) => [word, { box: 1, dueAt: daysFromNow(1), introducedAt: daysFromNow(-0.1) }])
 
-    const cards = session(words, progressFor(learning))
+    const cards = session(words, progressFor(learning), seededRandom(1), 20)
 
-    expect(cards).toHaveLength(SESSION_SIZE)
-    expect(idsOfKind(cards, 'new')).toEqual([])
-    expect(idsOfKind(cards, 'recall')).toEqual([])
+    expect(idsOfKind(cards, 'new')).toEqual(['w09', 'w10', 'w11', 'w12'])
     expectWellFormed(cards)
   })
 
-  it('stops new words at 8 a day', () => {
+  it('ignores progress rows of words that are no longer in the content', () => {
     const words = numberedWords(25)
-    const introducedToday = (count) => words.slice(0, count).map((word) => [word, { box: 3, introducedAt: daysFromNow(-0.1) }])
-
-    expect(idsOfKind(session(words, progressFor(introducedToday(8))), 'new')).toEqual([])
-    expect(idsOfKind(session(words, progressFor(introducedToday(7))), 'new')).toEqual(['w08'])
-    expect(idsOfKind(session(words, progressFor(introducedToday(5))), 'new')).toEqual(['w06', 'w07', 'w08'])
-  })
-
-  it('does not count words introduced on another day', () => {
-    const words = numberedWords(25)
-    const introducedYesterday = words.slice(0, 8).map((word) => [word, { box: 3, introducedAt: daysFromNow(-1) }])
-    const cards = session(words, progressFor(introducedYesterday))
-    expect(idsOfKind(cards, 'new')).toEqual(['w09', 'w10', 'w11', 'w12'])
-    expect(cards[0].kind).toBe('warmup')
+    const progress = progressFor(numberedWords(30).slice(25).map((word) => [word, {}]))
+    expect(idsOfKind(session(words, progress, seededRandom(1), 2), 'new')).toEqual(['w01', 'w02'])
   })
 })
 

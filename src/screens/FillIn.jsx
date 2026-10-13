@@ -88,7 +88,7 @@ function LetterTiles({ question, usedTiles, solved, onPick }) {
   )
 }
 
-function FillInGame({ questions, onCorrect, onFinish, onPlayAgain }) {
+function FillInGame({ questions, starChange, onFinish, onPlayAgain }) {
   const [index, setIndex] = useState(0)
   const [filledTiles, setFilledTiles] = useState({})
   const [wrong, setWrong] = useState(false)
@@ -123,10 +123,7 @@ function FillInGame({ questions, onCorrect, onFinish, onPlayAgain }) {
     setSolved(true)
     setWrong(false)
     speak(GREAT_JOB, question.word)
-    if (!missed) {
-      setCorrect(correct + 1)
-      onCorrect()
-    }
+    if (!missed) setCorrect(correct + 1)
   }
 
   function clearBlank(position) {
@@ -155,7 +152,7 @@ function FillInGame({ questions, onCorrect, onFinish, onPlayAgain }) {
     return (
       <>
         <ProgressSegments total={total} current={index} finished />
-        <ResultCard stars={correct} total={total} onPlayAgain={onPlayAgain} />
+        <ResultCard correct={correct} total={total} change={starChange} onPlayAgain={onPlayAgain} />
       </>
     )
   }
@@ -191,22 +188,23 @@ function ExamMessage({ tone, text, children }) {
 export default function FillIn() {
   const [round, setRound] = useState(0)
   const [bankedStars, setBankedStars] = useState(null)
-  const [earnedStars, setEarnedStars] = useState(0)
+  const [starChange, setStarChange] = useState(null)
   const { data: profile } = useApi(getProfile)
   const { data: exam, error, loading, reload } = useApi(() => getExam(EXAM_TYPE), [round])
-  const shownStars = (bankedStars ?? profile?.stars ?? 0) + earnedStars
+  const shownStars = bankedStars ?? profile?.stars ?? 0
 
   function finishRound(correct, total) {
     postExamResult(EXAM_TYPE, { correct, total }).then(
-      ({ stars }) => {
+      ({ stars, change }) => {
         setBankedStars(stars)
-        setEarnedStars((earned) => earned - correct)
+        setStarChange(change)
       },
       () => {},
     )
   }
 
   function playAgain() {
+    setStarChange(null)
     setRound(round + 1)
   }
 
@@ -234,7 +232,7 @@ export default function FillIn() {
       <FillInGame
         key={round}
         questions={exam.questions}
-        onCorrect={() => setEarnedStars((stars) => stars + 1)}
+        starChange={starChange}
         onFinish={finishRound}
         onPlayAgain={playAgain}
       />

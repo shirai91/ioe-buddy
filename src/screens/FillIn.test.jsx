@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { getExam, getProfile, postExamResult } from '../api/client.js'
@@ -31,7 +31,7 @@ describe('FillIn screen', () => {
   beforeEach(() => {
     vi.mocked(getProfile).mockReset().mockResolvedValue({ name: 'Buddy', stars: 2 })
     vi.mocked(getExam).mockReset().mockResolvedValue({ type: 'fill-in', questions: QUESTIONS })
-    vi.mocked(postExamResult).mockReset().mockResolvedValue({ stars: 3 })
+    vi.mocked(postExamResult).mockReset().mockResolvedValue({ stars: 7, change: 5 })
   })
 
   it('shows the word with empty boxes and six letter tiles', async () => {
@@ -64,10 +64,16 @@ describe('FillIn screen', () => {
   })
 
   it('fills two blanks in order, posts the result and shows the result card', async () => {
+    let resolveResult
+    vi.mocked(postExamResult).mockReturnValueOnce(
+      new Promise((done) => {
+        resolveResult = done
+      }),
+    )
     const { container } = renderScreen()
     await screen.findByText('Find the missing letter')
     fireEvent.click(screen.getByRole('button', { name: 'Letter a' }))
-    expect(screen.getByRole('img', { name: '3 stars' })).toBeTruthy()
+    expect(screen.getByRole('img', { name: '2 stars' })).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: 'Next' }))
 
     expect(screen.getByText('Find the 2 missing letters')).toBeTruthy()
@@ -79,8 +85,13 @@ describe('FillIn screen', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Finish' }))
 
     expect(postExamResult).toHaveBeenCalledWith('fill-in', { correct: 2, total: 2 })
-    expect(screen.getByText('You got 2 of 2 stars')).toBeTruthy()
-    await waitFor(() => expect(screen.getByRole('img', { name: '3 stars' })).toBeTruthy())
+    expect(screen.getByText('You got 2 of 2 right')).toBeTruthy()
+    expect(screen.getByRole('img', { name: '2 stars' })).toBeTruthy()
+    expect(screen.queryByText('+5 stars')).toBeNull()
+
+    await act(async () => resolveResult({ stars: 7, change: 5 }))
+    expect(screen.getByRole('img', { name: '7 stars' })).toBeTruthy()
+    expect(screen.getByText('+5 stars')).toBeTruthy()
   })
 
   it('shows a friendly message when there are no words', async () => {

@@ -3,6 +3,7 @@ import { add } from '../db.js'
 import { examGenerators } from '../exams/index.js'
 import { badRequest, notFound } from '../httpError.js'
 import { examPool } from '../pool.js'
+import { starsAfterExam } from '../stars.js'
 import { readProgressByWordId } from './flashcards.js'
 import { readProfile, saveProfile } from './profile.js'
 
@@ -38,7 +39,7 @@ export async function postExamResult({ params, body }) {
   generatorFor(params.type)
   const { correct, total } = validScore(body)
   const profile = await readProfile()
-  const saved = await saveProfile({ ...profile, stars: profile.stars + correct })
+  const saved = await saveProfile({ ...profile, stars: starsAfterExam(profile.stars, correct, total) })
   await add(RESULTS_STORE, { type: params.type, correct, total, time: Date.now() })
-  return { stars: saved.stars }
+  return { stars: saved.stars, change: saved.stars - profile.stars }
 }

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { getExam, getProfile, postExamResult } from '../api/client.js'
@@ -27,6 +27,22 @@ function renderScreen() {
   )
 }
 
+function pendingResult() {
+  let resolve
+  const promise = new Promise((done) => {
+    resolve = done
+  })
+  vi.mocked(postExamResult).mockReturnValueOnce(promise)
+  return resolve
+}
+
+function playCleanGame() {
+  fireEvent.click(screen.getByRole('button', { name: 'Picture of a ball' }))
+  fireEvent.click(nextButton())
+  fireEvent.click(screen.getByRole('button', { name: 'Picture of a book' }))
+  fireEvent.click(nextButton('Finish'))
+}
+
 function nextButton(name = 'Next') {
   return screen.getByRole('button', { name })
 }
@@ -35,7 +51,7 @@ describe('PicturePick screen', () => {
   beforeEach(() => {
     vi.mocked(getProfile).mockReset().mockResolvedValue({ name: 'Buddy', stars: 5 })
     vi.mocked(getExam).mockReset().mockResolvedValue({ type: 'picture-pick', questions: QUESTIONS })
-    vi.mocked(postExamResult).mockReset().mockResolvedValue({ stars: 6 })
+    vi.mocked(postExamResult).mockReset().mockResolvedValue({ stars: 10, change: 5 })
   })
 
   it('asks for a word and shows four picture choices', async () => {
@@ -65,35 +81,43 @@ describe('PicturePick screen', () => {
     expect(nextButton().disabled).toBe(false)
   })
 
-  it('gives a star for a first-try pick, then posts the result and shows the result card', async () => {
+  it('keeps the header stars during play and shows the star change once the result posts', async () => {
+    const resolveResult = pendingResult()
     renderScreen()
     fireEvent.click(await screen.findByRole('button', { name: 'Picture of a ball' }))
-    expect(screen.getByRole('img', { name: '6 stars' })).toBeTruthy()
+    expect(screen.getByRole('img', { name: '5 stars' })).toBeTruthy()
     fireEvent.click(nextButton())
 
     expect(screen.getByRole('progressbar', { name: 'Question 2 of 2' })).toBeTruthy()
-    fireEvent.click(screen.getByRole('button', { name: 'Picture of a cat' }))
     fireEvent.click(screen.getByRole('button', { name: 'Picture of a book' }))
     fireEvent.click(nextButton('Finish'))
 
-    expect(await screen.findByRole('heading', { name: 'You did it!' })).toBeTruthy()
-    expect(screen.getByText('You got 1 of 2 stars')).toBeTruthy()
-    expect(postExamResult).toHaveBeenCalledWith('picture-pick', { correct: 1, total: 2 })
-    expect(await screen.findByRole('img', { name: '6 stars' })).toBeTruthy()
+    expect(screen.getByRole('heading', { name: 'You did it!' })).toBeTruthy()
+    expect(screen.getByText('You got 2 of 2 right')).toBeTruthy()
+    expect(postExamResult).toHaveBeenCalledWith('picture-pick', { correct: 2, total: 2 })
+    expect(screen.getByRole('img', { name: '5 stars' })).toBeTruthy()
+    expect(screen.queryByText('+5 stars')).toBeNull()
+
+    await act(async () => resolveResult({ stars: 10, change: 5 }))
+    expect(screen.getByRole('img', { name: '10 stars' })).toBeTruthy()
+    expect(screen.getByText('+5 stars')).toBeTruthy()
     expect(screen.getByRole('link', { name: 'More games' }).getAttribute('href')).toBe('/practice')
   })
 
-  it('fetches a new exam on Play again', async () => {
+  it('fetches a new exam on Play again and clears the old star change', async () => {
     renderScreen()
-    fireEvent.click(await screen.findByRole('button', { name: 'Picture of a ball' }))
-    fireEvent.click(nextButton())
-    fireEvent.click(screen.getByRole('button', { name: 'Picture of a book' }))
-    fireEvent.click(nextButton('Finish'))
-    fireEvent.click(await screen.findByRole('button', { name: 'Play again' }))
+    await screen.findByRole('button', { name: 'Picture of a ball' })
+    playCleanGame()
+    expect(await screen.findByText('+5 stars')).toBeTruthy()
+    pendingResult()
+    fireEvent.click(screen.getByRole('button', { name: 'Play again' }))
 
     expect(await screen.findByRole('progressbar', { name: 'Question 1 of 2' })).toBeTruthy()
     expect(getExam).toHaveBeenCalledTimes(2)
     expect(screen.getByRole('status').textContent).toBe('Tap the right picture!')
+    playCleanGame()
+    expect(screen.getByText('You got 2 of 2 right')).toBeTruthy()
+    expect(screen.queryByText('+5 stars')).toBeNull()
   })
 
   it('offers a retry when the exam cannot load', async () => {

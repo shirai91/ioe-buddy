@@ -316,6 +316,29 @@
   gap: 4px;
 }
 
+.result-card__change {
+  padding: 6px 18px;
+  border: var(--border-thin);
+  border-radius: var(--radius-pill);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.result-card__change--up {
+  background: var(--success-tint);
+  color: var(--success);
+}
+
+.result-card__change--down {
+  background: var(--error-tint);
+  color: var(--error);
+}
+
+.result-card__change--same {
+  background: var(--slot-empty);
+  color: var(--ink-soft);
+}
+
 .result-card__actions {
   width: 100%;
   display: flex;

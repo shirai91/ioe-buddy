@@ -63,7 +63,7 @@ function useWrongPair() {
   return [wrongPair, setWrongPair]
 }
 
-function MatchUpGame({ rounds, onCorrect, onFinish, onPlayAgain }) {
+function MatchUpGame({ rounds, starChange, onFinish, onPlayAgain }) {
   const [index, setIndex] = useState(0)
   const [selectedWordId, setSelectedWordId] = useState(null)
   const [selectedPictureId, setSelectedPictureId] = useState(null)
@@ -98,10 +98,7 @@ function MatchUpGame({ rounds, onCorrect, onFinish, onPlayAgain }) {
     setMatchedIds(matched)
     setWrongPair(null)
     speak(roundSolved ? GREAT_JOB : round.words.find((choice) => choice.id === wordId).word)
-    if (roundSolved && !missed) {
-      setCorrect(correct + 1)
-      onCorrect()
-    }
+    if (roundSolved && !missed) setCorrect(correct + 1)
   }
 
   function tapWord(choice) {
@@ -143,7 +140,7 @@ function MatchUpGame({ rounds, onCorrect, onFinish, onPlayAgain }) {
     return (
       <>
         <ProgressSegments total={total} current={index} finished unit="Round" />
-        <ResultCard stars={correct} total={total} onPlayAgain={onPlayAgain} />
+        <ResultCard correct={correct} total={total} change={starChange} onPlayAgain={onPlayAgain} />
       </>
     )
   }
@@ -206,22 +203,23 @@ function ExamMessage({ tone, text, children }) {
 export default function MatchUp() {
   const [game, setGame] = useState(0)
   const [bankedStars, setBankedStars] = useState(null)
-  const [earnedStars, setEarnedStars] = useState(0)
+  const [starChange, setStarChange] = useState(null)
   const { data: profile } = useApi(getProfile)
   const { data: exam, error, loading, reload } = useApi(() => getExam(EXAM_TYPE), [game])
-  const shownStars = (bankedStars ?? profile?.stars ?? 0) + earnedStars
+  const shownStars = bankedStars ?? profile?.stars ?? 0
 
   function finishGame(correct, total) {
     postExamResult(EXAM_TYPE, { correct, total }).then(
-      ({ stars }) => {
+      ({ stars, change }) => {
         setBankedStars(stars)
-        setEarnedStars((earned) => earned - correct)
+        setStarChange(change)
       },
       () => {},
     )
   }
 
   function playAgain() {
+    setStarChange(null)
     setGame(game + 1)
   }
 
@@ -249,7 +247,7 @@ export default function MatchUp() {
       <MatchUpGame
         key={game}
         rounds={exam.questions}
-        onCorrect={() => setEarnedStars((stars) => stars + 1)}
+        starChange={starChange}
         onFinish={finishGame}
         onPlayAgain={playAgain}
       />

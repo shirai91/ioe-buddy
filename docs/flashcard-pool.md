@@ -43,7 +43,6 @@ Each rated word has a progress row: `{ wordId, box, rating, dueAt, reviewedAt, i
 | due | Seen, not tricky, `dueAt <= now`. |
 | resting | Seen, `dueAt > now`. |
 
-Learning load = tricky + learning words.
 
 ## Rating
 
@@ -67,10 +66,8 @@ Limits:
 |---|---|
 | `SESSION_SIZE` | 10 |
 | `MAX_NEW_PER_SESSION` | 4 |
-| `MAX_NEW_PER_DAY` | 8 (words with `introducedAt` today) |
 | `MAX_TRICKY_PER_SESSION` | 4 |
-| Learning load 5-7 | at most 1 new word |
-| Learning load 8+ | no new words |
+| Unlocked words | `5 + floor(stars / 2)`. New words stop when the seen words reach this count. See [Stars](#stars). |
 | `MIN_RECALL_GAP` | 3 cards between a new word and its recall |
 
 Fill order:
@@ -80,7 +77,7 @@ Fill order:
 3. **Due**: due words, lowest box first, then most overdue, then lowest rank. Fill up to the reserve.
 4. **New**: unseen words in strict `rank` order. Each new word takes 2 slots: a `new` card and a `recall` card later. Count = min(allowed, free slots / 2).
 5. **Warm-up**: other seen words, picked with weighted random. Weight = `(6 - box) * (1 + daysSinceReviewed / 7)`. Weak and old words come more often.
-6. **Top-up**: if slots are still free, add more unseen words in rank order (over the session cap, under the day cap). A new word in the last free slot has no recall.
+6. **Top-up**: if slots are still free, add more unseen words in rank order (over the session cap, under the unlocked word count). A new word in the last free slot has no recall.
 7. **Repeat**: if slots are still free, add a second card for words in the session, tricky first.
 
 Order:
@@ -93,6 +90,24 @@ Order:
 Each card in the response: the word fields plus `{ key, kind, box }`. `kind` is `new | recall | tricky | due | warmup | repeat`. `key` is unique in the session (`<wordId>:<n>`).
 
 First session for a new learner: 5 new words (`ball`, `book`, `bike`, then the next 2 by rank), each with a recall = 10 cards.
+
+## Stars
+
+Stars show what the learner knows now. They go up and down, like a chess rating.
+
+A finished game changes the stars by `round(10 * correct / total) - 5`:
+
+| Score | Change |
+|---|---|
+| 10 of 10 | +5 |
+| 7 of 10 | +2 |
+| 5 of 10 | 0 |
+| 2 of 10 | -3 |
+| 0 of 10 | -5 |
+
+Stars never go below 0. `POST api/exams/:type/results` returns `{ stars, change }`. `change` is the real change after the 0 floor.
+
+Stars open new flash card words. The learner can see `5 + floor(stars / 2)` words. A perfect game opens 2 or 3 more words. If the stars go down, the learner keeps the words they saw, but no new words come until the stars go up again. Rules live in `src/sw/stars.js`.
 
 ## Other routes that use the pool
 

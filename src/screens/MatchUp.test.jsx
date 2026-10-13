@@ -53,7 +53,7 @@ describe('MatchUp screen', () => {
   beforeEach(() => {
     vi.mocked(getProfile).mockReset().mockResolvedValue({ name: 'Buddy', stars: 3 })
     vi.mocked(getExam).mockReset().mockResolvedValue({ type: 'match-up', questions: ROUNDS })
-    vi.mocked(postExamResult).mockReset().mockResolvedValue({ stars: 4 })
+    vi.mocked(postExamResult).mockReset().mockResolvedValue({ stars: 0, change: -3 })
   })
 
   afterEach(() => {
@@ -111,11 +111,13 @@ describe('MatchUp screen', () => {
     expect(screen.getByRole('button', { name: 'Next round' }).disabled).toBe(false)
   })
 
-  it('gives a star for a clean round, posts the result and fetches a new exam on Play again', async () => {
+  it('posts the result, shows the star loss and fetches a new exam on Play again', async () => {
     renderScreen()
     await screen.findByRole('button', { name: 'Word ball' })
+    fireEvent.click(wordCell('ball'))
+    fireEvent.click(pictureCell('bike'))
     matchAll(['ball', 'bike', 'book', 'apple'])
-    expect(screen.getByRole('img', { name: '4 stars' })).toBeTruthy()
+    expect(screen.getByRole('img', { name: '3 stars' })).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: 'Next round' }))
 
     expect(screen.getByRole('progressbar', { name: 'Round 2 of 2' })).toBeTruthy()
@@ -124,9 +126,10 @@ describe('MatchUp screen', () => {
     matchAll(['ball', 'bike', 'book', 'apple'])
     fireEvent.click(screen.getByRole('button', { name: 'Finish' }))
 
-    expect(await screen.findByText('You got 1 of 2 stars')).toBeTruthy()
-    expect(postExamResult).toHaveBeenCalledWith('match-up', { correct: 1, total: 2 })
-    expect(await screen.findByRole('img', { name: '4 stars' })).toBeTruthy()
+    expect(screen.getByText('You got 0 of 2 right')).toBeTruthy()
+    expect(postExamResult).toHaveBeenCalledWith('match-up', { correct: 0, total: 2 })
+    expect(await screen.findByText('-3 stars')).toBeTruthy()
+    expect(screen.getByRole('img', { name: '0 stars' })).toBeTruthy()
 
     fireEvent.click(screen.getByRole('button', { name: 'Play again' }))
     expect(await screen.findByRole('progressbar', { name: 'Round 1 of 2' })).toBeTruthy()

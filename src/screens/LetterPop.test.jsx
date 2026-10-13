@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { getExam, getProfile, postExamResult } from '../api/client.js'
@@ -31,7 +31,7 @@ describe('LetterPop screen', () => {
   beforeEach(() => {
     vi.mocked(getProfile).mockReset().mockResolvedValue({ name: 'Buddy', stars: 5 })
     vi.mocked(getExam).mockReset().mockResolvedValue({ type: 'letter-pop', questions: QUESTIONS })
-    vi.mocked(postExamResult).mockReset().mockResolvedValue({ stars: 6 })
+    vi.mocked(postExamResult).mockReset().mockResolvedValue({ stars: 5, change: 0 })
   })
 
   it('loads a letter-pop exam and shows the letters of the first word', async () => {
@@ -59,7 +59,7 @@ describe('LetterPop screen', () => {
     expect(screen.getByRole('img', { name: '5 stars' })).toBeTruthy()
   })
 
-  it('posts the result after the last word and shows the result card', async () => {
+  it('posts the result after the last word and shows the result card with the star change', async () => {
     renderScreen()
     await screen.findByText('One letter sneaked in. Pop it!')
     fireEvent.click(screen.getByRole('button', { name: 'Letter a' }))
@@ -67,12 +67,13 @@ describe('LetterPop screen', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Next' }))
 
     fireEvent.click(screen.getByRole('button', { name: 'Letter m' }))
-    expect(await screen.findByRole('img', { name: '6 stars' })).toBeTruthy()
+    expect(screen.getByRole('img', { name: '5 stars' })).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: 'Finish' }))
 
     expect(postExamResult).toHaveBeenCalledWith('letter-pop', { correct: 1, total: 2 })
-    expect(screen.getByText('You got 1 of 2 stars')).toBeTruthy()
-    await waitFor(() => expect(screen.getByRole('img', { name: '6 stars' })).toBeTruthy())
+    expect(screen.getByText('You got 1 of 2 right')).toBeTruthy()
+    expect(await screen.findByText('No star change')).toBeTruthy()
+    expect(screen.getByRole('img', { name: '5 stars' })).toBeTruthy()
   })
 
   it('loads a new exam when playing again', async () => {
