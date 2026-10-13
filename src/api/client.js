@@ -1,5 +1,6 @@
 const API_ROOT = 'api/'
 const CLAIM_CLIENTS_MESSAGE = 'claim-clients'
+const SAVE_PICTURES_MESSAGE = 'save-pictures'
 
 export class ApiError extends Error {
   constructor(message, status) {
@@ -22,14 +23,48 @@ function waitForController(container) {
   })
 }
 
+export const BACKEND_STAGES = ['opening', 'downloading', 'starting', 'ready']
+
+let backendStage = BACKEND_STAGES[0]
+const backendStageListeners = new Set()
+
+function reportBackendStage(stage) {
+  if (BACKEND_STAGES.indexOf(stage) <= BACKEND_STAGES.indexOf(backendStage)) return
+  backendStage = stage
+  for (const listener of backendStageListeners) listener(stage)
+}
+
+export function onBackendStage(listener) {
+  backendStageListeners.add(listener)
+  listener(backendStage)
+  return () => backendStageListeners.delete(listener)
+}
+
+function stageOfWorker(worker) {
+  return worker.state === 'installing' || worker.state === 'parsed' ? 'downloading' : 'starting'
+}
+
+function followWorker(worker) {
+  if (!worker) return
+  reportBackendStage(stageOfWorker(worker))
+  worker.addEventListener('statechange', () => reportBackendStage(stageOfWorker(worker)))
+}
+
+function followRegistration(registration) {
+  followWorker(registration.installing ?? registration.waiting ?? registration.active)
+  registration.addEventListener('updatefound', () => followWorker(registration.installing))
+}
+
 async function startBackend() {
   const container = globalThis.navigator?.serviceWorker
   if (!container) throw new Error('This browser cannot run IOE Buddy. Please try Chrome, Safari or Edge.')
   const controlled = waitForController(container)
-  await container.register(...serviceWorkerRegistrationArgs())
+  followRegistration(await container.register(...serviceWorkerRegistrationArgs()))
   const registration = await container.ready
   if (!container.controller) registration.active?.postMessage({ type: CLAIM_CLIENTS_MESSAGE })
   await controlled
+  reportBackendStage('ready')
+  container.controller?.postMessage({ type: SAVE_PICTURES_MESSAGE })
 }
 
 let backendReady = null

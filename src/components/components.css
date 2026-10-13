@@ -355,6 +355,68 @@
   animation: bounce 1.2s ease-in-out infinite;
 }
 
+.backend-gate__steps {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.backend-gate__track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.backend-gate__step {
+  position: relative;
+  overflow: hidden;
+  height: 20px;
+  border-radius: 999px;
+  border: 3px solid var(--ink);
+  background: var(--white);
+}
+
+.backend-gate__step[data-state='done'] {
+  background: var(--success);
+}
+
+.backend-gate__step[data-state='current'] {
+  background: var(--sun);
+}
+
+.backend-gate__step[data-state='current']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  animation: step-shimmer 1.1s ease-in-out infinite;
+}
+
+.backend-gate__step-label {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.backend-gate__slow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+@keyframes step-shimmer {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(240%);
+  }
+}
+
 @keyframes bounce {
   0%,
   100% {
