@@ -1,6 +1,6 @@
 import { createPartialResponse } from 'workbox-range-requests'
 import { CLIP_FOLDER, clipPath, spokenPhrases } from '../lib/clips.js'
-import { loadIndex, loadWords } from './content.js'
+import { loadIndex, loadSentenceChoices, loadWords } from './content.js'
 import { deleteOldVersions, isUnderFolder, respondWithKeptFile } from './keptFiles.js'
 
 const WORD_AUDIO_CACHE_PREFIX = 'word-audio-'
@@ -21,7 +21,7 @@ export async function respondWithWordAudio(request) {
 }
 
 export async function wordAudioToKeep() {
-  const [cacheName, words] = await Promise.all([wordAudioCacheName(), loadWords()])
+  const [cacheName, words, sentenceChoices] = await Promise.all([wordAudioCacheName(), loadWords(), loadSentenceChoices()])
   await deleteOldVersions(WORD_AUDIO_CACHE_PREFIX, cacheName)
-  return { cacheName, paths: spokenPhrases(words).map(clipPath) }
+  return { cacheName, paths: spokenPhrases(words, sentenceChoices).map(clipPath) }
 }

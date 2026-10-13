@@ -13,7 +13,7 @@ The MVP has no login. All progress stays on the device.
 - `src/sw.js` is the service worker. It precaches the app and answers every request to `<scope>api/...`.
 - `src/sw/router.js` matches the method and path and returns JSON. An unknown route gives 404. A handler error gives 500.
 - `src/sw/handlers/` holds one file per resource: profile, flashcards, exams, word of the day, credits, reset.
-- `src/sw/exams/` holds one question generator per game: Picture Pick, Letter Pop, Match Up, Fill In. Each call gives a new random set of 10 questions.
+- `src/sw/exams/` holds one question generator per game: Picture Pick, Letter Pop, Match Up, Fill In, Sentence Quiz. Each call gives a new random set of 10 questions.
 - `src/sw/srs.js` schedules flash cards (Leitner boxes 0-5).
 - `src/sw/pool.js` builds each 10-card session and the game word pool. See [docs/flashcard-pool.md](docs/flashcard-pool.md).
 - The React app calls the backend only through `src/api/client.js`. It waits until the service worker controls the page before the first call.
@@ -38,6 +38,7 @@ The MVP has no login. All progress stays on the device.
 
 - `scripts/build-content.mjs` reads `content/clean/*.md` and writes JSON to `public/content/` (ignored by git).
 - `public/content/words.json` holds all words and `public/content/grammar.json` all sentence patterns. `public/content/index.json` points to them and lists the picture credits.
+- `content/clean/sentence-choice.md` is the Sentence Quiz question bank. The build checks each row and writes `public/content/sentence-choices.json`. A question comes only after the learner sees its word.
 - Units and lessons are hidden metadata (`unit`, `lesson`, `rank`). The app never shows them. `rank` sets the order in which new words come in.
 - Each word gets its picture from `images/unit-XX/` first, then from any other `images/` folder. The script copies only the pictures that words use, to `public/content/images/<id>.png`.
 - `npm run dev` and `npm run build` run the content build first.

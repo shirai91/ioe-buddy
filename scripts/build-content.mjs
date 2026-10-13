@@ -101,6 +101,43 @@ function parseExtraWords(markdown) {
     }))
 }
 
+export const BLANK = '___'
+const SENTENCE_CHOICE_COLUMNS = 7
+
+export function parseSentenceChoices(markdown) {
+  return tableRows(markdown)
+    .filter((cells) => cells.length === SENTENCE_CHOICE_COLUMNS && /^\d+$/.test(cells[6]))
+    .map(([sentence, answer, wrong1, wrong2, wrong3, wordId, unit]) => ({
+      sentence,
+      answer,
+      wrong: [wrong1, wrong2, wrong3],
+      wordId,
+      unit: Number(unit),
+    }))
+}
+
+function sentenceChoiceProblem(row, wordIds) {
+  const parts = row.sentence.split(BLANK)
+  if (parts.length !== 2) return `needs one ${BLANK}`
+  const options = [row.answer, ...row.wrong].map((option) => option.toLowerCase())
+  if (options.some((option) => !option)) return 'has an empty option'
+  if (new Set(options).size !== options.length) return 'has the same option twice'
+  if (!wordIds.has(row.wordId)) return `names unknown word "${row.wordId}"`
+  return null
+}
+
+export function buildSentenceChoices(rows, words) {
+  const wordIds = new Set(words.map((word) => word.id))
+  const usedIds = new Set()
+  return rows.map((row) => {
+    const problem = sentenceChoiceProblem(row, wordIds)
+    if (problem) throw new Error(`Sentence choice "${row.sentence}" ${problem}`)
+    const [before, after] = row.sentence.split(BLANK)
+    const sentence = `${before}${row.answer}${after}`
+    return { id: uniqueId(kebabCase(sentence), usedIds), before, after, answer: row.answer, wrong: row.wrong, wordId: row.wordId, unit: row.unit, sentence }
+  })
+}
+
 function parseBookMap(markdown) {
   const unitsByNumber = new Map()
   for (const [unitCell, phonics, vocabulary, patterns] of tableRows(markdown)) {
@@ -429,6 +466,7 @@ export function buildContent({
 } = {}) {
   const glossary = parseGlossary(readText(path.join(contentDir, 'glossary.md')))
   const extraWords = parseExtraWords(readText(path.join(contentDir, 'extra-words.md')))
+  const sentenceChoiceRows = parseSentenceChoices(readText(path.join(contentDir, 'sentence-choice.md')))
   const bookMap = parseBookMap(readText(path.join(contentDir, 'book-map.md')))
   const imageFolders = listImageFolders(imagesDir)
 
@@ -513,21 +551,25 @@ export function buildContent({
   const words = sortedByUniqueRank(unsortedWords, 'word')
   const grammar = sortedByUniqueRank(unsortedGrammar, 'pattern')
 
-  const phrasesWithoutClip = copyClips(words, audioDir, path.join(outDir, 'audio'))
+  const sentenceChoices = buildSentenceChoices(sentenceChoiceRows, words)
+  const phrasesWithoutClip = copyClips(spokenPhrases(words, sentenceChoices), audioDir, path.join(outDir, 'audio'))
   const index = {
     version: 2,
     wordCount: words.length,
     grammarCount: grammar.length,
     words: 'content/words.json',
     grammar: 'content/grammar.json',
+    sentenceChoiceCount: sentenceChoices.length,
+    sentenceChoices: 'content/sentence-choices.json',
     credits,
     fileVersions: { pictures: folderFingerprint(path.join(outDir, 'images')), audio: folderFingerprint(path.join(outDir, 'audio')) },
   }
   writeJson(path.join(outDir, 'words.json'), words)
   writeJson(path.join(outDir, 'grammar.json'), grammar)
+  writeJson(path.join(outDir, 'sentence-choices.json'), sentenceChoices)
   writeJson(path.join(outDir, 'index.json'), index)
 
-  return { index, words, grammar, imageCount: copiedImageIds.size, wordsWithoutImage, sentencesFromFallback, phrasesWithoutClip }
+  return { index, words, grammar, sentenceChoices, imageCount: copiedImageIds.size, wordsWithoutImage, sentencesFromFallback, phrasesWithoutClip }
 }
 
 const FINGERPRINT_LENGTH = 12
@@ -542,8 +584,7 @@ export function folderFingerprint(folder) {
   return hash.digest('hex').slice(0, FINGERPRINT_LENGTH)
 }
 
-function copyClips(words, audioDir, clipsOutDir) {
-  const phrases = spokenPhrases(words)
+function copyClips(phrases, audioDir, clipsOutDir) {
   if (!fs.existsSync(audioDir)) return phrases
   fs.cpSync(audioDir, clipsOutDir, { recursive: true })
   return phrases.filter((text) => !fs.existsSync(path.join(audioDir, `${clipName(text)}.mp3`)))
@@ -552,7 +593,7 @@ function copyClips(words, audioDir, clipsOutDir) {
 const REPORT_PREVIEW_SIZE = 12
 
 function printReport(result) {
-  console.log(`Content built: ${result.words.length} words, ${result.grammar.length} patterns, ${result.imageCount} images, ${result.index.credits.length} credits`)
+  console.log(`Content built: ${result.words.length} words, ${result.grammar.length} patterns, ${result.sentenceChoices.length} sentence choices, ${result.imageCount} images, ${result.index.credits.length} credits`)
   console.log(`Words without image (${result.wordsWithoutImage.length}): ${result.wordsWithoutImage.join(', ') || 'none'}`)
   console.log(`Phrases without audio clip (${result.phrasesWithoutClip.length}): ${result.phrasesWithoutClip.join(', ') || 'none'}`)
   if (result.phrasesWithoutClip.length > 0) console.log('Run npm run audio to make the missing clips.')

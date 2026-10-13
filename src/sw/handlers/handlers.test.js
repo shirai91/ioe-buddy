@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { getAll, put } from '../db.js'
+import { loadSentenceChoices } from '../content.js'
 import { examGenerators } from '../exams/index.js'
 import { handleApiRequest } from '../router.js'
 import { MILLISECONDS_PER_DAY } from '../srs.js'
@@ -164,7 +165,7 @@ describe('exams', () => {
     const { body } = await call('exams/match-up')
 
     expect(body).toEqual({ type: 'match-up', questions })
-    expect(generate).toHaveBeenCalledWith({ words: words.slice(0, 6), allWords: words, count: 10 })
+    expect(generate).toHaveBeenCalledWith({ words: words.slice(0, 6), allWords: words, count: 10, loadSentenceChoices })
   })
 
   it('puts tricky words first and tops up with unseen words by rank', async () => {

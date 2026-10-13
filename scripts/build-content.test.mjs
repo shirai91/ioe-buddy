@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { after, before, describe, test } from 'node:test'
-import { buildContent, folderFingerprint, isSameWord } from './build-content.mjs'
+import { buildContent, buildSentenceChoices, folderFingerprint, isSameWord } from './build-content.mjs'
 
 const temporaryDirs = []
 
@@ -26,6 +26,7 @@ describe('build-content with the book content', () => {
   let words
   let grammar
   let index
+  let sentenceChoices
 
   before(() => {
     outDir = makeTemporaryDir('ioe-content-')
@@ -34,6 +35,7 @@ describe('build-content with the book content', () => {
     words = readJson(path.join(outDir, 'words.json'))
     grammar = readJson(path.join(outDir, 'grammar.json'))
     index = readJson(path.join(outDir, 'index.json'))
+    sentenceChoices = readJson(path.join(outDir, 'sentence-choices.json'))
   })
 
   const findWord = (text) => words.find((word) => word.word === text)
@@ -54,6 +56,20 @@ describe('build-content with the book content', () => {
     assert.equal(index.grammarCount, grammar.length)
     for (const file of [index.words, index.grammar]) assert.ok(fs.existsSync(path.join(outDir, file.replace(/^content\//, ''))))
     assert.ok(Array.isArray(index.credits))
+  })
+
+  test('sentence choices have one blank, four different options and a known word', () => {
+    assert.equal(index.sentenceChoices, 'content/sentence-choices.json')
+    assert.equal(index.sentenceChoiceCount, sentenceChoices.length)
+    assert.ok(sentenceChoices.length > 0)
+    const wordIds = new Set(words.map((word) => word.id))
+    for (const choice of sentenceChoices) {
+      const options = [choice.answer, ...choice.wrong].map((option) => option.toLowerCase())
+      assert.equal(new Set(options).size, 4, choice.sentence)
+      assert.equal(`${choice.before}${choice.answer}${choice.after}`, choice.sentence)
+      assert.ok(wordIds.has(choice.wordId), choice.wordId)
+    }
+    assert.equal(new Set(sentenceChoices.map((choice) => choice.id)).size, sentenceChoices.length)
   })
 
   test('words are sorted by rank and ranks are unique', () => {
@@ -281,4 +297,20 @@ test('matches singular, plural and simple forms', () => {
   }
   assert.equal(isSameWord('bus', 'bike'), false)
   assert.equal(isSameWord('can', 'cat'), false)
+})
+
+describe('buildSentenceChoices', () => {
+  const words = [{ id: 'car' }]
+  const row = { sentence: 'I have a ___.', answer: 'car', wrong: ['cat', 'cup', 'cake'], wordId: 'car', unit: 2 }
+
+  test('splits the sentence at the blank', () => {
+    const [choice] = buildSentenceChoices([row], words)
+    assert.deepEqual(choice, { id: 'i-have-a-car', before: 'I have a ', after: '.', answer: 'car', wrong: ['cat', 'cup', 'cake'], wordId: 'car', unit: 2, sentence: 'I have a car.' })
+  })
+
+  test('rejects bad rows', () => {
+    assert.throws(() => buildSentenceChoices([{ ...row, sentence: 'I have a car.' }], words), /one ___/)
+    assert.throws(() => buildSentenceChoices([{ ...row, wrong: ['Car', 'cup', 'cake'] }], words), /same option/)
+    assert.throws(() => buildSentenceChoices([{ ...row, wordId: 'bus' }], words), /unknown word/)
+  })
 })

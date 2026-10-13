@@ -40,12 +40,19 @@ export const grammar = [
   { id: 'i-have-a', pattern: 'I have a car.', unit: 2, lesson: 1, rank: 2101 },
 ]
 
+export const sentenceChoices = [
+  { id: 'i-have-a-car', before: 'I have a ', after: '.', answer: 'car', wrong: ['cat', 'cup', 'cake'], wordId: 'car', unit: 2, sentence: 'I have a car.' },
+  { id: 'this-is-a-dog', before: 'This is ', after: ' dog.', answer: 'a', wrong: ['an', 'I', 'is'], wordId: 'dog', unit: 3, sentence: 'This is a dog.' },
+]
+
 export const contentIndex = {
   version: 2,
   wordCount: words.length,
   grammarCount: grammar.length,
   words: 'content/words.json',
   grammar: 'content/grammar.json',
+  sentenceChoiceCount: sentenceChoices.length,
+  sentenceChoices: 'content/sentence-choices.json',
   credits: [{ word: 'ball', image: 'content/images/ball.png', source: 'test', author: 'me', license: 'CC0' }],
 }
 
@@ -53,6 +60,7 @@ export const contentFiles = {
   [`${SCOPE}content/index.json`]: contentIndex,
   [`${SCOPE}content/words.json`]: [...words].reverse(),
   [`${SCOPE}content/grammar.json`]: [...grammar].reverse(),
+  [`${SCOPE}content/sentence-choices.json`]: sentenceChoices,
 }
 
 export function contentFetch() {

@@ -10,6 +10,11 @@ export function findThe(word) {
   return `Find the ${word}`
 }
 
+export function askBlank({ before, after }) {
+  const endsAtBlank = /^[.!?]*$/.test(after.trim())
+  return `${before}... what?${endsAtBlank ? '' : after}`
+}
+
 export function clipName(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
 }
@@ -31,6 +36,7 @@ function firstPhraseOfEachClip(phrases) {
   return [...byClip.values()]
 }
 
-export function spokenPhrases(words) {
-  return firstPhraseOfEachClip([...FIXED_PHRASES, ...words.flatMap(phrasesForWord)].filter(Boolean))
+export function spokenPhrases(words, sentenceChoices = []) {
+  const choiceSentences = sentenceChoices.flatMap((choice) => [choice.sentence, askBlank(choice)])
+  return firstPhraseOfEachClip([...FIXED_PHRASES, ...words.flatMap(phrasesForWord), ...choiceSentences].filter(Boolean))
 }

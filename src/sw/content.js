@@ -56,6 +56,10 @@ function sortedByRank(entries) {
 const rememberedIndex = rememberUntilFailure(async () => supportedIndex(await fetchJson(INDEX_PATH)))
 const rememberedWords = rememberUntilFailure(async () => sortedByRank(await fetchJson((await loadIndex()).words)))
 const rememberedGrammar = rememberUntilFailure(async () => sortedByRank(await fetchJson((await loadIndex()).grammar)))
+const rememberedSentenceChoices = rememberUntilFailure(async () => {
+  const { sentenceChoices } = await loadIndex()
+  return sentenceChoices ? fetchJson(sentenceChoices) : []
+})
 
 export function loadIndex() {
   return rememberedIndex()
@@ -69,8 +73,13 @@ export function loadGrammar() {
   return rememberedGrammar()
 }
 
+export function loadSentenceChoices() {
+  return rememberedSentenceChoices()
+}
+
 export function clearContentCache() {
   rememberedIndex.forget()
   rememberedWords.forget()
   rememberedGrammar.forget()
+  rememberedSentenceChoices.forget()
 }

@@ -44,9 +44,9 @@ async function inLanes(items, work) {
 }
 
 async function makeClips({ voice, remakeAll }) {
-  const { words } = buildContent()
+  const { words, sentenceChoices } = buildContent()
   fs.mkdirSync(AUDIO_DIR, { recursive: true })
-  const plan = planClips(spokenPhrases(words), fs.readdirSync(AUDIO_DIR), { remakeAll })
+  const plan = planClips(spokenPhrases(words, sentenceChoices), fs.readdirSync(AUDIO_DIR), { remakeAll })
   for (const file of plan.toRemove) fs.rmSync(path.join(AUDIO_DIR, file))
   const workDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ioe-audio-'))
   try {

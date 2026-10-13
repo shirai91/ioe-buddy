@@ -7,6 +7,7 @@ import LetterPop from './screens/LetterPop.jsx'
 import MatchUp from './screens/MatchUp.jsx'
 import PicturePick from './screens/PicturePick.jsx'
 import Practice from './screens/Practice.jsx'
+import SentencePick from './screens/SentencePick.jsx'
 
 export function AppRoutes() {
   return (
@@ -18,6 +19,7 @@ export function AppRoutes() {
       <Route path="/practice/letter-pop" element={<LetterPop />} />
       <Route path="/practice/match-up" element={<MatchUp />} />
       <Route path="/practice/fill-in" element={<FillIn />} />
+      <Route path="/practice/sentence-pick" element={<SentencePick />} />
       <Route path="/credits" element={<Credits />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

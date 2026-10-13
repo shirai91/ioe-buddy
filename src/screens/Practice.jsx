@@ -62,6 +62,26 @@ function FillInArt() {
   )
 }
 
+function SentencePickArt() {
+  return (
+    <svg viewBox="0 0 48 48" width="50" height="50" focusable="false">
+      <rect x="3" y="4" width="42" height="14" rx="4" fill="var(--white)" stroke="var(--ink)" strokeWidth="2.5" />
+      <path d="M8 11 H18 M30 11 H40" stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round" />
+      <rect x="21" y="8" width="7" height="6" rx="1.5" fill="none" stroke="var(--ink)" strokeWidth="2" strokeDasharray="2 1.5" />
+      <circle cx="12" cy="29" r="7" fill="var(--sun)" stroke="var(--ink)" strokeWidth="2.5" />
+      <circle cx="36" cy="29" r="7" fill="var(--white)" stroke="var(--ink)" strokeWidth="2.5" />
+      <circle cx="12" cy="42" r="5" fill="var(--white)" stroke="var(--ink)" strokeWidth="2" />
+      <circle cx="36" cy="42" r="5" fill="var(--white)" stroke="var(--ink)" strokeWidth="2" />
+      <text x="12" y="33" textAnchor="middle" fontFamily="Nunito, sans-serif" fontWeight="800" fontSize="10" fill="var(--ink)">
+        A
+      </text>
+      <text x="36" y="33" textAnchor="middle" fontFamily="Nunito, sans-serif" fontWeight="800" fontSize="10" fill="var(--ink)">
+        B
+      </text>
+    </svg>
+  )
+}
+
 const GAMES = [
   {
     to: '/practice/picture-pick',
@@ -98,6 +118,15 @@ const GAMES = [
     tileColor: 'var(--sky-blue)',
     chipColor: 'var(--chip-ice)',
     Art: FillInArt,
+  },
+  {
+    to: '/practice/sentence-pick',
+    title: 'Sentence Quiz',
+    hint: 'Pick A, B, C or D to finish the sentence',
+    length: '10 questions',
+    tileColor: 'var(--leaf)',
+    chipColor: 'var(--bg-practice)',
+    Art: SentencePickArt,
   },
 ]
 

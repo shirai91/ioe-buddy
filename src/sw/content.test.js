@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { loadGrammar, loadIndex, loadWords } from './content.js'
-import { SCOPE, contentIndex, grammar, useFreshBackend, words } from './testSupport.js'
+import { loadGrammar, loadIndex, loadSentenceChoices, loadWords } from './content.js'
+import { SCOPE, contentIndex, grammar, sentenceChoices, useFreshBackend, words } from './testSupport.js'
 
 let fetchMock
 
@@ -29,6 +29,17 @@ describe('content', () => {
   it('loads grammar patterns sorted by rank', async () => {
     expect(await loadGrammar()).toEqual(grammar)
     expect(fetchMock).toHaveBeenCalledWith(`${SCOPE}content/grammar.json`)
+  })
+
+  it('loads the sentence choices', async () => {
+    expect(await loadSentenceChoices()).toEqual(sentenceChoices)
+    expect(fetchMock).toHaveBeenCalledWith(`${SCOPE}content/sentence-choices.json`)
+  })
+
+  it('gives no sentence choices when the index has no sentence choice file', async () => {
+    fetchMock.mockResolvedValueOnce(Response.json({ ...contentIndex, sentenceChoices: undefined }))
+
+    expect(await loadSentenceChoices()).toEqual([])
   })
 
   it('rejects an index from the old unit format', async () => {

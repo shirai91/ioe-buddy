@@ -8,7 +8,7 @@ vi.mock('../api/client.js', () => ({
 }))
 
 describe('Practice', () => {
-  it('links to the four games and shows the stars', async () => {
+  it('links to the five games and shows the stars', async () => {
     render(
       <MemoryRouter>
         <Practice />
@@ -23,6 +23,7 @@ describe('Practice', () => {
       '/practice/letter-pop',
       '/practice/match-up',
       '/practice/fill-in',
+      '/practice/sentence-pick',
     ])
     expect(screen.getByRole('link', { name: /Match Up/ }).textContent).toContain('10 rounds')
     expect(await screen.findByRole('img', { name: '7 stars' })).toBeTruthy()
