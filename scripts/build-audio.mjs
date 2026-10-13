@@ -12,6 +12,8 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const AUDIO_DIR = path.join(projectRoot, 'audio')
 const DEFAULT_VOICE = 'Ava (Premium)'
 const WORDS_PER_MINUTE = '140'
+const SAMPLE_RATE = '48000'
+const MP3_BITRATE = '96k'
 const PARALLEL_CLIPS = 6
 const TRIM_SILENCE = 'silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse'
 
@@ -31,8 +33,8 @@ export function voiceInput(text) {
 
 async function makeClip({ file, text }, voice, workDir) {
   const spoken = path.join(workDir, `${path.basename(file, '.mp3')}.aiff`)
-  await run('say', ['-v', voice, '-r', WORDS_PER_MINUTE, '-o', spoken, voiceInput(text)])
-  await run('ffmpeg', ['-loglevel', 'error', '-y', '-i', spoken, '-af', TRIM_SILENCE, '-ac', '1', '-ar', '24000', '-b:a', '48k', path.join(AUDIO_DIR, file)])
+  await run('say', ['-v', voice, '-r', WORDS_PER_MINUTE, `--data-format=BEI16@${SAMPLE_RATE}`, '-o', spoken, voiceInput(text)])
+  await run('ffmpeg', ['-loglevel', 'error', '-y', '-i', spoken, '-af', TRIM_SILENCE, '-ac', '1', '-ar', SAMPLE_RATE, '-b:a', MP3_BITRATE, path.join(AUDIO_DIR, file)])
 }
 
 async function inLanes(items, work) {
