@@ -1,0 +1,58 @@
+[
+  {
+    "word": "red",
+    "file": "red.png",
+    "pdfPage": 27,
+    "box": {
+      "x": 205,
+      "y": 1212,
+      "w": 219,
+      "h": 304
+    },
+    "source": "Activity 1 scene, red note labelled red",
+    "quality": "ok",
+    "note": "Red note pinned on a notice board, with a little board background and a blue pin."
+  },
+  {
+    "word": "pencil",
+    "file": "pencil.png",
+    "pdfPage": 28,
+    "box": {
+      "x": 1648,
+      "y": 1940,
+      "w": 282,
+      "h": 300
+    },
+    "source": "Activity 4 item 2b",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "pen",
+    "file": "pen.png",
+    "pdfPage": 29,
+    "box": {
+      "x": 951,
+      "y": 1591,
+      "w": 281,
+      "h": 298
+    },
+    "source": "Activity 7 item b",
+    "quality": "good",
+    "note": "Pink circle edge shows in the corners."
+  },
+  {
+    "word": "bell",
+    "file": "bell.png",
+    "pdfPage": 28,
+    "box": {
+      "x": 330,
+      "y": 1903,
+      "w": 297,
+      "h": 377
+    },
+    "source": "Activity 4 item 1a",
+    "quality": "good",
+    "note": "Red bell; the Activity 1 bell is yellow."
+  }
+]

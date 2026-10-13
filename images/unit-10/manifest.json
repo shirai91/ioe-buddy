@@ -1,0 +1,58 @@
+[
+  {
+    "word": "mango",
+    "file": "mango.png",
+    "pdfPage": 45,
+    "box": {
+      "x": 1785,
+      "y": 1688,
+      "w": 295,
+      "h": 305
+    },
+    "source": "Activity 4 item 2b (yellow mango)",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "mother",
+    "file": "mother.png",
+    "pdfPage": 45,
+    "box": {
+      "x": 857,
+      "y": 2566,
+      "w": 262,
+      "h": 302
+    },
+    "source": "Activity 5 __other (woman with pink headscarf)",
+    "quality": "ok",
+    "note": "Head and shoulders of a woman; shows a person, not the idea of mother."
+  },
+  {
+    "word": "mouse",
+    "file": "mouse.png",
+    "pdfPage": 45,
+    "box": {
+      "x": 775,
+      "y": 1780,
+      "w": 370,
+      "h": 255
+    },
+    "source": "Activity 4 item 1b",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "monkey",
+    "file": "monkey.png",
+    "pdfPage": 45,
+    "box": {
+      "x": 412,
+      "y": 1645,
+      "w": 300,
+      "h": 390
+    },
+    "source": "Activity 4 item 1a",
+    "quality": "good",
+    "note": ""
+  }
+]

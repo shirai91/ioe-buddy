@@ -1,0 +1,58 @@
+[
+  {
+    "word": "sun",
+    "file": "sun.png",
+    "pdfPage": 50,
+    "box": {
+      "x": 1250,
+      "y": 2545,
+      "w": 300,
+      "h": 258
+    },
+    "source": "Activity 5 s__n",
+    "quality": "ok",
+    "note": "Sun rays are pale; light beige patch in lower right corner."
+  },
+  {
+    "word": "truck",
+    "file": "truck.png",
+    "pdfPage": 50,
+    "box": {
+      "x": 828,
+      "y": 1553,
+      "w": 350,
+      "h": 315
+    },
+    "source": "Activity 4 item 1b (red truck with white box)",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "bus",
+    "file": "bus.png",
+    "pdfPage": 50,
+    "box": {
+      "x": 387,
+      "y": 1605,
+      "w": 395,
+      "h": 250
+    },
+    "source": "Activity 4 item 1a (green and yellow bus)",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "running",
+    "file": "running.png",
+    "pdfPage": 50,
+    "box": {
+      "x": 1720,
+      "y": 1495,
+      "w": 330,
+      "h": 400
+    },
+    "source": "Activity 4 item 2b (dark-haired boy running)",
+    "quality": "good",
+    "note": ""
+  }
+]

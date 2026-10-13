@@ -1,0 +1,44 @@
+[
+  {
+    "word": "ball",
+    "file": "ball.png",
+    "pdfPage": 8,
+    "box": {
+      "x": 340,
+      "y": 1750,
+      "w": 300,
+      "h": 300
+    },
+    "source": "Activity 4 item 1a",
+    "quality": "good",
+    "note": "Orange basketball."
+  },
+  {
+    "word": "bike",
+    "file": "bike.png",
+    "pdfPage": 8,
+    "box": {
+      "x": 655,
+      "y": 1720,
+      "w": 430,
+      "h": 325
+    },
+    "source": "Activity 4 item 1b",
+    "quality": "good",
+    "note": "Orange bike; a faint pink background shape at top right."
+  },
+  {
+    "word": "book",
+    "file": "book.png",
+    "pdfPage": 8,
+    "box": {
+      "x": 1665,
+      "y": 1715,
+      "w": 280,
+      "h": 340
+    },
+    "source": "Activity 4 item 2b",
+    "quality": "ok",
+    "note": "The book is the Tieng Anh 1 textbook, so its cover has printed title text."
+  }
+]

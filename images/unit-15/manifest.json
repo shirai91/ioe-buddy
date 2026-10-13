@@ -1,0 +1,6 @@
+[
+  {"word": "football", "file": "football.png", "pdfPage": 67, "box": {"x": 1360, "y": 2680, "w": 215, "h": 205}, "source": "Activity 5 football picture", "quality": "good", "note": ""},
+  {"word": "foot", "file": "foot.png", "pdfPage": 67, "box": {"x": 820, "y": 1855, "w": 330, "h": 210}, "source": "Activity 4 item 1b", "quality": "good", "note": "Panel background is light pink on the left edge."},
+  {"word": "face", "file": "face.png", "pdfPage": 67, "box": {"x": 445, "y": 1775, "w": 255, "h": 310}, "source": "Activity 4 item 1a", "quality": "ok", "note": "Girl's head and shoulders; shows a face but not only a face."},
+  {"word": "father", "file": "father.png", "pdfPage": 67, "box": {"x": 1745, "y": 1735, "w": 280, "h": 335}, "source": "Activity 4 item 2b", "quality": "ok", "note": "Man with glasses in a blue shirt; a man alone, the father meaning depends on context."}
+]

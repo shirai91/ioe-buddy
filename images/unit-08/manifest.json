@@ -1,0 +1,58 @@
+[
+  {
+    "word": "hand",
+    "file": "hand.png",
+    "pdfPage": 36,
+    "box": {
+      "x": 760,
+      "y": 1930,
+      "w": 290,
+      "h": 265
+    },
+    "source": "Activity 4 item 1b",
+    "quality": "ok",
+    "note": "Faint white track line in the translucent background."
+  },
+  {
+    "word": "head",
+    "file": "head.png",
+    "pdfPage": 36,
+    "box": {
+      "x": 364,
+      "y": 1874,
+      "w": 284,
+      "h": 357
+    },
+    "source": "Activity 4 item 1a",
+    "quality": "good",
+    "note": "Boy's head in side view."
+  },
+  {
+    "word": "horse",
+    "file": "horse.png",
+    "pdfPage": 36,
+    "box": {
+      "x": 1248,
+      "y": 1866,
+      "w": 358,
+      "h": 372
+    },
+    "source": "Activity 4 item 2a",
+    "quality": "ok",
+    "note": "Toy rocking horse; top of the mane touches the edge to keep the printed number 2 out."
+  },
+  {
+    "word": "hair",
+    "file": "hair.png",
+    "pdfPage": 37,
+    "box": {
+      "x": 1212,
+      "y": 603,
+      "w": 330,
+      "h": 567
+    },
+    "source": "Activity 6",
+    "quality": "good",
+    "note": "Girl touches her long hair."
+  }
+]

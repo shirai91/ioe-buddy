@@ -1,0 +1,5 @@
+[
+  {"word": "noodles", "file": "noodles.png", "pdfPage": 59, "box": {"x": 440, "y": 1852, "w": 295, "h": 226}, "source": "Activity 4 item 1a", "quality": "good", "note": "Bowl of noodles."},
+  {"word": "nuts", "file": "nuts.png", "pdfPage": 59, "box": {"x": 1770, "y": 1875, "w": 230, "h": 157}, "source": "Activity 4 item 2b", "quality": "good", "note": "Two peanuts in shells."},
+  {"word": "bananas", "file": "bananas.png", "pdfPage": 59, "box": {"x": 1330, "y": 1868, "w": 315, "h": 180}, "source": "Activity 4 item 2a", "quality": "good", "note": "Bunch of bananas."}
+]

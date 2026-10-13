@@ -1,0 +1,58 @@
+[
+  {
+    "word": "door",
+    "file": "door.png",
+    "pdfPage": 19,
+    "box": {
+      "x": 1352,
+      "y": 1885,
+      "w": 338,
+      "h": 380
+    },
+    "source": "Activity 4 item 2a",
+    "quality": "good",
+    "note": "Open brown door with a mat."
+  },
+  {
+    "word": "duck",
+    "file": "duck.png",
+    "pdfPage": 20,
+    "box": {
+      "x": 717,
+      "y": 1462,
+      "w": 325,
+      "h": 325
+    },
+    "source": "Activity 7 item b",
+    "quality": "good",
+    "note": "Yellow toy duck."
+  },
+  {
+    "word": "dog",
+    "file": "dog.png",
+    "pdfPage": 20,
+    "box": {
+      "x": 315,
+      "y": 1380,
+      "w": 280,
+      "h": 430
+    },
+    "source": "Activity 7 item a",
+    "quality": "good",
+    "note": "Puppy with red collar; small motion lines and a blue floor shadow."
+  },
+  {
+    "word": "desk",
+    "file": "desk.png",
+    "pdfPage": 20,
+    "box": {
+      "x": 1600,
+      "y": 1505,
+      "w": 395,
+      "h": 275
+    },
+    "source": "Activity 7 item d",
+    "quality": "good",
+    "note": "Blue desk."
+  }
+]

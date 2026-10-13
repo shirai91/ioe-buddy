@@ -1,0 +1,58 @@
+[
+  {
+    "word": "hat",
+    "file": "hat.png",
+    "pdfPage": 16,
+    "box": {
+      "x": 1720,
+      "y": 1975,
+      "w": 350,
+      "h": 270
+    },
+    "source": "Activity 4 item 2b",
+    "quality": "good",
+    "note": "Green sun hat."
+  },
+  {
+    "word": "apple",
+    "file": "apple.png",
+    "pdfPage": 17,
+    "box": {
+      "x": 1363,
+      "y": 1525,
+      "w": 210,
+      "h": 225
+    },
+    "source": "Activity 7 item c",
+    "quality": "good",
+    "note": "Red apple."
+  },
+  {
+    "word": "can",
+    "file": "can.png",
+    "pdfPage": 16,
+    "box": {
+      "x": 440,
+      "y": 1925,
+      "w": 215,
+      "h": 360
+    },
+    "source": "Activity 4 item 1a",
+    "quality": "ok",
+    "note": "Orange drink can; the word Orange is printed on the can."
+  },
+  {
+    "word": "bag",
+    "file": "bag.png",
+    "pdfPage": 16,
+    "box": {
+      "x": 1340,
+      "y": 1915,
+      "w": 330,
+      "h": 400
+    },
+    "source": "Activity 4 item 2a",
+    "quality": "good",
+    "note": "Yellow shopping bag."
+  }
+]

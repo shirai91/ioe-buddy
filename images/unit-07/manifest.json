@@ -1,0 +1,58 @@
+[
+  {
+    "word": "girl",
+    "file": "girl.png",
+    "pdfPage": 33,
+    "box": {
+      "x": 1366,
+      "y": 1908,
+      "w": 271,
+      "h": 347
+    },
+    "source": "Activity 4 item 2a",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "garden",
+    "file": "garden.png",
+    "pdfPage": 34,
+    "box": {
+      "x": 268,
+      "y": 1468,
+      "w": 417,
+      "h": 388
+    },
+    "source": "Activity 7 item a",
+    "quality": "good",
+    "note": "Bottom edge of the yellow base ellipse is cut to keep the letter label out."
+  },
+  {
+    "word": "goat",
+    "file": "goat.png",
+    "pdfPage": 33,
+    "box": {
+      "x": 1681,
+      "y": 1847,
+      "w": 342,
+      "h": 416
+    },
+    "source": "Activity 4 item 2b",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "gate",
+    "file": "gate.png",
+    "pdfPage": 33,
+    "box": {
+      "x": 763,
+      "y": 1902,
+      "w": 441,
+      "h": 360
+    },
+    "source": "Activity 4 item 1b",
+    "quality": "good",
+    "note": ""
+  }
+]

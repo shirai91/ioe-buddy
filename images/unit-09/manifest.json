@@ -1,0 +1,58 @@
+[
+  {
+    "word": "locks",
+    "file": "locks.png",
+    "pdfPage": 42,
+    "box": {
+      "x": 1735,
+      "y": 1585,
+      "w": 380,
+      "h": 340
+    },
+    "source": "Activity 4 item 2b (five locks)",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "clocks",
+    "file": "clocks.png",
+    "pdfPage": 42,
+    "box": {
+      "x": 370,
+      "y": 1615,
+      "w": 430,
+      "h": 270
+    },
+    "source": "Activity 4 item 1a (four clocks)",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "mops",
+    "file": "mops.png",
+    "pdfPage": 42,
+    "box": {
+      "x": 800,
+      "y": 1508,
+      "w": 360,
+      "h": 395
+    },
+    "source": "Activity 4 item 1b (three mops)",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "pots",
+    "file": "pots.png",
+    "pdfPage": 42,
+    "box": {
+      "x": 1342,
+      "y": 1594,
+      "w": 360,
+      "h": 290
+    },
+    "source": "Activity 4 item 2a (two pots)",
+    "quality": "good",
+    "note": "Small top margin above the lid knob."
+  }
+]

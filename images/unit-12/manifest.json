@@ -1,0 +1,44 @@
+[
+  {
+    "word": "lake",
+    "file": "lake.png",
+    "pdfPage": 53,
+    "box": {
+      "x": 802,
+      "y": 2672,
+      "w": 370,
+      "h": 245
+    },
+    "source": "Activity 5 __ake",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "leaf",
+    "file": "leaf.png",
+    "pdfPage": 53,
+    "box": {
+      "x": 1322,
+      "y": 1877,
+      "w": 370,
+      "h": 220
+    },
+    "source": "Activity 4 item 2a (green leaf)",
+    "quality": "good",
+    "note": "Small top margin to keep the item number out."
+  },
+  {
+    "word": "lemons",
+    "file": "lemons.png",
+    "pdfPage": 53,
+    "box": {
+      "x": 422,
+      "y": 1835,
+      "w": 330,
+      "h": 275
+    },
+    "source": "Activity 4 item 1a",
+    "quality": "good",
+    "note": ""
+  }
+]

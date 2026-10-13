@@ -1,0 +1,10 @@
+[
+  {"word": "window", "file": "window.png", "pdfPage": 70, "box": {"x": 1715, "y": 2700, "w": 195, "h": 195}, "source": "Activity 5 item 4", "quality": "good", "note": "Blue window."},
+  {"word": "washing", "file": "washing.png", "pdfPage": 70, "box": {"x": 1295, "y": 2680, "w": 175, "h": 218}, "source": "Activity 5 item 3", "quality": "ok", "note": "Hand washes a window with a yellow sponge; small picture."},
+  {"word": "water", "file": "water.png", "pdfPage": 70, "box": {"x": 870, "y": 2710, "w": 180, "h": 185}, "source": "Activity 5 item 2", "quality": "ok", "note": "Pink bucket of water; the water itself is hard to see."},
+  {"word": "six", "file": "six.png", "pdfPage": 71, "box": {"x": 368, "y": 1638, "w": 242, "h": 276}, "source": "Activity 7 item a", "quality": "ok", "note": "Building with six windows inside a circle; circle edge shows at the corners."},
+  {"word": "seven", "file": "seven.png", "pdfPage": 71, "box": {"x": 690, "y": 1660, "w": 345, "h": 255}, "source": "Activity 7 item b", "quality": "good", "note": "Seven red pens inside a circle."},
+  {"word": "eight", "file": "eight.png", "pdfPage": 71, "box": {"x": 1125, "y": 1495, "w": 280, "h": 420}, "source": "Activity 7 item c", "quality": "ok", "note": "Stack of eight books; books overlap so counting is hard."},
+  {"word": "nine", "file": "nine.png", "pdfPage": 71, "box": {"x": 1465, "y": 1620, "w": 330, "h": 292}, "source": "Activity 7 item d", "quality": "good", "note": "Nine red pencils inside a circle."},
+  {"word": "ten", "file": "ten.png", "pdfPage": 71, "box": {"x": 1850, "y": 1700, "w": 335, "h": 185}, "source": "Activity 7 item e", "quality": "good", "note": "Ten lemons inside a circle."}
+]

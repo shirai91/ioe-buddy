@@ -1,0 +1,58 @@
+[
+  {
+    "word": "milk",
+    "file": "milk.png",
+    "pdfPage": 26,
+    "box": {
+      "x": 359,
+      "y": 1468,
+      "w": 241,
+      "h": 377
+    },
+    "source": "Activity 7 item a",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "chips",
+    "file": "chips.png",
+    "pdfPage": 26,
+    "box": {
+      "x": 781,
+      "y": 1497,
+      "w": 276,
+      "h": 333
+    },
+    "source": "Activity 7 item b",
+    "quality": "good",
+    "note": ""
+  },
+  {
+    "word": "fish",
+    "file": "fish.png",
+    "pdfPage": 26,
+    "box": {
+      "x": 1142,
+      "y": 1621,
+      "w": 396,
+      "h": 209
+    },
+    "source": "Activity 7 item c",
+    "quality": "good",
+    "note": "Fish fillets with lemon on a plate."
+  },
+  {
+    "word": "chicken",
+    "file": "chicken.png",
+    "pdfPage": 26,
+    "box": {
+      "x": 1596,
+      "y": 1617,
+      "w": 395,
+      "h": 207
+    },
+    "source": "Activity 7 item d",
+    "quality": "good",
+    "note": "Chicken leg on a plate."
+  }
+]

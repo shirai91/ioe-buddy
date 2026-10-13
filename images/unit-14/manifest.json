@@ -1,0 +1,6 @@
+[
+  {"word": "teddy bear", "file": "teddy-bear.png", "pdfPage": 62, "box": {"x": 470, "y": 1748, "w": 230, "h": 294}, "source": "Activity 4 item 1a", "quality": "good", "note": ""},
+  {"word": "top", "file": "top.png", "pdfPage": 62, "box": {"x": 835, "y": 1750, "w": 285, "h": 275}, "source": "Activity 4 item 1b", "quality": "good", "note": "Spinning top."},
+  {"word": "tiger", "file": "tiger.png", "pdfPage": 73, "box": {"x": 977, "y": 891, "w": 214, "h": 236}, "source": "Review 4 Self-check Activity 1 item 2a", "quality": "good", "note": "Toy tiger. Unit 14 Activity 4 tiger is larger but its tail overlaps the printed number 2."},
+  {"word": "turtle", "file": "turtle.png", "pdfPage": 62, "box": {"x": 1695, "y": 1822, "w": 365, "h": 226}, "source": "Activity 4 item 2b", "quality": "good", "note": "Toy turtle."}
+]

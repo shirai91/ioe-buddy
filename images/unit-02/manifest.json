@@ -1,0 +1,58 @@
+[
+  {
+    "word": "cake",
+    "file": "cake.png",
+    "pdfPage": 12,
+    "box": {
+      "x": 825,
+      "y": 1455,
+      "w": 320,
+      "h": 300
+    },
+    "source": "Activity 7 item b",
+    "quality": "good",
+    "note": "Layer cake with strawberries."
+  },
+  {
+    "word": "car",
+    "file": "car.png",
+    "pdfPage": 12,
+    "box": {
+      "x": 350,
+      "y": 1470,
+      "w": 460,
+      "h": 300
+    },
+    "source": "Activity 7 item a",
+    "quality": "good",
+    "note": "Red toy car."
+  },
+  {
+    "word": "cat",
+    "file": "cat.png",
+    "pdfPage": 11,
+    "box": {
+      "x": 430,
+      "y": 1905,
+      "w": 320,
+      "h": 375
+    },
+    "source": "Activity 4 item 1a",
+    "quality": "good",
+    "note": "Blue cartoon cat."
+  },
+  {
+    "word": "cup",
+    "file": "cup.png",
+    "pdfPage": 12,
+    "box": {
+      "x": 1220,
+      "y": 1480,
+      "w": 310,
+      "h": 265
+    },
+    "source": "Activity 7 item c",
+    "quality": "good",
+    "note": "Pink cup."
+  }
+]
