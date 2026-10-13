@@ -84,6 +84,10 @@ function errorResponse(error) {
   return jsonResponse({ error: error?.message || 'Something went wrong' }, 500)
 }
 
+function isPageNavigation(request) {
+  return request.mode === 'navigate'
+}
+
 export function createRouter(routeTable) {
   const routes = routeTable.map(compileRoute)
 
@@ -98,6 +102,7 @@ export function createRouter(routeTable) {
   }
 
   async function handle(request, path) {
+    if (isPageNavigation(request)) return jsonResponse({ error: 'The API does not accept page navigations' }, 403)
     const match = findRoute(request.method, path)
     if (!match) return jsonResponse({ error: `No route for ${request.method} ${API_PREFIX}${path}` }, 404)
     try {

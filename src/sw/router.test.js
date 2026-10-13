@@ -30,6 +30,17 @@ describe('createRouter', () => {
     expect(await response.json()).toEqual({ params: { id: 'a b', partId: '7' }, query: { unit: 'unit-02' } })
   })
 
+  it('refuses page navigations so another site cannot post a form to the API', async () => {
+    const handler = vi.fn(() => ({ ok: true }))
+    const router = createRouter([['POST', 'reset', handler]])
+    const formPost = { method: 'POST', mode: 'navigate', url: `${SCOPE}api/reset`, text: async () => '' }
+
+    const response = await router.handle(formPost, 'reset')
+
+    expect(response.status).toBe(403)
+    expect(handler).not.toHaveBeenCalled()
+  })
+
   it('returns 404 with an error for an unknown path or method', async () => {
     const router = createRouter([['GET', 'things', () => []]])
 
