@@ -1,19 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { loadWords } from './content.js'
-import { isWordPicture, respondWithWordPicture, saveWordPicturesForOffline } from './wordPictures.js'
+import { loadIndex, loadWords } from './content.js'
+import { fakeCacheStorage } from './testSupport.js'
+import { isWordPicture, respondWithWordPicture, wordPicturesToKeep } from './wordPictures.js'
 
-vi.mock('./content.js', () => ({ loadWords: vi.fn() }))
+vi.mock('./content.js', () => ({ loadIndex: vi.fn(), loadWords: vi.fn() }))
 
 const SCOPE = 'https://example.test/ioe-buddy/'
-
-function fakeCacheStorage() {
-  const entries = new Map()
-  const cache = {
-    match: vi.fn(async (key) => entries.get(typeof key === 'string' ? key : key.url)),
-    put: vi.fn(async (key, response) => entries.set(key, response)),
-  }
-  return { entries, storage: { open: vi.fn(async () => cache) } }
-}
 
 let cacheStorage
 
@@ -21,6 +13,7 @@ beforeEach(() => {
   cacheStorage = fakeCacheStorage()
   vi.stubGlobal('caches', cacheStorage.storage)
   vi.stubGlobal('fetch', vi.fn(async (url) => new Response(`picture of ${url}`)))
+  vi.mocked(loadIndex).mockResolvedValue({ fileVersions: { pictures: 'abc123', audio: 'def456' } })
 })
 
 afterEach(() => vi.unstubAllGlobals())
@@ -34,7 +27,7 @@ describe('isWordPicture', () => {
 })
 
 describe('respondWithWordPicture', () => {
-  it('downloads a picture once and then answers from the cache', async () => {
+  it('downloads a picture once and then answers from the cache of this picture version', async () => {
     const request = new Request(`${SCOPE}content/images/ball.png`)
 
     await respondWithWordPicture(request)
@@ -42,29 +35,36 @@ describe('respondWithWordPicture', () => {
 
     expect(fetch).toHaveBeenCalledTimes(1)
     expect(await second.text()).toBe(`picture of ${SCOPE}content/images/ball.png`)
+    expect(cacheStorage.has('word-pictures-abc123', `${SCOPE}content/images/ball.png`)).toBe(true)
+  })
+
+  it('downloads the picture again when the picture version changes', async () => {
+    const request = new Request(`${SCOPE}content/images/ball.png`)
+    await respondWithWordPicture(request)
+
+    vi.mocked(loadIndex).mockResolvedValue({ fileVersions: { pictures: 'new999' } })
+    await respondWithWordPicture(request)
+
+    expect(fetch).toHaveBeenCalledTimes(2)
   })
 })
 
-describe('saveWordPicturesForOffline', () => {
-  it('keeps every word picture that is not cached yet, once each', async () => {
+describe('wordPicturesToKeep', () => {
+  it('lists the picture of each word for the cache of this picture version', async () => {
     vi.mocked(loadWords).mockResolvedValue([
       { id: 'ball', image: 'content/images/ball.png' },
-      { id: 'book', image: 'content/images/book.png' },
       { id: 'hi', image: null },
     ])
-    cacheStorage.entries.set(`${SCOPE}content/images/book.png`, new Response('kept'))
 
-    await saveWordPicturesForOffline(SCOPE)
-
-    expect(fetch).toHaveBeenCalledTimes(1)
-    expect(fetch).toHaveBeenCalledWith(`${SCOPE}content/images/ball.png`)
-    expect(cacheStorage.entries.has(`${SCOPE}content/images/ball.png`)).toBe(true)
+    expect(await wordPicturesToKeep()).toEqual({ cacheName: 'word-pictures-abc123', paths: ['content/images/ball.png'] })
   })
 
-  it('skips a picture that fails to download', async () => {
-    vi.mocked(loadWords).mockResolvedValue([{ id: 'ball', image: 'content/images/ball.png' }])
-    vi.mocked(fetch).mockRejectedValueOnce(new Error('offline'))
+  it('deletes the caches of old picture versions and keeps other caches', async () => {
+    vi.mocked(loadWords).mockResolvedValue([])
+    for (const name of ['word-pictures-v1', 'word-pictures-old111', 'word-audio-def456']) await caches.open(name)
 
-    await expect(saveWordPicturesForOffline(SCOPE)).resolves.toBeUndefined()
+    await wordPicturesToKeep()
+
+    expect([...cacheStorage.caches.keys()].sort()).toEqual(['word-audio-def456'])
   })
 })

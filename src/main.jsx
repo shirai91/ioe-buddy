@@ -15,11 +15,13 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import BackendGate from './components/BackendGate.jsx'
+import UpdatePrompt from './components/UpdatePrompt.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BackendGate>
       <App />
+      <UpdatePrompt />
     </BackendGate>
   </StrictMode>,
 )

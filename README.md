@@ -57,6 +57,13 @@ The MVP has no login. All progress stays on the device.
 - The content build copies `audio/` to `public/content/audio/`. The service worker keeps the clips for offline use and answers range requests from its cache.
 - If a clip is missing or fails to play, `speak()` uses the browser voice for that text.
 
+### Updates
+
+- The content build writes `fileVersions` in `index.json`: a fingerprint of all pictures and of all clips. The service worker keeps pictures in `word-pictures-<fingerprint>` and clips in `word-audio-<fingerprint>`. When a file changes, the cache name changes, the phone downloads the files again, and the service worker deletes the old cache.
+- A new service worker does not take over by itself. It waits, and `src/api/client.js` tells the app that an update is ready. The app looks for a new version at start and each time it comes back to the screen.
+- `UpdatePrompt` shows "Time to update!" over the app. "Update now" starts the new service worker, downloads its pictures and clips with a progress bar, and reloads the app. After 2 minutes it reloads anyway.
+- If the learner closes the app without the update, the new version starts the next time the app opens.
+
 ## Commands
 
 ```bash

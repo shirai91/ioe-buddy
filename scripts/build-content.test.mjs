@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { after, before, describe, test } from 'node:test'
-import { buildContent, isSameWord } from './build-content.mjs'
+import { buildContent, folderFingerprint, isSameWord } from './build-content.mjs'
 
 const temporaryDirs = []
 
@@ -207,6 +207,27 @@ describe('build-content audio clips', () => {
     const { phrasesWithoutClip } = buildContent({ outDir: makeTemporaryDir('ioe-content-') })
 
     assert.deepEqual(phrasesWithoutClip, [])
+  })
+})
+
+describe('build-content file versions', () => {
+  test('the index has a fingerprint of the pictures and of the audio clips', () => {
+    const outDir = makeTemporaryDir('ioe-content-')
+    const { index } = buildContent({ outDir })
+
+    assert.equal(index.fileVersions.pictures, folderFingerprint(path.join(outDir, 'images')))
+    assert.equal(index.fileVersions.audio, folderFingerprint(path.join(outDir, 'audio')))
+    assert.match(index.fileVersions.audio, /^[0-9a-f]{12}$/)
+  })
+
+  test('the fingerprint changes when a file changes and stays when nothing changes', () => {
+    const folder = makeTemporaryDir('ioe-files-')
+    fs.writeFileSync(path.join(folder, 'ball.mp3'), 'old voice')
+    const before = folderFingerprint(folder)
+
+    assert.equal(folderFingerprint(folder), before)
+    fs.writeFileSync(path.join(folder, 'ball.mp3'), 'new voice')
+    assert.notEqual(folderFingerprint(folder), before)
   })
 })
 

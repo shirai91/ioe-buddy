@@ -26,6 +26,12 @@ export async function respondWithKeptFile(cacheName, request) {
   return fetchAndKeep(cache, request.url)
 }
 
+export async function deleteOldVersions(cachePrefix, currentName) {
+  const names = await caches.keys()
+  const oldNames = names.filter((name) => name.startsWith(cachePrefix) && name !== currentName)
+  await Promise.all(oldNames.map((name) => caches.delete(name)))
+}
+
 async function keepMissingFile(cache, url) {
   if (await cache.match(url)) return
   try {
@@ -35,16 +41,26 @@ async function keepMissingFile(cache, url) {
   }
 }
 
-async function downloadInLanes(urls, download) {
-  const queue = [...urls]
+async function downloadInLanes(items, download) {
+  const queue = [...items]
   const lane = async () => {
     while (queue.length > 0) await download(queue.shift())
   }
   await Promise.all(Array.from({ length: PARALLEL_DOWNLOADS }, lane))
 }
 
-export async function keepFilesForOffline(cacheName, paths, scopeUrl) {
+async function filesOf({ cacheName, paths }, scopeUrl) {
   const cache = await caches.open(cacheName)
-  const urls = [...new Set(paths)].map((path) => new URL(path, scopeUrl).href)
-  await downloadInLanes(urls, (url) => keepMissingFile(cache, url))
+  return [...new Set(paths)].map((path) => ({ cache, url: new URL(path, scopeUrl).href }))
+}
+
+export async function keepFilesForOffline(fileSets, scopeUrl, onProgress = () => {}) {
+  const files = (await Promise.all(fileSets.map((fileSet) => filesOf(fileSet, scopeUrl)))).flat()
+  let done = 0
+  onProgress(done, files.length)
+  await downloadInLanes(files, async ({ cache, url }) => {
+    await keepMissingFile(cache, url)
+    done += 1
+    onProgress(done, files.length)
+  })
 }

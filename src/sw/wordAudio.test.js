@@ -1,24 +1,22 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { loadWords } from './content.js'
-import { isWordAudio, respondWithWordAudio, saveWordAudioForOffline } from './wordAudio.js'
+import { loadIndex, loadWords } from './content.js'
+import { fakeCacheStorage } from './testSupport.js'
+import { isWordAudio, respondWithWordAudio, wordAudioToKeep } from './wordAudio.js'
 
 vi.hoisted(() => {
   globalThis.self ??= globalThis
 })
-vi.mock('./content.js', () => ({ loadWords: vi.fn() }))
+vi.mock('./content.js', () => ({ loadIndex: vi.fn(), loadWords: vi.fn() }))
 
 const SCOPE = 'https://example.test/ioe-buddy/'
 
-let entries
+let cacheStorage
 
 beforeEach(() => {
-  entries = new Map()
-  const cache = {
-    match: vi.fn(async (key) => entries.get(typeof key === 'string' ? key : key.url)?.clone()),
-    put: vi.fn(async (key, response) => entries.set(key, response)),
-  }
-  vi.stubGlobal('caches', { open: vi.fn(async () => cache) })
+  cacheStorage = fakeCacheStorage()
+  vi.stubGlobal('caches', cacheStorage.storage)
   vi.stubGlobal('fetch', vi.fn(async () => new Response('0123456789', { headers: { 'content-type': 'audio/mpeg' } })))
+  vi.mocked(loadIndex).mockResolvedValue({ fileVersions: { pictures: 'abc123', audio: 'def456' } })
 })
 
 afterEach(() => vi.unstubAllGlobals())
@@ -31,7 +29,7 @@ describe('isWordAudio', () => {
 })
 
 describe('respondWithWordAudio', () => {
-  it('downloads a clip once and then answers from the cache', async () => {
+  it('downloads a clip once and then answers from the cache of this audio version', async () => {
     const request = new Request(`${SCOPE}content/audio/ball.mp3`)
 
     await respondWithWordAudio(request)
@@ -39,6 +37,7 @@ describe('respondWithWordAudio', () => {
 
     expect(fetch).toHaveBeenCalledTimes(1)
     expect(await second.text()).toBe('0123456789')
+    expect(cacheStorage.has('word-audio-def456', `${SCOPE}content/audio/ball.mp3`)).toBe(true)
   })
 
   it('answers a range request with only that part, so phones can play the cached clip', async () => {
@@ -51,14 +50,17 @@ describe('respondWithWordAudio', () => {
   })
 })
 
-describe('saveWordAudioForOffline', () => {
-  it('keeps the clip of every phrase the app can say', async () => {
+describe('wordAudioToKeep', () => {
+  it('lists the clip of every phrase the app can say and deletes old audio versions', async () => {
     vi.mocked(loadWords).mockResolvedValue([{ word: 'ball', sentence: 'I see a ball.' }])
+    await caches.open('word-audio-v1')
 
-    await saveWordAudioForOffline(SCOPE)
+    const { cacheName, paths } = await wordAudioToKeep()
 
+    expect(cacheName).toBe('word-audio-def456')
     for (const name of ['ball', 'i-see-a-ball', 'find-the-ball', 'great-job', 'try-again', 'super', 'a']) {
-      expect(entries.has(`${SCOPE}content/audio/${name}.mp3`)).toBe(true)
+      expect(paths).toContain(`content/audio/${name}.mp3`)
     }
+    expect(cacheStorage.caches.has('word-audio-v1')).toBe(false)
   })
 })

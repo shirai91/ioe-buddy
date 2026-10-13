@@ -1,26 +1,23 @@
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching'
+import { CLAIM_CLIENTS_MESSAGE, OFFLINE_PROGRESS_MESSAGE, SAVE_FOR_OFFLINE_MESSAGE, SKIP_WAITING_MESSAGE } from './lib/workerMessages.js'
+import { saveFilesForOffline } from './sw/offlineFiles.js'
 import { apiPathFrom, handleApiRequest } from './sw/router.js'
-import { isWordAudio, respondWithWordAudio, saveWordAudioForOffline } from './sw/wordAudio.js'
-import { isWordPicture, respondWithWordPicture, saveWordPicturesForOffline } from './sw/wordPictures.js'
-
-const CLAIM_CLIENTS_MESSAGE = 'claim-clients'
-const SAVE_FOR_OFFLINE_MESSAGE = 'save-for-offline'
-
-self.addEventListener('install', () => {
-  self.skipWaiting()
-})
+import { isWordAudio, respondWithWordAudio } from './sw/wordAudio.js'
+import { isWordPicture, respondWithWordPicture } from './sw/wordPictures.js'
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(self.clients.claim())
 })
 
+function reportOfflineProgress(client) {
+  return (done, total) => client?.postMessage({ type: OFFLINE_PROGRESS_MESSAGE, done, total })
+}
+
 self.addEventListener('message', (event) => {
-  if (event.data?.type === CLAIM_CLIENTS_MESSAGE) {
-    event.waitUntil(self.clients.claim())
-  }
-  if (event.data?.type === SAVE_FOR_OFFLINE_MESSAGE) {
-    event.waitUntil(Promise.all([saveWordPicturesForOffline(), saveWordAudioForOffline()]))
-  }
+  const type = event.data?.type
+  if (type === CLAIM_CLIENTS_MESSAGE) event.waitUntil(self.clients.claim())
+  if (type === SKIP_WAITING_MESSAGE) event.waitUntil(self.skipWaiting())
+  if (type === SAVE_FOR_OFFLINE_MESSAGE) event.waitUntil(saveFilesForOffline(self.registration.scope, reportOfflineProgress(event.source)))
 })
 
 self.addEventListener('fetch', (event) => {

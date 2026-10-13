@@ -1,0 +1,155 @@
+.update-prompt {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: rgb(29 43 83 / 62%);
+}
+
+.update-prompt__card {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 70px;
+  padding: 26px 22px 24px;
+  background: var(--white);
+  border: 5px solid var(--ink);
+  border-radius: 36px;
+  box-shadow: 0 9px 0 var(--ink);
+  text-align: center;
+  animation: update-prompt-in 0.35s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+
+.update-prompt__badge {
+  position: relative;
+  width: 156px;
+  height: 156px;
+  margin-top: -86px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-home);
+  border: var(--border);
+}
+
+.update-prompt__rocket {
+  animation: update-prompt-bob 2.4s ease-in-out infinite;
+}
+
+.update-prompt__star {
+  position: absolute;
+}
+
+.update-prompt__star--big {
+  top: 14px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+}
+
+.update-prompt__star--small {
+  bottom: 22px;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+}
+
+.update-prompt__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1.05;
+}
+
+.update-prompt__message {
+  margin: 0;
+  max-width: 290px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.update-prompt__button {
+  height: 72px;
+  margin-top: 6px;
+}
+
+.update-prompt__hint {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.update-prompt__progress {
+  width: 100%;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.update-prompt__track {
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--slot-empty);
+  border: var(--border);
+}
+
+.update-prompt__bar {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background-color: var(--grape);
+  background-image: repeating-linear-gradient(45deg, rgb(255 255 255 / 22%) 0 7px, rgb(255 255 255 / 0%) 7px 14px);
+  transition: width 0.2s linear;
+  animation: update-prompt-stripes 0.8s linear infinite;
+}
+
+.update-prompt__status {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 22px;
+}
+
+@keyframes update-prompt-in {
+  0% {
+    transform: translateY(30px) scale(0.94);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes update-prompt-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(-8deg);
+  }
+}
+
+@keyframes update-prompt-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 28px 0;
+  }
+}

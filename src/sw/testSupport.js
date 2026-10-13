@@ -80,3 +80,27 @@ export function apiRequest(path, init) {
 export function jsonInit(method, body) {
   return { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
 }
+
+export function fakeCacheStorage() {
+  const caches = new Map()
+  function cacheNamed(name) {
+    if (!caches.has(name)) {
+      const entries = new Map()
+      caches.set(name, {
+        entries,
+        match: async (key) => entries.get(typeof key === 'string' ? key : key.url)?.clone(),
+        put: async (key, response) => entries.set(key, response),
+      })
+    }
+    return caches.get(name)
+  }
+  return {
+    caches,
+    has: (name, url) => caches.get(name)?.entries.has(url) ?? false,
+    storage: {
+      open: async (name) => cacheNamed(name),
+      keys: async () => [...caches.keys()],
+      delete: async (name) => caches.delete(name),
+    },
+  }
+}

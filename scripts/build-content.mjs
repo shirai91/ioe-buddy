@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -512,6 +513,7 @@ export function buildContent({
   const words = sortedByUniqueRank(unsortedWords, 'word')
   const grammar = sortedByUniqueRank(unsortedGrammar, 'pattern')
 
+  const phrasesWithoutClip = copyClips(words, audioDir, path.join(outDir, 'audio'))
   const index = {
     version: 2,
     wordCount: words.length,
@@ -519,13 +521,25 @@ export function buildContent({
     words: 'content/words.json',
     grammar: 'content/grammar.json',
     credits,
+    fileVersions: { pictures: folderFingerprint(path.join(outDir, 'images')), audio: folderFingerprint(path.join(outDir, 'audio')) },
   }
   writeJson(path.join(outDir, 'words.json'), words)
   writeJson(path.join(outDir, 'grammar.json'), grammar)
   writeJson(path.join(outDir, 'index.json'), index)
-  const phrasesWithoutClip = copyClips(words, audioDir, path.join(outDir, 'audio'))
 
   return { index, words, grammar, imageCount: copiedImageIds.size, wordsWithoutImage, sentencesFromFallback, phrasesWithoutClip }
+}
+
+const FINGERPRINT_LENGTH = 12
+
+export function folderFingerprint(folder) {
+  const hash = createHash('sha256')
+  const files = fs.existsSync(folder) ? fs.readdirSync(folder).sort() : []
+  for (const file of files) {
+    hash.update(file)
+    hash.update(fs.readFileSync(path.join(folder, file)))
+  }
+  return hash.digest('hex').slice(0, FINGERPRINT_LENGTH)
 }
 
 function copyClips(words, audioDir, clipsOutDir) {

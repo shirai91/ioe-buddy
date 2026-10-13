@@ -86,3 +86,12 @@ export function CrossIcon({ size = 22 }) {
     </StrokeIcon>
   )
 }
+
+export function DownloadIcon({ size = 28 }) {
+  return (
+    <StrokeIcon size={size} strokeWidth="3">
+      <path d="M12 4 V15 M7 10.5 L12 15.5 L17 10.5" />
+      <path d="M5 19.5 H19" />
+    </StrokeIcon>
+  )
+}

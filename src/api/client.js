@@ -1,6 +1,7 @@
+import { CLAIM_CLIENTS_MESSAGE, OFFLINE_PROGRESS_MESSAGE, SAVE_FOR_OFFLINE_MESSAGE, SKIP_WAITING_MESSAGE } from '../lib/workerMessages.js'
+
 const API_ROOT = 'api/'
-const CLAIM_CLIENTS_MESSAGE = 'claim-clients'
-const SAVE_FOR_OFFLINE_MESSAGE = 'save-for-offline'
+export const UPDATE_GIVE_UP_MS = 120000
 
 export class ApiError extends Error {
   constructor(message, status) {
@@ -65,6 +66,71 @@ async function startBackend() {
   await controlled
   reportBackendStage('ready')
   container.controller?.postMessage({ type: SAVE_FOR_OFFLINE_MESSAGE })
+  watchForUpdates(container, registration)
+}
+
+let waitingWorker = null
+const updateListeners = new Set()
+
+function reportUpdateWhenWaiting(container, registration) {
+  if (!registration.waiting || !container.controller) return
+  waitingWorker = registration.waiting
+  for (const listener of updateListeners) listener()
+}
+
+function watchForUpdates(container, registration) {
+  reportUpdateWhenWaiting(container, registration)
+  registration.addEventListener('updatefound', () => {
+    const worker = registration.installing
+    worker?.addEventListener('statechange', () => {
+      if (worker.state === 'installed') reportUpdateWhenWaiting(container, registration)
+    })
+  })
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') registration.update().catch(() => {})
+  })
+}
+
+export function onUpdateReady(listener) {
+  updateListeners.add(listener)
+  if (waitingWorker) listener()
+  return () => updateListeners.delete(listener)
+}
+
+function nextControllerChange(container) {
+  return new Promise((resolve) => container.addEventListener('controllerchange', () => resolve(), { once: true }))
+}
+
+function saveFilesForOffline(container, onProgress) {
+  return new Promise((resolve) => {
+    function listen(event) {
+      if (event.data?.type !== OFFLINE_PROGRESS_MESSAGE) return
+      const { done, total } = event.data
+      onProgress(done, total)
+      if (done < total) return
+      container.removeEventListener('message', listen)
+      resolve()
+    }
+    container.addEventListener('message', listen)
+    container.controller.postMessage({ type: SAVE_FOR_OFFLINE_MESSAGE })
+  })
+}
+
+async function switchToNewVersion(onProgress) {
+  const container = globalThis.navigator.serviceWorker
+  const switched = nextControllerChange(container)
+  waitingWorker?.postMessage({ type: SKIP_WAITING_MESSAGE })
+  await switched
+  await saveFilesForOffline(container, onProgress)
+}
+
+function giveUpAfter(delayMs) {
+  return new Promise((resolve) => setTimeout(resolve, delayMs))
+}
+
+export async function installUpdate(onProgress = () => {}) {
+  await Promise.race([switchToNewVersion(onProgress), giveUpAfter(UPDATE_GIVE_UP_MS)])
+  window.location.reload()
 }
 
 let backendReady = null
