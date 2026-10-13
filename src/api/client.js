@@ -1,6 +1,6 @@
 const API_ROOT = 'api/'
 const CLAIM_CLIENTS_MESSAGE = 'claim-clients'
-const SAVE_PICTURES_MESSAGE = 'save-pictures'
+const SAVE_FOR_OFFLINE_MESSAGE = 'save-for-offline'
 
 export class ApiError extends Error {
   constructor(message, status) {
@@ -64,7 +64,7 @@ async function startBackend() {
   if (!container.controller) registration.active?.postMessage({ type: CLAIM_CLIENTS_MESSAGE })
   await controlled
   reportBackendStage('ready')
-  container.controller?.postMessage({ type: SAVE_PICTURES_MESSAGE })
+  container.controller?.postMessage({ type: SAVE_FOR_OFFLINE_MESSAGE })
 }
 
 let backendReady = null

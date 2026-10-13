@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { clipName, spokenPhrases } from '../src/lib/clips.js'
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const UNIT_COUNT = 16
@@ -422,6 +423,7 @@ function isThirdPartyFolder(folder) {
 export function buildContent({
   contentDir = path.join(projectRoot, 'content', 'clean'),
   imagesDir = path.join(projectRoot, 'images'),
+  audioDir = path.join(projectRoot, 'audio'),
   outDir = path.join(projectRoot, 'public', 'content'),
 } = {}) {
   const glossary = parseGlossary(readText(path.join(contentDir, 'glossary.md')))
@@ -521,8 +523,16 @@ export function buildContent({
   writeJson(path.join(outDir, 'words.json'), words)
   writeJson(path.join(outDir, 'grammar.json'), grammar)
   writeJson(path.join(outDir, 'index.json'), index)
+  const phrasesWithoutClip = copyClips(words, audioDir, path.join(outDir, 'audio'))
 
-  return { index, words, grammar, imageCount: copiedImageIds.size, wordsWithoutImage, sentencesFromFallback }
+  return { index, words, grammar, imageCount: copiedImageIds.size, wordsWithoutImage, sentencesFromFallback, phrasesWithoutClip }
+}
+
+function copyClips(words, audioDir, clipsOutDir) {
+  const phrases = spokenPhrases(words)
+  if (!fs.existsSync(audioDir)) return phrases
+  fs.cpSync(audioDir, clipsOutDir, { recursive: true })
+  return phrases.filter((text) => !fs.existsSync(path.join(audioDir, `${clipName(text)}.mp3`)))
 }
 
 const REPORT_PREVIEW_SIZE = 12
@@ -530,6 +540,8 @@ const REPORT_PREVIEW_SIZE = 12
 function printReport(result) {
   console.log(`Content built: ${result.words.length} words, ${result.grammar.length} patterns, ${result.imageCount} images, ${result.index.credits.length} credits`)
   console.log(`Words without image (${result.wordsWithoutImage.length}): ${result.wordsWithoutImage.join(', ') || 'none'}`)
+  console.log(`Phrases without audio clip (${result.phrasesWithoutClip.length}): ${result.phrasesWithoutClip.join(', ') || 'none'}`)
+  if (result.phrasesWithoutClip.length > 0) console.log('Run npm run audio to make the missing clips.')
   console.log(`Fallback sentences (${result.sentencesFromFallback.length}): ${result.sentencesFromFallback.join(', ') || 'none'}`)
   console.log(`First ${REPORT_PREVIEW_SIZE} words by rank:`)
   for (const word of result.words.slice(0, REPORT_PREVIEW_SIZE)) {

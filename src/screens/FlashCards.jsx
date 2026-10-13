@@ -156,7 +156,7 @@ function BackControls({ card, onRate }) {
   return (
     <>
       <div className="flash-cards__prompt rise">
-        <ListenButton text={`${card.word}. ${card.sentence}`} label="Listen to the word and sentence" size={52} className="flash-cards__listen" />
+        <ListenButton text={[card.word, card.sentence]} label="Listen to the word and sentence" size={52} className="flash-cards__listen" />
         <span className="flash-cards__prompt-text">Do you know this word?</span>
       </div>
       <div className="flash-cards__ratings rise" role="group" aria-label="Rate this card">

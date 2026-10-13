@@ -190,6 +190,26 @@ describe('build-content extra words', () => {
   })
 })
 
+describe('build-content audio clips', () => {
+  test('copies the clips and lists the phrases that have no clip', () => {
+    const audioDir = makeTemporaryDir('ioe-audio-')
+    fs.writeFileSync(path.join(audioDir, 'great-job.mp3'), 'clip')
+    const outDir = makeTemporaryDir('ioe-content-')
+
+    const { phrasesWithoutClip } = buildContent({ audioDir, outDir })
+
+    assert.equal(fs.readFileSync(path.join(outDir, 'audio', 'great-job.mp3'), 'utf8'), 'clip')
+    assert.ok(phrasesWithoutClip.includes('Try again'))
+    assert.ok(!phrasesWithoutClip.includes('Great job!'))
+  })
+
+  test('the clips in the repo cover every phrase the app can say', () => {
+    const { phrasesWithoutClip } = buildContent({ outDir: makeTemporaryDir('ioe-content-') })
+
+    assert.deepEqual(phrasesWithoutClip, [])
+  })
+})
+
 describe('build-content with third-party images', () => {
   test('lists images from images/web as credits and skips book images', () => {
     const imagesDir = makeTemporaryDir('ioe-images-')

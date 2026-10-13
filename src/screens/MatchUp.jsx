@@ -8,6 +8,7 @@ import ProgressSegments from '../components/ProgressSegments.jsx'
 import ResultCard from '../components/ResultCard.jsx'
 import WordPicture from '../components/WordPicture.jsx'
 import { NextArrowIcon } from '../components/icons.jsx'
+import { GREAT_JOB, TRY_AGAIN } from '../lib/clips.js'
 import { speak } from '../lib/speak.js'
 import { useApi } from '../lib/useApi.js'
 import './MatchUp.css'
@@ -89,14 +90,14 @@ function MatchUpGame({ rounds, onCorrect, onFinish, onPlayAgain }) {
     if (wordId !== pictureId) {
       setWrongPair({ wordId, pictureId })
       setMissed(true)
-      speak('Try again')
+      speak(TRY_AGAIN)
       return
     }
     const matched = [...matchedIds, wordId]
     const roundSolved = matched.length === pairCount
     setMatchedIds(matched)
     setWrongPair(null)
-    speak(roundSolved ? 'Great job!' : round.words.find((choice) => choice.id === wordId).word)
+    speak(roundSolved ? GREAT_JOB : round.words.find((choice) => choice.id === wordId).word)
     if (roundSolved && !missed) {
       setCorrect(correct + 1)
       onCorrect()

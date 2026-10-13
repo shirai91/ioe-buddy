@@ -9,6 +9,7 @@ import ProgressSegments from '../components/ProgressSegments.jsx'
 import ResultCard from '../components/ResultCard.jsx'
 import WordPicture from '../components/WordPicture.jsx'
 import { CheckIcon, CrossIcon, NextArrowIcon } from '../components/icons.jsx'
+import { GREAT_JOB, TRY_AGAIN, findThe } from '../lib/clips.js'
 import { speak } from '../lib/speak.js'
 import { useApi } from '../lib/useApi.js'
 import './PicturePick.css'
@@ -80,11 +81,11 @@ function PicturePickGame({ questions, onCorrect, onFinish, onPlayAgain }) {
     setPickedId(option.id)
     if (option.id !== question.answerId) {
       setMissed(true)
-      speak('Try again')
+      speak(TRY_AGAIN)
       return
     }
     setSolved(true)
-    speak(`Great job! ${question.word}`)
+    speak(GREAT_JOB, question.word)
     if (!missed) {
       setCorrect(correct + 1)
       onCorrect()
@@ -121,7 +122,7 @@ function PicturePickGame({ questions, onCorrect, onFinish, onPlayAgain }) {
           <span className="picture-pick__find">Find the…</span>
           <span className="picture-pick__word">{question.word}</span>
         </p>
-        <ListenButton text={`Find the ${question.word}`} />
+        <ListenButton text={findThe(question.word)} />
       </section>
       <PictureChoices key={question.id} question={question} solved={solved} pickedId={pickedId} onPick={pick} />
       <FeedbackBar tone={feedback.tone}>{feedback.text}</FeedbackBar>

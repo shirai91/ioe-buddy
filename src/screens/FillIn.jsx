@@ -9,6 +9,7 @@ import ProgressSegments from '../components/ProgressSegments.jsx'
 import ResultCard from '../components/ResultCard.jsx'
 import WordPicture from '../components/WordPicture.jsx'
 import { NextArrowIcon } from '../components/icons.jsx'
+import { GREAT_JOB } from '../lib/clips.js'
 import { speak } from '../lib/speak.js'
 import { useApi } from '../lib/useApi.js'
 import './FillIn.css'
@@ -121,7 +122,7 @@ function FillInGame({ questions, onCorrect, onFinish, onPlayAgain }) {
     }
     setSolved(true)
     setWrong(false)
-    speak(`Great job! ${question.word}`)
+    speak(GREAT_JOB, question.word)
     if (!missed) {
       setCorrect(correct + 1)
       onCorrect()

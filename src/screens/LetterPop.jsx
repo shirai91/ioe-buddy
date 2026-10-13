@@ -9,6 +9,7 @@ import ProgressSegments from '../components/ProgressSegments.jsx'
 import ResultCard from '../components/ResultCard.jsx'
 import WordPicture from '../components/WordPicture.jsx'
 import { NextArrowIcon } from '../components/icons.jsx'
+import { GREAT_JOB, TRY_AGAIN } from '../lib/clips.js'
 import { speak } from '../lib/speak.js'
 import { useApi } from '../lib/useApi.js'
 import './LetterPop.css'
@@ -69,11 +70,11 @@ function LetterPopGame({ questions, onCorrect, onFinish, onPlayAgain }) {
     if (solved || wrongPicks.includes(letterIndex)) return
     if (withoutLetterAt(question.letters, letterIndex) !== question.word) {
       setWrongPicks([...wrongPicks, letterIndex])
-      speak('Try again')
+      speak(TRY_AGAIN)
       return
     }
     setSolved(true)
-    speak(`Great job! ${question.word}`)
+    speak(GREAT_JOB, question.word)
     if (wrongPicks.length === 0) {
       setCorrect(correct + 1)
       onCorrect()
