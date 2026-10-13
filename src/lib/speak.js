@@ -6,7 +6,7 @@ export function speak(text) {
     const synth = globalThis.speechSynthesis
     if (!synth || !text) return false
     synth.cancel()
-    const utterance = new SpeechSynthesisUtterance(text)
+    const utterance = new SpeechSynthesisUtterance(text.toLowerCase())
     utterance.lang = SPEECH_LANG
     utterance.rate = SPEECH_RATE
     synth.speak(utterance)
