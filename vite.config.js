@@ -7,14 +7,25 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.js',
+      injectRegister: null,
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
+      injectManifest: {
+        globPatterns: ['**/*.{js,css,html,svg,png,jpg,jpeg,webp,woff2,json}'],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+      },
+      devOptions: {
+        enabled: true,
+        type: 'module',
+      },
       manifest: {
         name: 'IOE Buddy',
         short_name: 'IOE Buddy',
-        description: 'English flash cards and exercises for kids',
-        theme_color: '#ff8a00',
-        background_color: '#ffffff',
+        description: 'English flash cards and word games for kids',
+        theme_color: '#6A45E8',
+        background_color: '#D9F1FF',
         display: 'standalone',
         icons: [
           { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },

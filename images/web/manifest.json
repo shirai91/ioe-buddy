@@ -1,0 +1,282 @@
+[
+  {
+    "word": "one",
+    "file": "one.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/31-20e3.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Keycap digit 1 emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "two",
+    "file": "two.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/32-20e3.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Keycap digit 2 emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "three",
+    "file": "three.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/33-20e3.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Keycap digit 3 emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "four",
+    "file": "four.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/34-20e3.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Keycap digit 4 emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "five",
+    "file": "five.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/35-20e3.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Keycap digit 5 emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "fish and chips",
+    "file": "fish-and-chips.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f35f.svg + https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f41f.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Adapted: french fries emoji (1f35f) and fish emoji (1f41f) combined into one SVG, rendered to 512x512 PNG on a white background"
+  },
+  {
+    "word": "hi",
+    "file": "hi.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Waving hand emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "hello",
+    "file": "hello.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Waving hand emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "bye",
+    "file": "bye.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Waving hand emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "goodbye",
+    "file": "goodbye.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44b.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Waving hand emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "I",
+    "file": "i.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f64b.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Person raising hand emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "have",
+    "file": "have.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f932.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Palms up together emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "and",
+    "file": "and.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/2795.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Plus sign emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "this",
+    "file": "this.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f447.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Hand pointing down emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "my",
+    "file": "my.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1faf4.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Palm up hand emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "like",
+    "file": "like.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f44d.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Thumbs up emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "he",
+    "file": "he.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f466.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Boy emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "boy",
+    "file": "boy.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f466.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Boy emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "she",
+    "file": "she.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f467.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Girl emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "touch",
+    "file": "touch.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f446.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Hand pointing up emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "your",
+    "file": "your.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1faf5.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Hand pointing at the viewer emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "you",
+    "file": "you.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1faf5.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Hand pointing at the viewer emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "that",
+    "file": "that.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f449.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Hand pointing right emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "point",
+    "file": "point.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f449.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Hand pointing right emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "how many",
+    "file": "how-many.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f522.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Input numbers emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "look",
+    "file": "look.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f440.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Eyes emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "see",
+    "file": "see.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f441.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Eye emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "sunny",
+    "file": "sunny.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/2600.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Sun emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "stop",
+    "file": "stop.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f6d1.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Stop sign emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "can",
+    "file": "can-verb.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f4aa.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Flexed biceps emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "toy",
+    "file": "toy.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1fa80.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Yo-yo emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "shop",
+    "file": "shop.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f3ea.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Convenience store emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "watching",
+    "file": "watching.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f4fa.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Television emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "today",
+    "file": "today.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f4c5.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Calendar emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "moving",
+    "file": "moving.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f4a8.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Dashing away emoji, rendered from SVG to 512x512 PNG on a white background"
+  }
+]

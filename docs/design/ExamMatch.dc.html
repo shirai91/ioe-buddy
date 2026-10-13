@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Word Buddies – Match Up</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&amp;family=Nunito:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#1D2B53}
+a{color:#1D2B53}a:hover{color:#3A4C80}
+a:focus-visible,button:focus-visible{outline:4px solid #6A45E8;outline-offset:3px}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .35s ease-out}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s ease-in-out 2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #ECE6FF; display: flex; flex-direction: column; gap: 16px; padding: 24px 22px 28px; font-family: 'Nunito', system-ui, sans-serif; color: #1D2B53; overflow: hidden">
+
+  <div style="display: flex; align-items: center; gap: 12px">
+    <a href="Practice.dc.html" aria-label="Back to practice" style="width: 52px; height: 52px; flex-shrink: 0; border-radius: 50%; background: #FFFFFF; border: 4px solid #1D2B53; display: flex; align-items: center; justify-content: center; text-decoration: none">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="#1D2B53" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 L8 12 L15 19"></path></svg>
+    </a>
+    <h1 style="margin: 0; flex-grow: 1; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 30px; line-height: 1">Match Up</h1>
+    <div style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: #FFFFFF; border: 3px solid #1D2B53; border-radius: 999px; font-weight: 800; font-size: 19px">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2 L14.9 8.6 L22 9.2 L16.6 13.8 L18.2 21 L12 17.2 L5.8 21 L7.4 13.8 L2 9.2 L9.1 8.6 Z" fill="#FFCE3A" stroke="#1D2B53" stroke-width="2" stroke-linejoin="round"></path></svg>
+      <span>{{ stars }}</span>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 5px" aria-label="{{ progressLabel }}">
+    <sc-for list="{{ segs }}" as="s" hint-placeholder-count="10">
+      <span style="height: 16px; border-radius: 999px; border: 3px solid #1D2B53; background: {{ s.bg }}"></span>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ playing }}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+          <button type="button" onClick="{{ r.w.pick }}" disabled="{{ r.w.matched }}" aria-label="{{ r.w.label }}" aria-pressed="{{ r.w.sel }}" class="{{ r.w.cls }}" style="height: 100px; padding: 0; border-radius: 24px; background: {{ r.w.bg }}; border: 4px solid {{ r.w.border }}; box-shadow: 0 5px 0 {{ r.w.border }}; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 32px; color: #1D2B53">{{ r.w.k }}</button>
+          <button type="button" onClick="{{ r.p.pick }}" disabled="{{ r.p.matched }}" aria-label="{{ r.p.label }}" aria-pressed="{{ r.p.sel }}" class="{{ r.p.cls }}" style="height: 100px; padding: 0; border-radius: 24px; background: {{ r.p.bg }}; border: 4px solid {{ r.p.border }}; box-shadow: 0 5px 0 {{ r.p.border }}; cursor: pointer; display: flex; align-items: center; justify-content: center">
+            <dc-import name="Pic" kind="{{ r.p.k }}" size="80" hint-size="80px,80px"></dc-import>
+          </button>
+        </div>
+      </sc-for>
+    </div>
+
+    <div role="status" style="display: flex; align-items: center; justify-content: center; min-height: 58px; padding: 10px 16px; border-radius: 22px; background: {{ fbBg }}; border: 4px solid #1D2B53; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 22px; text-align: center; line-height: 1.15">{{ feedback }}</div>
+
+    <div style="flex-grow: 1"></div>
+
+    <button type="button" onClick="{{ next }}" disabled="{{ locked }}" style="height: 70px; border-radius: 999px; background: {{ nextBg }}; border: 4px solid #1D2B53; box-shadow: 0 6px 0 #1D2B53; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; color: #1D2B53; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 26px; opacity: {{ nextOpacity }}">
+      {{ nextLabel }}
+      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="none" stroke="#1D2B53" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12 H19 M13 6 L19 12 L13 18"></path></svg>
+    </button>
+  </sc-if>
+
+  <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+    <div class="pop" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; background: #FFFFFF; border: 5px solid #1D2B53; border-radius: 36px; box-shadow: 0 9px 0 #1D2B53; padding: 28px 22px; text-align: center">
+      <svg viewBox="0 0 200 200" width="150" height="150" aria-hidden="true"><path d="M100 14 L124 70 L184 74 L138 112 L152 172 L100 140 L48 172 L62 112 L16 74 L76 70 Z" fill="#FFCE3A" stroke="#1D2B53" stroke-width="7" stroke-linejoin="round"></path><circle cx="84" cy="96" r="8" fill="#1D2B53"></circle><circle cx="116" cy="96" r="8" fill="#1D2B53"></circle><path d="M82 112 Q100 136 118 112" fill="#FF7A6B" stroke="#1D2B53" stroke-width="6" stroke-linejoin="round"></path></svg>
+      <h2 style="margin: 0; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 46px; line-height: 1">You did it!</h2>
+      <p style="margin: 0; font-size: 22px; font-weight: 800">You got {{ stars }} of {{ total }} stars</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4px" aria-hidden="true">
+        <sc-for list="{{ starRow }}" as="s" hint-placeholder-count="10">
+          <svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 2 L14.9 8.6 L22 9.2 L16.6 13.8 L18.2 21 L12 17.2 L5.8 21 L7.4 13.8 L2 9.2 L9.1 8.6 Z" fill="{{ s.fill }}" stroke="#1D2B53" stroke-width="2" stroke-linejoin="round"></path></svg>
+        </sc-for>
+      </div>
+      <button type="button" onClick="{{ restart }}" style="width: 100%; height: 66px; margin-top: 8px; border-radius: 999px; background: #7ED957; border: 4px solid #1D2B53; box-shadow: 0 6px 0 #1D2B53; cursor: pointer; color: #1D2B53; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 24px">Play again</button>
+      <a href="Practice.dc.html" style="width: 100%; box-sizing: border-box; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #FFFFFF; border: 4px solid #1D2B53; text-decoration: none; color: #1D2B53; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 22px">More games</a>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.words = ['apple', 'cat', 'sun', 'fish', 'ball', 'tree'];
+    this.total = 10;
+    this.state = this.fresh();
+  }
+  componentWillUnmount() {
+    if (this.timer) clearTimeout(this.timer);
+  }
+  shuffle(a) {
+    const b = a.slice();
+    for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+    return b;
+  }
+  // Each round: 4 random words; the word column and the picture column are shuffled separately.
+  fresh() {
+    const rounds = [];
+    for (let i = 0; i < this.total; i++) {
+      const set = this.shuffle(this.words).slice(0, 4);
+      rounds.push({ words: this.shuffle(set), pics: this.shuffle(set) });
+    }
+    return { rounds, r: 0, selW: null, selP: null, matched: [], wrong: null, missed: false, stars: 0, done: false };
+  }
+  speak(text) {
+    try {
+      const s = window.speechSynthesis;
+      if (!s) return;
+      s.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = 0.8;
+      s.speak(u);
+    } catch (e) {}
+  }
+  check(w, p) {
+    const st = this.state;
+    if (w === p) {
+      const matched = st.matched.concat([w]);
+      const solved = matched.length === 4;
+      this.setState({
+        matched, selW: null, selP: null,
+        stars: st.stars + (solved && !st.missed ? 1 : 0)
+      });
+      this.speak(solved ? 'Great job!' : w);
+    } else {
+      this.setState({ wrong: { w, p }, selW: null, selP: null, missed: true });
+      this.speak('Try again');
+      if (this.timer) clearTimeout(this.timer);
+      this.timer = setTimeout(() => this.setState({ wrong: null }), 700);
+    }
+  }
+  tapWord(k) {
+    const st = this.state;
+    if (st.matched.indexOf(k) !== -1) return;
+    this.speak(k);
+    if (st.selP) this.check(k, st.selP);
+    else this.setState({ selW: st.selW === k ? null : k, wrong: null });
+  }
+  tapPic(k) {
+    const st = this.state;
+    if (st.matched.indexOf(k) !== -1) return;
+    if (st.selW) this.check(st.selW, k);
+    else this.setState({ selP: st.selP === k ? null : k, wrong: null });
+  }
+  look(k, isMatched, isSel, isWrong) {
+    if (isMatched) return { bg: '#C9F2BE', border: '#2F9E44', cls: 'pop' };
+    if (isWrong) return { bg: '#FFD9D4', border: '#E03131', cls: 'shake' };
+    if (isSel) return { bg: '#E6DEFF', border: '#6A45E8', cls: '' };
+    return { bg: '#FFFFFF', border: '#1D2B53', cls: '' };
+  }
+  renderVals() {
+    const st = this.state;
+    const total = this.total;
+    const round = st.rounds[Math.min(st.r, total - 1)];
+    const solved = st.matched.length === 4;
+    const rows = round.words.map((wk, i) => {
+      const pk = round.pics[i];
+      const wm = st.matched.indexOf(wk) !== -1;
+      const pm = st.matched.indexOf(pk) !== -1;
+      return {
+        w: Object.assign({ k: wk, matched: wm, sel: st.selW === wk, label: 'Word ' + wk, pick: () => this.tapWord(wk) },
+          this.look(wk, wm, st.selW === wk, !!st.wrong && st.wrong.w === wk)),
+        p: Object.assign({ k: pk, matched: pm, sel: st.selP === pk, label: 'Picture of a ' + pk, pick: () => this.tapPic(pk) },
+          this.look(pk, pm, st.selP === pk, !!st.wrong && st.wrong.p === pk))
+      };
+    });
+    let feedback = 'Tap a word, then its picture';
+    let fbBg = '#FFFFFF';
+    if (solved) { feedback = 'All matched! Super!'; fbBg = '#7ED957'; }
+    else if (st.wrong) { feedback = 'Oops! Not a pair. Try again.'; fbBg = '#FFC48A'; }
+    else if (st.selW) { feedback = 'Now tap the picture of “' + st.selW + '”'; fbBg = '#E6DEFF'; }
+    else if (st.selP) { feedback = 'Now tap the word for it'; fbBg = '#E6DEFF'; }
+    else if (st.matched.length) { feedback = st.matched.length + ' of 4 pairs found'; }
+    const last = st.r >= total - 1;
+    return {
+      rows, feedback, fbBg, total,
+      stars: st.stars,
+      playing: !st.done,
+      done: st.done,
+      locked: !solved,
+      nextBg: solved ? '#FFCE3A' : '#FFFFFF',
+      nextOpacity: solved ? 1 : 0.55,
+      nextLabel: last ? 'Finish' : 'Next round',
+      progressLabel: 'Round ' + (st.r + 1) + ' of ' + total,
+      segs: st.rounds.map((_, j) => ({ bg: (st.done || j < st.r) ? '#2F9E44' : (j === st.r ? '#FFCE3A' : '#FFFFFF') })),
+      starRow: st.rounds.map((_, j) => ({ fill: j < st.stars ? '#FFCE3A' : '#E6E9F2' })),
+      next: () => {
+        if (!solved) return;
+        if (last) this.setState({ done: true });
+        else this.setState({ r: st.r + 1, selW: null, selP: null, matched: [], wrong: null, missed: false });
+      },
+      restart: () => this.setState(this.fresh())
+    };
+  }
+}
+</script>
+</body>
+</html>

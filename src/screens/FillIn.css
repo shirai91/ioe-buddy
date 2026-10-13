@@ -1,0 +1,131 @@
+.fill-in__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: 30px;
+  padding: 16px 14px 20px;
+}
+
+.fill-in__listen {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+.fill-in__slots {
+  --slot-gap: 8px;
+  container-type: inline-size;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: var(--slot-gap);
+}
+
+.fill-in__fixed,
+.fill-in__blank {
+  flex: 0 1 54px;
+  min-width: 0;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: min(40px, calc((100cqi - (var(--slot-count) - 1) * var(--slot-gap)) / var(--slot-count) * 0.9));
+  line-height: 1;
+  color: var(--ink);
+}
+
+.fill-in__fixed {
+  border-bottom: 5px solid var(--ink);
+}
+
+.fill-in__blank {
+  --blank-bg: var(--slot-empty);
+  --blank-border: var(--ink);
+  min-width: 44px;
+  padding: 0;
+  border-radius: 14px;
+  background: var(--blank-bg);
+  border: 4px dashed var(--blank-border);
+  cursor: pointer;
+  transition: background-color 0.15s ease-out;
+}
+
+.fill-in__blank--filled {
+  --blank-bg: var(--chip-cream);
+}
+
+.fill-in__blank--wrong {
+  --blank-bg: var(--error-tint);
+  --blank-border: var(--error);
+}
+
+.fill-in__blank--solved {
+  --blank-bg: var(--success-tint);
+  --blank-border: var(--success);
+  cursor: default;
+}
+
+.fill-in__slots--shake {
+  animation: fill-in-shake 0.3s ease-in-out 2;
+}
+
+@keyframes fill-in-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+.fill-in__tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.fill-in__tile {
+  height: 62px;
+  padding: 0;
+  border-radius: 18px;
+  background: var(--white);
+  border: var(--border);
+  box-shadow: var(--shadow-chunky-sm);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    transform 0.08s ease-out,
+    box-shadow 0.08s ease-out,
+    opacity 0.15s ease-out;
+}
+
+.fill-in__tile:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+.fill-in__tile:disabled {
+  cursor: default;
+}
+
+.fill-in__tile--used {
+  opacity: 0.3;
+}
+
+.fill-in__spacer {
+  flex-grow: 1;
+}

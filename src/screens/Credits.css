@@ -1,0 +1,114 @@
+.credits__intro {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.15;
+}
+
+.credits__book {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow-chunky-sm);
+}
+
+.credits__book-art {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: var(--sun);
+  border: var(--border-thin);
+}
+
+.credits__book-text {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.credits__status {
+  font-size: 17px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.credits__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.credit {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: 22px;
+}
+
+.credit__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.credit__word {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.credit__author {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+
+.credit__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.credit__license {
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--chip-ice);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.credit__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.credit__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 6px;
+  font-size: 15px;
+  font-weight: 800;
+}

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Word Buddies – Fill In</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&amp;family=Nunito:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#1D2B53}
+a{color:#1D2B53}a:hover{color:#3A4C80}
+a:focus-visible,button:focus-visible{outline:4px solid #6A45E8;outline-offset:3px}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .35s ease-out}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s ease-in-out 2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #DDF1FF; display: flex; flex-direction: column; gap: 16px; padding: 24px 22px 28px; font-family: 'Nunito', system-ui, sans-serif; color: #1D2B53; overflow: hidden">
+
+  <div style="display: flex; align-items: center; gap: 12px">
+    <a href="Practice.dc.html" aria-label="Back to practice" style="width: 52px; height: 52px; flex-shrink: 0; border-radius: 50%; background: #FFFFFF; border: 4px solid #1D2B53; display: flex; align-items: center; justify-content: center; text-decoration: none">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="#1D2B53" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 L8 12 L15 19"></path></svg>
+    </a>
+    <h1 style="margin: 0; flex-grow: 1; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 30px; line-height: 1">Fill In</h1>
+    <div style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: #FFFFFF; border: 3px solid #1D2B53; border-radius: 999px; font-weight: 800; font-size: 19px">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2 L14.9 8.6 L22 9.2 L16.6 13.8 L18.2 21 L12 17.2 L5.8 21 L7.4 13.8 L2 9.2 L9.1 8.6 Z" fill="#FFCE3A" stroke="#1D2B53" stroke-width="2" stroke-linejoin="round"></path></svg>
+      <span>{{ stars }}</span>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 5px" aria-label="{{ progressLabel }}">
+    <sc-for list="{{ segs }}" as="s" hint-placeholder-count="10">
+      <span style="height: 16px; border-radius: 999px; border: 3px solid #1D2B53; background: {{ s.bg }}"></span>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ playing }}" hint-placeholder-val="{{ true }}">
+    <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; background: #FFFFFF; border: 4px solid #1D2B53; border-radius: 30px; padding: 16px 14px 20px">
+      <dc-import name="Pic" kind="{{ q.word }}" size="130" hint-size="130px,130px"></dc-import>
+      <button type="button" onClick="{{ listen }}" aria-label="Listen to the word" style="position: absolute; top: 14px; right: 14px; width: 56px; height: 56px; border-radius: 50%; background: #6A45E8; border: 4px solid #1D2B53; box-shadow: 0 5px 0 #1D2B53; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9 H8 L13 5 V19 L8 15 H4 Z" fill="#FFFFFF"></path><path d="M16.5 8.5 C18 10 18 14 16.5 15.5"></path><path d="M19 6 C22 9 22 15 19 18"></path></svg>
+      </button>
+      <div style="display: flex; justify-content: center; gap: 8px" class="{{ slotsCls }}">
+        <sc-for list="{{ slots }}" as="s" hint-placeholder-count="4">
+          <sc-if value="{{ s.fixed }}" hint-placeholder-val="{{ true }}">
+            <span style="width: 54px; height: 66px; display: flex; align-items: center; justify-content: center; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 40px; border-bottom: 5px solid #1D2B53; box-sizing: border-box">{{ s.ch }}</span>
+          </sc-if>
+          <sc-if value="{{ s.blank }}" hint-placeholder-val="{{ false }}">
+            <button type="button" onClick="{{ s.clear }}" aria-label="{{ s.label }}" style="width: 54px; height: 66px; padding: 0; border-radius: 14px; background: {{ s.bg }}; border: 4px dashed {{ s.border }}; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 40px; color: #1D2B53">{{ s.ch }}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+      <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
+        <button type="button" onClick="{{ t.pick }}" disabled="{{ t.used }}" aria-label="{{ t.label }}" style="height: 62px; padding: 0; border-radius: 18px; background: #FFFFFF; border: 4px solid #1D2B53; box-shadow: 0 5px 0 #1D2B53; cursor: pointer; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 32px; color: #1D2B53; opacity: {{ t.opacity }}">{{ t.ch }}</button>
+      </sc-for>
+    </div>
+
+    <div role="status" style="display: flex; align-items: center; justify-content: center; min-height: 58px; padding: 10px 16px; border-radius: 22px; background: {{ fbBg }}; border: 4px solid #1D2B53; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 22px; text-align: center; line-height: 1.15">{{ feedback }}</div>
+
+    <div style="flex-grow: 1"></div>
+
+    <button type="button" onClick="{{ next }}" disabled="{{ locked }}" style="height: 70px; border-radius: 999px; background: {{ nextBg }}; border: 4px solid #1D2B53; box-shadow: 0 6px 0 #1D2B53; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; color: #1D2B53; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 26px; opacity: {{ nextOpacity }}">
+      {{ nextLabel }}
+      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="none" stroke="#1D2B53" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12 H19 M13 6 L19 12 L13 18"></path></svg>
+    </button>
+  </sc-if>
+
+  <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+    <div class="pop" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; background: #FFFFFF; border: 5px solid #1D2B53; border-radius: 36px; box-shadow: 0 9px 0 #1D2B53; padding: 28px 22px; text-align: center">
+      <svg viewBox="0 0 200 200" width="150" height="150" aria-hidden="true"><path d="M100 14 L124 70 L184 74 L138 112 L152 172 L100 140 L48 172 L62 112 L16 74 L76 70 Z" fill="#FFCE3A" stroke="#1D2B53" stroke-width="7" stroke-linejoin="round"></path><circle cx="84" cy="96" r="8" fill="#1D2B53"></circle><circle cx="116" cy="96" r="8" fill="#1D2B53"></circle><path d="M82 112 Q100 136 118 112" fill="#FF7A6B" stroke="#1D2B53" stroke-width="6" stroke-linejoin="round"></path></svg>
+      <h2 style="margin: 0; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 46px; line-height: 1">You did it!</h2>
+      <p style="margin: 0; font-size: 22px; font-weight: 800">You got {{ stars }} of {{ total }} stars</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4px" aria-hidden="true">
+        <sc-for list="{{ starRow }}" as="s" hint-placeholder-count="10">
+          <svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 2 L14.9 8.6 L22 9.2 L16.6 13.8 L18.2 21 L12 17.2 L5.8 21 L7.4 13.8 L2 9.2 L9.1 8.6 Z" fill="{{ s.fill }}" stroke="#1D2B53" stroke-width="2" stroke-linejoin="round"></path></svg>
+        </sc-for>
+      </div>
+      <button type="button" onClick="{{ restart }}" style="width: 100%; height: 66px; margin-top: 8px; border-radius: 999px; background: #7ED957; border: 4px solid #1D2B53; box-shadow: 0 6px 0 #1D2B53; cursor: pointer; color: #1D2B53; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 24px">Play again</button>
+      <a href="Practice.dc.html" style="width: 100%; box-sizing: border-box; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #FFFFFF; border: 4px solid #1D2B53; text-decoration: none; color: #1D2B53; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 22px">More games</a>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.words = ['apple', 'cat', 'sun', 'fish', 'ball', 'tree'];
+    this.total = 10;
+    this.state = this.fresh();
+  }
+  shuffle(a) {
+    const b = a.slice();
+    for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+    return b;
+  }
+  // n words from the bank, reshuffled each pass, never the same word twice in a row.
+  seq(n) {
+    const out = [];
+    while (out.length < n) {
+      const b = this.shuffle(this.words);
+      if (out.length && b[0] === out[out.length - 1]) b.push(b.shift());
+      out.push.apply(out, b);
+    }
+    return out.slice(0, n);
+  }
+  // Each play: 10 random words; 3-letter words hide 1 letter, longer words hide 2.
+  // Letter tiles = the hidden letters plus random extras, 6 in all, shuffled.
+  fresh() {
+    const abc = 'abcdefghiklmnoprstuwy'.split('');
+    const questions = this.seq(this.total).map((word) => {
+      const n = word.length <= 3 ? 1 : 2;
+      const blanks = this.shuffle(word.split('').map((_, i) => i)).slice(0, n).sort((a, b) => a - b);
+      const missing = blanks.map((i) => word[i]);
+      const extras = this.shuffle(abc.filter((ch) => missing.indexOf(ch) === -1)).slice(0, 6 - n);
+      return { word, blanks, tiles: this.shuffle(missing.concat(extras)) };
+    });
+    return { questions, q: 0, fill: {}, wrong: false, solved: false, missed: false, stars: 0, done: false };
+  }
+  speak(text) {
+    try {
+      const s = window.speechSynthesis;
+      if (!s) return;
+      s.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = 0.8;
+      s.speak(u);
+    } catch (e) {}
+  }
+  pickTile(ti) {
+    const st = this.state;
+    if (st.solved) return;
+    const q = st.questions[st.q];
+    const used = Object.keys(st.fill).map((k) => st.fill[k]);
+    if (used.indexOf(ti) !== -1) return;
+    const empty = q.blanks.find((b) => st.fill[b] === undefined);
+    if (empty === undefined) return;
+    const fill = Object.assign({}, st.fill);
+    fill[empty] = ti;
+    this.speak(q.tiles[ti]);
+    const full = q.blanks.every((b) => fill[b] !== undefined);
+    if (!full) { this.setState({ fill, wrong: false }); return; }
+    const ok = q.blanks.every((b) => q.tiles[fill[b]] === q.word[b]);
+    if (ok) {
+      this.setState({ fill, solved: true, wrong: false, stars: st.stars + (st.missed ? 0 : 1) });
+      this.speak('Great job! ' + q.word);
+    } else {
+      this.setState({ fill, wrong: true, missed: true });
+    }
+  }
+  clearBlank(b) {
+    const st = this.state;
+    if (st.solved || st.fill[b] === undefined) return;
+    const fill = Object.assign({}, st.fill);
+    delete fill[b];
+    this.setState({ fill, wrong: false });
+  }
+  renderVals() {
+    const st = this.state;
+    const total = this.total;
+    const q = st.questions[Math.min(st.q, total - 1)];
+    const used = Object.keys(st.fill).map((k) => st.fill[k]);
+    const slots = q.word.split('').map((ch, i) => {
+      const isBlank = q.blanks.indexOf(i) !== -1;
+      if (!isBlank) return { fixed: true, blank: false, ch };
+      const ti = st.fill[i];
+      const has = ti !== undefined;
+      return {
+        fixed: false, blank: true,
+        ch: has ? q.tiles[ti] : '',
+        label: has ? 'Letter ' + q.tiles[ti] + ', tap to remove' : 'Empty box',
+        bg: st.solved ? '#C9F2BE' : (st.wrong ? '#FFD9D4' : (has ? '#FFF1C2' : '#F4F7FF')),
+        border: st.solved ? '#2F9E44' : (st.wrong ? '#E03131' : '#1D2B53'),
+        clear: () => this.clearBlank(i)
+      };
+    });
+    const tiles = q.tiles.map((ch, ti) => {
+      const isUsed = used.indexOf(ti) !== -1;
+      return { ch, used: isUsed || st.solved, opacity: isUsed ? 0.3 : 1, label: 'Letter ' + ch, pick: () => this.pickTile(ti) };
+    });
+    let feedback = q.blanks.length === 1 ? 'Find the missing letter' : 'Find the 2 missing letters';
+    let fbBg = '#FFFFFF';
+    if (st.solved) { feedback = 'Great job! It says ' + q.word + '.'; fbBg = '#7ED957'; }
+    else if (st.wrong) { feedback = 'Oops! Tap a box to change it.'; fbBg = '#FFC48A'; }
+    const last = st.q >= total - 1;
+    return {
+      q, slots, tiles, feedback, fbBg, total,
+      slotsCls: st.wrong ? 'shake' : (st.solved ? 'pop' : ''),
+      stars: st.stars,
+      playing: !st.done,
+      done: st.done,
+      locked: !st.solved,
+      nextBg: st.solved ? '#FFCE3A' : '#FFFFFF',
+      nextOpacity: st.solved ? 1 : 0.55,
+      nextLabel: last ? 'Finish' : 'Next',
+      progressLabel: 'Question ' + (st.q + 1) + ' of ' + total,
+      segs: st.questions.map((_, j) => ({ bg: (st.done || j < st.q) ? '#2F9E44' : (j === st.q ? '#FFCE3A' : '#FFFFFF') })),
+      starRow: st.questions.map((_, j) => ({ fill: j < st.stars ? '#FFCE3A' : '#E6E9F2' })),
+      listen: () => this.speak(q.word),
+      next: () => {
+        if (!st.solved) return;
+        if (last) this.setState({ done: true });
+        else this.setState({ q: st.q + 1, fill: {}, wrong: false, solved: false, missed: false });
+      },
+      restart: () => this.setState(this.fresh())
+    };
+  }
+}
+</script>
+</body>
+</html>

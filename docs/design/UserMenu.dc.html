@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>User menu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&amp;family=Nunito:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-user-menu="true" style="position: relative; width: 100%; font-family: 'Nunito', system-ui, sans-serif; color: #1D2B53">
+  <button type="button" onClick="{{ toggle }}" aria-haspopup="menu" aria-expanded="{{ expanded }}" aria-label="Open account menu" style="display: flex; align-items: center; gap: 10px; width: 100%; box-sizing: border-box; padding: 4px 10px 4px 4px; margin: 0; background: {{ btnBg }}; border: 3px solid {{ btnBorder }}; border-radius: 999px; cursor: pointer; font-family: inherit; color: #1D2B53; text-align: left">
+    <span aria-hidden="true" style="width: 52px; height: 52px; border-radius: 50%; background: #B7A6FF; border: 4px solid #1D2B53; box-sizing: border-box; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+      <svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="15" r="7" fill="#FFFFFF" stroke="#1D2B53" stroke-width="3"></circle><path d="M7 36 C9 26 31 26 33 36" fill="#FFFFFF" stroke="#1D2B53" stroke-width="3" stroke-linecap="round"></path></svg>
+    </span>
+    <span style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0">
+      <span style="font-size: 15px; font-weight: 700">{{ greeting }}</span>
+      <span style="font-family: 'Baloo 2', 'Nunito', sans-serif; font-size: 26px; font-weight: 800; line-height: 1.05; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Hi, {{ name }}!</span>
+    </span>
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="#1D2B53" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transition: transform .18s ease; transform: {{ chevron }}"><path d="M6 9 L12 15 L18 9"></path></svg>
+  </button>
+
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+    <div role="menu" aria-label="Account" style="position: absolute; top: calc(100% + 12px); left: 0; z-index: 30; width: 264px; box-sizing: border-box; background: #FFFFFF; border: 4px solid #1D2B53; border-radius: 24px; box-shadow: 0 7px 0 #1D2B53; padding: 8px; display: flex; flex-direction: column; gap: 4px">
+      <div style="display: flex; align-items: center; gap: 10px; padding: 8px 10px 12px; border-bottom: 3px solid #E6E9F2">
+        <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 50%; background: #B7A6FF; border: 3px solid #1D2B53; box-sizing: border-box; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+          <svg viewBox="0 0 40 40" width="24" height="24"><circle cx="20" cy="15" r="7" fill="#FFFFFF" stroke="#1D2B53" stroke-width="3"></circle><path d="M7 36 C9 26 31 26 33 36" fill="#FFFFFF" stroke="#1D2B53" stroke-width="3" stroke-linecap="round"></path></svg>
+        </span>
+        <span style="display: flex; flex-direction: column; min-width: 0">
+          <span style="font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: 20px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ name }}</span>
+          <span style="font-size: 14px; font-weight: 700; color: #4A5578; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ email }}</span>
+        </span>
+      </div>
+      <a href="{{ signOutHref }}" role="menuitem" style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 12px; border-radius: 16px; text-decoration: none; color: #1D2B53; font-weight: 800; font-size: 18px">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="#1D2B53" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4 H5 V20 H10"></path><path d="M14 8 L18 12 L14 16 M18 12 H9"></path></svg>
+        Sign out
+      </a>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"userName":{"editor":"text","default":"[NAME]"},"email":{"editor":"text","default":"[EMAIL]"},"greeting":{"editor":"text","default":"Good morning!"},"open":{"editor":"boolean","default":false},"signOutHref":{"editor":null,"default":"Main.dc.html","tsType":"string"},"$preview":{"width":340,"height":96}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: !!props.open };
+  }
+  componentDidMount() {
+    // Close when the user taps anywhere outside this menu.
+    this.onDocDown = (e) => {
+      if (!this.state.open) return;
+      const t = e.target;
+      if (t && t.closest && t.closest('[data-user-menu]')) return;
+      this.setState({ open: false });
+    };
+    document.addEventListener('pointerdown', this.onDocDown);
+  }
+  componentWillUnmount() {
+    if (this.onDocDown) document.removeEventListener('pointerdown', this.onDocDown);
+  }
+  componentDidUpdate(prev) {
+    if (prev.open !== this.props.open) this.setState({ open: !!this.props.open });
+  }
+  renderVals() {
+    const open = this.state.open;
+    return {
+      open,
+      name: this.props.userName ?? '[NAME]',
+      email: this.props.email ?? '[EMAIL]',
+      greeting: this.props.greeting ?? 'Good morning!',
+      signOutHref: this.props.signOutHref ?? 'Main.dc.html',
+      expanded: open ? 'true' : 'false',
+      chevron: open ? 'rotate(180deg)' : 'rotate(0deg)',
+      btnBg: open ? '#FFFFFF' : 'transparent',
+      btnBorder: open ? '#1D2B53' : 'transparent',
+      toggle: () => this.setState({ open: !open })
+    };
+  }
+}
+</script>
+</body>
+</html>
