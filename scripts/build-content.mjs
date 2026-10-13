@@ -481,6 +481,26 @@ function sortedByUniqueRank(items, label) {
   return sorted
 }
 
+function shareTaken(taken, list) {
+  return list.length === 0 ? Infinity : taken / list.length
+}
+
+export function mixEvenly(first, second) {
+  const mixed = []
+  let firstTaken = 0
+  let secondTaken = 0
+  while (firstTaken < first.length || secondTaken < second.length) {
+    const firstIsBehind = firstTaken < first.length && shareTaken(firstTaken, first) <= shareTaken(secondTaken, second)
+    if (firstIsBehind) mixed.push(first[firstTaken++])
+    else mixed.push(second[secondTaken++])
+  }
+  return mixed
+}
+
+function withRankByPosition(items) {
+  return items.map((item, index) => ({ ...item, rank: index + 1 }))
+}
+
 function uniqueId(baseId, usedIds) {
   let candidate = baseId
   for (let suffix = 2; usedIds.has(candidate); suffix += 1) candidate = `${baseId}-${suffix}`
@@ -608,7 +628,9 @@ export function buildContent({
     return placeInLessons(unit.number, patterns, appearanceOf)
   })
 
-  const words = sortedByUniqueRank([...unsortedWords, ...unsortedStartersWords], 'word')
+  const bookWords = sortedByUniqueRank(unsortedWords, 'word')
+  const startersWordsInOrder = sortedByUniqueRank(unsortedStartersWords, 'word')
+  const words = withRankByPosition(mixEvenly(bookWords, startersWordsInOrder))
   const grammar = sortedByUniqueRank(unsortedGrammar, 'pattern')
 
   const sentenceChoices = buildSentenceChoices(sentenceChoiceRows, words)

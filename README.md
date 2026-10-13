@@ -39,7 +39,7 @@ The MVP has no login. All progress stays on the device.
 
 - `scripts/build-content.mjs` reads `content/clean/*.md` and writes JSON to `public/content/` (ignored by git).
 - `public/content/words.json` holds all words and `public/content/grammar.json` all sentence patterns. `public/content/index.json` points to them and lists the picture credits.
-- `content/clean/starters-words.md` adds the words of the Cambridge Pre A1 Starters Wordlist Picture Book as units 17-27, after the 16 book units. Their pictures are in `images/starters/`, cut from the book pages. `images/starters/manifest.json` gives the page and the box of each picture.
+- `content/clean/starters-words.md` adds the words of the Cambridge Pre A1 Starters Wordlist Picture Book as units 17-27. The build mixes them evenly with the 16 book units, so both books come in at the same speed. Their pictures are in `images/starters/`, cut from the book pages. `images/starters/manifest.json` gives the page and the box of each picture.
 - `content/clean/sentence-choice.md` is the Sentence Quiz question bank. The build checks each row and writes `public/content/sentence-choices.json`. A question comes only after the learner sees its word.
 - Units and lessons are hidden metadata (`unit`, `lesson`, `rank`). The app never shows them. `rank` sets the order in which new words come in.
 - Each word gets its picture from `images/unit-XX/` first, then from any other `images/` folder. The script copies only the pictures that words use, to `public/content/images/<id>.png`.

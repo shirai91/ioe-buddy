@@ -3,7 +3,7 @@
 - Type: starters-words
 - Source: `/Users/tung.pham/Downloads/396158-yle-starters-word-list-picture-book-2018.pdf` (Cambridge Pre A1 Starters Wordlist Picture Book).
 - Words: the labelled pictures on the picture pages (book pages 5-21), the numbers 11-20 (page 23) and the "Where is Monkey?" pictures (page 24).
-- The words come after the 16 book units. Unit 17-27 are the picture pages of the Starters book.
+- Unit 17-27 are the picture pages of the Starters book. The content build mixes these words evenly with the Tieng Anh 1 words, so new words from both books come in from the start.
 
 ## Topics
 

@@ -3,8 +3,9 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { after, before, describe, test } from 'node:test'
-import { buildContent, buildCountWords, buildSentenceChoices, folderFingerprint, isSameWord } from './build-content.mjs'
+import { buildContent, buildCountWords, buildSentenceChoices, folderFingerprint, isSameWord, mixEvenly } from './build-content.mjs'
 
+const LAST_BOOK_UNIT = 16
 const LAST_STARTERS_UNIT = 27
 const temporaryDirs = []
 
@@ -87,13 +88,14 @@ describe('build-content with the book content', () => {
     assert.equal(countWords.find((countWord) => countWord.wordId === 'bus').plural, 'buses')
   })
 
-  test('words are sorted by rank and ranks are unique', () => {
+  test('words are sorted by rank and the rank is the position, starting at 1', () => {
     assertSortedByUniqueRank(words)
+    words.forEach((word, index) => assert.equal(word.rank, index + 1))
   })
 
-  test('the first words are ball, book and bike from unit 1 lesson 1', () => {
+  test('the first book words are ball, book and bike from unit 1 lesson 1', () => {
     assert.deepEqual(
-      words.slice(0, 3).map(({ word, unit, lesson }) => ({ word, unit, lesson })),
+      words.filter((word) => word.unit <= LAST_BOOK_UNIT).slice(0, 3).map(({ word, unit, lesson }) => ({ word, unit, lesson })),
       ['ball', 'book', 'bike'].map((word) => ({ word, unit: 1, lesson: 1 })),
     )
   })
@@ -107,7 +109,6 @@ describe('build-content with the book content', () => {
       assert.ok(word.sentence)
       assert.ok(Number.isInteger(word.unit) && word.unit >= 1 && word.unit <= LAST_STARTERS_UNIT)
       assert.ok(Number.isInteger(word.lesson) && word.lesson >= 1 && word.lesson <= 3)
-      assert.equal(Math.floor(word.rank / 100), word.unit * 10 + word.lesson)
     }
   })
 
@@ -202,7 +203,7 @@ describe('build-content extra words', () => {
 
   test('puts a sight word in the lesson where the child says it', () => {
     assert.deepEqual(
-      words.slice(0, 6).map(({ word, unit, lesson }) => `${word} ${unit}.${lesson}`),
+      words.filter((word) => word.unit <= LAST_BOOK_UNIT).slice(0, 6).map(({ word, unit, lesson }) => `${word} ${unit}.${lesson}`),
       ['ball 1.1', 'book 1.1', 'bike 1.1', 'hi 1.3', 'I 1.3', 'bye 1.3'],
     )
     assert.deepEqual(
@@ -243,13 +244,14 @@ describe('build-content Starters words', () => {
 
   const findWord = (id) => words.find((word) => word.id === id)
 
-  test('come after all book words, in the row order of each topic', () => {
-    const firstStartersIndex = words.findIndex((word) => word.unit > 16)
-    assert.ok(words.slice(firstStartersIndex).every((word) => word.unit > 16))
-    assert.deepEqual(
-      words.slice(firstStartersIndex, firstStartersIndex + 3).map(({ id, unit, lesson, rank }) => `${id} ${unit}.${lesson} ${rank}`),
-      ['arm 17.1 17101', 'leg 17.1 17102', 'body 17.1 17103'],
-    )
+  test('mix evenly with the book words from the start, each list in its own order', () => {
+    assert.deepEqual(words.slice(0, 4).map((word) => word.id), ['ball', 'arm', 'leg', 'book'])
+    const isStarters = (word) => word.unit > LAST_BOOK_UNIT
+    const half = words.slice(0, Math.floor(words.length / 2))
+    const startersShareInFirstHalf = half.filter(isStarters).length / half.length
+    const startersShare = words.filter(isStarters).length / words.length
+    assert.ok(Math.abs(startersShareInFirstHalf - startersShare) < 0.02)
+    assert.deepEqual(words.filter(isStarters).slice(0, 3).map(({ id, unit, lesson }) => `${id} ${unit}.${lesson}`), ['arm 17.1', 'leg 17.1', 'body 17.1'])
   })
 
   test('keep the row id, ipa, vi, sentence and the Starters picture', () => {
@@ -350,6 +352,14 @@ test('matches singular, plural and simple forms', () => {
   }
   assert.equal(isSameWord('bus', 'bike'), false)
   assert.equal(isSameWord('can', 'cat'), false)
+})
+
+describe('mixEvenly', () => {
+  test('spreads the shorter list evenly through the longer list and keeps both orders', () => {
+    assert.deepEqual(mixEvenly(['a1', 'a2'], ['b1', 'b2', 'b3', 'b4']), ['a1', 'b1', 'b2', 'a2', 'b3', 'b4'])
+    assert.deepEqual(mixEvenly(['a1', 'a2'], []), ['a1', 'a2'])
+    assert.deepEqual(mixEvenly([], ['b1']), ['b1'])
+  })
 })
 
 describe('buildSentenceChoices', () => {

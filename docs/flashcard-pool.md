@@ -1,6 +1,6 @@
 # Flash card pool
 
-The learner never sees units or lessons. The app keeps them as hidden metadata on each word and pattern. The metadata sets the order in which new words come in: book Unit 1 Lesson 1 first, then later lessons.
+The learner never sees units or lessons. The app keeps them as hidden metadata on each word and pattern. The metadata sets the order in which new words come in. The Tieng Anh 1 words (Unit 1 Lesson 1 first, then later lessons) and the Starters words (row order) are mixed evenly, so both books come in at the same speed.
 
 ## Content metadata
 
@@ -19,7 +19,7 @@ Hidden fields:
 |---|---|
 | `unit` | Book unit number, 1-16. Starters topic number, 17-27. |
 | `lesson` | First lesson (1-3) of that unit where the word or pattern is printed. Vocabulary words not found in a lesson get 1. |
-| `rank` | `unit * 1000 + lesson * 100 + position`. `position` is the order of first appearance in that lesson (book order). Lower rank = taught earlier. Ranks are unique. |
+| `rank` | Words: the position (1, 2, 3...) in the mixed order. The build sorts each book by `unit * 1000 + lesson * 100 + position` (`position` = order of first appearance in that lesson), then mixes the two lists evenly. Patterns: `unit * 1000 + lesson * 100 + position`. Lower rank = taught earlier. Ranks are unique. |
 
 No screen shows `unit`, `lesson` or `rank`. No API route takes a unit.
 
@@ -90,7 +90,7 @@ Order:
 
 Each card in the response: the word fields plus `{ key, kind, box }`. `kind` is `new | recall | tricky | due | warmup | repeat`. `key` is unique in the session (`<wordId>:<n>`).
 
-First session for a new learner: 5 new words (`ball`, `book`, `bike`, then the next 2 by rank), each with a recall = 10 cards.
+First session for a new learner: 5 new words by rank (`ball`, `arm`, `leg`, `book`, `body`), each with a recall = 10 cards.
 
 ## Stars
 
@@ -114,4 +114,4 @@ Stars open new flash card words. The learner can see `5 + floor(stars / 2)` word
 
 - **Games** (`GET api/exams/:type`): the generator gets `words` = seen words, tricky first, then lowest box. If fewer than 6 words are seen, the next unseen words by rank fill it to 6. `allWords` (all content) is used for distractors. Picture Pick and Match Up treat sight words as words with no picture, so they come last as answers and distractors.
 - **Word of the day**: picked by the date hash from the seen words plus the next 3 unseen words by rank.
-- **Reset**: deletes all progress. The pool starts again at Unit 1 Lesson 1.
+- **Reset**: deletes all progress. The pool starts again at rank 1.
