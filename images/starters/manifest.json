@@ -2596,5 +2596,35 @@
     "source": "Made for IOE Buddy with ImageMagick",
     "quality": "good",
     "note": "Plain grey circle."
+  },
+  {
+    "word": "stairs",
+    "file": "stairs.png",
+    "pdfPage": 16,
+    "dpi": 600,
+    "box": {
+      "x": 2312,
+      "y": 1902,
+      "w": 588,
+      "h": 632
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, p16 At home scene, window above the red front door",
+    "quality": "good",
+    "note": "Staircase with banister seen through the window; thin white window frame remains"
+  },
+  {
+    "word": "street",
+    "file": "street.png",
+    "pdfPage": 22,
+    "dpi": 600,
+    "box": {
+      "x": 0,
+      "y": 0,
+      "w": 4961,
+      "h": 3100
+    },
+    "source": "Cambridge Pre A1 Starters Wordlist Picture Book, My street scene, p21 top",
+    "quality": "good",
+    "note": "Row of shops (STORE, BOOKS, The Fruit Shop) along a road with a red car, motorbike and traffic light; cyclist and girl at the bottom edge"
   }
 ]

@@ -286,5 +286,205 @@
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
     "note": "Flag of the United Kingdom emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "strawberry",
+    "file": "strawberry.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f353.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Strawberry emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "cherries",
+    "file": "cherries.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f352.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Cherries emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "peach",
+    "file": "peach.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f351.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Peach emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "kiwi",
+    "file": "kiwi.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f95d.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Kiwi fruit emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "melon",
+    "file": "melon.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f348.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Melon emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "blueberries",
+    "file": "blueberries.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1fad0.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Blueberries emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "avocado",
+    "file": "avocado.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f951.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Avocado emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "toilet",
+    "file": "toilet.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f6bd.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Toilet emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "garage",
+    "file": "garage.png",
+    "source": "https://www.svgrepo.com/svg/245507/garage-house",
+    "author": "SVG Repo (SVG Vector collection)",
+    "license": "CC0",
+    "note": "Blue house shape with a yellow car inside, flat outlined clipart, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "balcony",
+    "file": "balcony.png",
+    "source": "https://www.svgrepo.com/svg/207330/balcony",
+    "author": "SVG Repo (SVG Vector collection)",
+    "license": "CC0",
+    "note": "Glass door behind a railed balcony, flat outlined clipart, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "laundry room",
+    "file": "laundry-room.png",
+    "source": "https://www.svgrepo.com/svg/249468/washing-machine-washer",
+    "author": "SVG Repo (SVG Vector collection)",
+    "license": "CC0",
+    "note": "Front-loading washing machine standing for the laundry room, flat outlined clipart, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "study",
+    "file": "study.png",
+    "source": "https://www.svgrepo.com/svg/276710/desk",
+    "author": "SVG Repo (SVG Vector collection)",
+    "license": "CC0",
+    "note": "Desk with drawers, a laptop and books standing for the study, flat clipart, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "market",
+    "file": "market.png",
+    "source": "https://cdn.jsdelivr.net/npm/@iconify-json/streamline-ultimate-color@1.2.2/icons.json#farmers-market-kiosk-1",
+    "author": "Streamline (webalys-hq/streamline-vectors, Streamline Ultimate Color icons)",
+    "license": "CC-BY 4.0",
+    "note": "Farmers market kiosk icon: market stall with striped awning and red fruit on the counter, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "papaya",
+    "file": "papaya.png",
+    "source": "https://www.svgrepo.com/show/454338/food-fruit-fruits-3.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Papaya clipart, whole fruit next to a cut half with seeds, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "dragon fruit",
+    "file": "dragon-fruit.png",
+    "source": "https://www.svgrepo.com/show/454331/dragon-fruit-food-fruit.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Dragon fruit clipart, whole fruit next to a cut slice with white flesh and black seeds, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "lychee",
+    "file": "lychee.png",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/6/63/Lychee.svg",
+    "author": "cactus cowboy (Openclipart, via Wikimedia Commons)",
+    "license": "CC0",
+    "note": "Lychee clipart, one whole lychee and one with the skin opened, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "durian",
+    "file": "durian.png",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Durian.svg",
+    "author": "gnokii (Openclipart, via Wikimedia Commons)",
+    "license": "CC0",
+    "note": "Durian clipart, one spiky durian split open to show the yellow flesh, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "guava",
+    "file": "guava.png",
+    "source": "https://www.svgrepo.com/show/454337/food-fruit-fruits-12.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Guava clipart, whole green guava next to a cut slice with pale flesh and seeds, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "jackfruit",
+    "file": "jackfruit.png",
+    "source": "https://www.svgrepo.com/show/454333/food-fruit-fruits-18.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Jackfruit clipart, whole bumpy green jackfruit next to a cut piece with yellow pods, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "rambutan",
+    "file": "rambutan.png",
+    "source": "https://www.svgrepo.com/show/454316/food-fruit-fruits-15.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Rambutan clipart, whole spiky red rambutan next to an opened one with white flesh, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "mangosteen",
+    "file": "mangosteen.png",
+    "source": "https://www.svgrepo.com/show/318243/food-fruit-vegetable-vegetarian-organic-mangosteen.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Mangosteen clipart, whole purple mangosteen with green cap next to a cut one showing the segments, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "star fruit",
+    "file": "star-fruit.png",
+    "source": "https://www.svgrepo.com/show/454312/food-fruit-fruits-14.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Star fruit clipart, whole yellow star fruit next to a star-shaped slice, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "plum",
+    "file": "plum.png",
+    "source": "https://www.svgrepo.com/show/454323/food-fruit-fruits-2.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Plum clipart, whole dark purple plum next to a cut half with the stone, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "pomegranate",
+    "file": "pomegranate.png",
+    "source": "https://www.svgrepo.com/show/454336/food-fruit-fruits-5.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Pomegranate clipart, whole red pomegranate next to a cut piece with red seeds, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "custard apple",
+    "file": "custard-apple.png",
+    "source": "https://www.svgrepo.com/show/454335/custard-apple-food-fruit.svg",
+    "author": "SVG Repo",
+    "license": "CC0",
+    "note": "Custard apple clipart, whole bumpy green custard apple next to a cut piece with white flesh and black seeds, rendered from SVG to 512x512 PNG on a white background"
   }
 ]

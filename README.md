@@ -47,7 +47,7 @@ The MVP has no login. All progress stays on the device.
 
 ### Pictures from the internet
 
-- `images/web/` holds pictures that the book does not have (one to five, fish and chips). They come from Twemoji (CC-BY 4.0).
+- `images/web/` holds pictures that the book does not have (one to five, fish and chips, many fruits and rooms, market). Most come from Twemoji (CC-BY 4.0). Some come from SVG Repo, Wikimedia Commons and Streamline.
 - `images/web/manifest.json` lists the source, author and license of each file. The content build puts them in the credits, and the app shows them on the Credits screen.
 - To add a picture: put the PNG in `images/web/`, add an entry to the manifest, and run `npm run content`.
 

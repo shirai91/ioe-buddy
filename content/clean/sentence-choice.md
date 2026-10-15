@@ -200,6 +200,25 @@
 | I have a ___. | pineapple | beans | water | eight | pineapple | 21 |
 | I have a ___. | coconut | nuts | juice | nine | coconut | 21 |
 | I like ___. | watermelon | is | a | my | watermelon | 21 |
+| I have a ___. | strawberry | cherries | milk | six | strawberry | 21 |
+| I like ___. | cherries | cat | bike | desk | cherries | 21 |
+| I have a ___. | peach | grapes | rice | seven | peach | 21 |
+| I have a ___. | kiwi | peas | juice | eight | kiwi | 21 |
+| I have a ___. | melon | beans | water | nine | melon | 21 |
+| I like ___. | blueberries | dog | hat | ball | blueberries | 21 |
+| I have an ___. | avocado | pear | nuts | ten | avocado | 21 |
+| I have a ___. | papaya | grapes | milk | six | papaya | 21 |
+| I like ___. | dragon fruit | is | a | my | dragon-fruit | 21 |
+| I have a ___. | lychee | cherries | rice | seven | lychee | 21 |
+| I have a ___. | durian | peas | water | eight | durian | 21 |
+| I have a ___. | guava | beans | juice | nine | guava | 21 |
+| I have a ___. | jackfruit | blueberries | milk | ten | jackfruit | 21 |
+| I have a ___. | rambutan | grapes | bread | six | rambutan | 21 |
+| I have a ___. | mangosteen | nuts | water | seven | mangosteen | 21 |
+| I have a ___. | star fruit | peas | rice | eight | star-fruit | 21 |
+| I have a ___. | plum | cherries | juice | nine | plum | 21 |
+| I have a ___. | pomegranate | beans | meat | ten | pomegranate | 21 |
+| I have a ___. | custard apple | grapes | milk | seven | custard-apple | 21 |
 | I have a ___. | tomato | grapes | bread | ten | tomato | 21 |
 | I have an ___. | onion | tomato | nuts | seven | onion | 21 |
 | I have a ___. | potato | peas | rice | six | potato | 21 |
@@ -228,6 +247,12 @@
 | This is the ___. | living room | an | am | my | living-room | 22 |
 | This is the ___. | dining room | a | is | have | dining-room | 22 |
 | This is the ___. | hall | an | are | I | hall | 22 |
+| This is the ___. | toilet | a | is | I | toilet | 22 |
+| This is the ___. | garage | an | are | my | garage | 22 |
+| This is the ___. | balcony | a | am | I | balcony | 22 |
+| Look at the ___. | stairs | a | is | my | stairs | 22 |
+| This is the ___. | study | a | are | my | study | 22 |
+| This is the ___. | laundry room | an | are | I | laundry-room | 22 |
 | This is my ___. | bed | six | running | is | bed | 22 |
 | This is the ___. | bath | a | is | my | bath | 22 |
 | This is a ___. | mirror | milk | lemons | nine | mirror | 22 |
@@ -287,6 +312,8 @@
 | Look at the ___. | tree | a | is | I | tree | 25 |
 | This is the ___. | park | an | is | my | park | 25 |
 | This is a ___. | bookshop | milk | lemons | six | bookshop | 25 |
+| This is my ___. | street | is | seven | running | street | 25 |
+| This is the ___. | market | a | are | I | market | 25 |
 | I can see a ___. | train | lemons | milk | six | train | 25 |
 | I can see a ___. | boat | nuts | water | seven | boat | 25 |
 | I can see a ___. | plane | bananas | chips | eight | plane | 25 |
@@ -370,6 +397,11 @@
 | pear | pears | 21 |
 | pineapple | pineapples | 21 |
 | coconut | coconuts | 21 |
+| strawberry | strawberries | 21 |
+| peach | peaches | 21 |
+| kiwi | kiwis | 21 |
+| melon | melons | 21 |
+| avocado | avocados | 21 |
 | burger | burgers | 21 |
 | house | houses | 22 |
 | mirror | mirrors | 22 |

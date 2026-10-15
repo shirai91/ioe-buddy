@@ -25,6 +25,7 @@
 
 - Each row is one flash card. The row order sets the order in which the new words come in.
 - The picture is `images/starters/<id>.png`. "English" is only in the A-Z wordlist, so its picture is the UK flag in `images/web/`. `images/starters/manifest.json` gives the page and the box of each crop.
+- Some words are not in the picture pages: the fruits after "watermelon", the rooms after "hall", "street" and "market". "stairs" and "street" are crops from the book. The other pictures are in `images/web/`.
 - The colour cards use plain colour pictures from `images/starters/`, because a book picture of a coloured thing looks the same as the card for that thing.
 - A word that is already a card from the Tieng Anh 1 book is not in this list.
 
@@ -100,6 +101,25 @@
 | pineapple | | /ˈpaɪnæpl/ | quả dứa | 21 | I have a pineapple. |
 | coconut | | /ˈkəʊkənʌt/ | quả dừa | 21 | I have a coconut. |
 | watermelon | | /ˈwɔːtəmelən/ | quả dưa hấu | 21 | I like watermelon. |
+| strawberry | | /ˈstrɔːbəri/ | quả dâu tây | 21 | I have a strawberry. |
+| cherries | | /ˈtʃeriz/ | quả anh đào | 21 | I like cherries. |
+| peach | | /piːtʃ/ | quả đào | 21 | I have a peach. |
+| kiwi | | /ˈkiːwiː/ | quả kiwi | 21 | I have a kiwi. |
+| melon | | /ˈmelən/ | quả dưa lưới | 21 | I have a melon. |
+| blueberries | | /ˈbluːbəriz/ | quả việt quất | 21 | I like blueberries. |
+| avocado | | /ˌævəˈkɑːdəʊ/ | quả bơ | 21 | I have an avocado. |
+| papaya | | /pəˈpaɪə/ | quả đu đủ | 21 | I have a papaya. |
+| dragon fruit | dragon-fruit | /ˈdræɡən fruːt/ | quả thanh long | 21 | I like dragon fruit. |
+| lychee | | /ˌlaɪˈtʃiː/ | quả vải | 21 | I have a lychee. |
+| durian | | /ˈdʊəriən/ | quả sầu riêng | 21 | I have a durian. |
+| guava | | /ˈɡwɑːvə/ | quả ổi | 21 | I have a guava. |
+| jackfruit | | /ˈdʒækfruːt/ | quả mít | 21 | I have a jackfruit. |
+| rambutan | | /ræmˈbuːtn/ | quả chôm chôm | 21 | I have a rambutan. |
+| mangosteen | | /ˈmæŋɡəstiːn/ | quả măng cụt | 21 | I have a mangosteen. |
+| star fruit | star-fruit | /ˈstɑː fruːt/ | quả khế | 21 | I have a star fruit. |
+| plum | | /plʌm/ | quả mận | 21 | I have a plum. |
+| pomegranate | | /ˈpɒmɪɡrænɪt/ | quả lựu | 21 | I have a pomegranate. |
+| custard apple | custard-apple | /ˈkʌstəd æpl/ | quả na | 21 | I have a custard apple. |
 | tomato | | /təˈmɑːtəʊ/ | quả cà chua | 21 | I have a tomato. |
 | onion | | /ˈʌnjən/ | củ hành | 21 | I have an onion. |
 | potato | | /pəˈteɪtəʊ/ | củ khoai tây | 21 | I have a potato. |
@@ -128,6 +148,12 @@
 | living room | living-room | /ˈlɪvɪŋ ruːm/ | phòng khách | 22 | This is the living room. |
 | dining room | dining-room | /ˈdaɪnɪŋ ruːm/ | phòng ăn | 22 | This is the dining room. |
 | hall | | /hɔːl/ | sảnh, hành lang | 22 | This is the hall. |
+| toilet | | /ˈtɔɪlət/ | nhà vệ sinh | 22 | This is the toilet. |
+| garage | | /ˈɡærɑːʒ/ | nhà để xe | 22 | This is the garage. |
+| balcony | | /ˈbælkəni/ | ban công | 22 | This is the balcony. |
+| stairs | | /steəz/ | cầu thang | 22 | Look at the stairs. |
+| study | | /ˈstʌdi/ | phòng làm việc | 22 | This is the study. |
+| laundry room | laundry-room | /ˈlɔːndri ruːm/ | phòng giặt | 22 | This is the laundry room. |
 | bed | | /bed/ | cái giường | 22 | This is my bed. |
 | bath | | /bɑːθ/ | bồn tắm | 22 | This is the bath. |
 | mirror | | /ˈmɪrə(r)/ | cái gương | 22 | This is a mirror. |
@@ -187,6 +213,8 @@
 | tree | | /triː/ | cái cây | 25 | Look at the tree. |
 | park | | /pɑːk/ | công viên | 25 | This is the park. |
 | bookshop | | /ˈbʊkʃɒp/ | hiệu sách | 25 | This is a bookshop. |
+| street | | /striːt/ | đường phố | 25 | This is my street. |
+| market | | /ˈmɑːkɪt/ | chợ | 25 | This is the market. |
 | train | | /treɪn/ | tàu hỏa | 25 | I can see a train. |
 | boat | | /bəʊt/ | con thuyền | 25 | I can see a boat. |
 | plane | | /pleɪn/ | máy bay | 25 | I can see a plane. |
