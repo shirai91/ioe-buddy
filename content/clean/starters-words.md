@@ -25,7 +25,7 @@
 
 - Each row is one flash card. The row order sets the order in which the new words come in.
 - The picture is `images/starters/<id>.png`. "English" is only in the A-Z wordlist, so its picture is the UK flag in `images/web/`. `images/starters/manifest.json` gives the page and the box of each crop.
-- Some words are not in the picture pages: the fruits after "watermelon", the rooms after "hall", "street" and "market". "stairs" and "street" are crops from the book. The other pictures are in `images/web/`.
+- Some words are not in the picture pages: the animals after "spider", the fruits after "watermelon", the rooms after "hall", "street" and "market". "stairs" and "street" are crops from the book. The other pictures are in `images/web/`.
 - The colour cards use plain colour pictures from `images/starters/`, because a book picture of a coloured thing looks the same as the card for that thing.
 - A word that is already a card from the Tieng Anh 1 book is not in this list.
 
@@ -53,6 +53,20 @@
 | hippo | | /ˈhɪpəʊ/ | con hà mã | 18 | I can see a hippo. |
 | elephant | | /ˈelɪfənt/ | con voi | 18 | I can see an elephant. |
 | spider | | /ˈspaɪdə(r)/ | con nhện | 18 | I can see a spider. |
+| pig | | /pɪɡ/ | con lợn | 18 | I can see a pig. |
+| rabbit | | /ˈræbɪt/ | con thỏ | 18 | I can see a rabbit. |
+| buffalo | | /ˈbʌfələʊ/ | con trâu | 18 | I can see a buffalo. |
+| lion | | /ˈlaɪən/ | con sư tử | 18 | I can see a lion. |
+| bear | | /beə(r)/ | con gấu | 18 | I can see a bear. |
+| zebra | | /ˈzebrə/ | con ngựa vằn | 18 | I can see a zebra. |
+| kangaroo | | /ˌkæŋɡəˈruː/ | con chuột túi | 18 | I can see a kangaroo. |
+| panda | | /ˈpændə/ | con gấu trúc | 18 | I can see a panda. |
+| bee | | /biː/ | con ong | 18 | I can see a bee. |
+| butterfly | | /ˈbʌtəflaɪ/ | con bướm | 18 | I can see a butterfly. |
+| ant | | /ænt/ | con kiến | 18 | I can see an ant. |
+| whale | | /weɪl/ | con cá voi | 18 | I can see a whale. |
+| shark | | /ʃɑːk/ | con cá mập | 18 | I can see a shark. |
+| dolphin | | /ˈdɒlfɪn/ | con cá heo | 18 | I can see a dolphin. |
 | glasses | | /ˈɡlɑːsɪz/ | cái kính | 19 | She has purple glasses. |
 | clothes | | /kləʊðz/ | quần áo | 19 | Look at the clothes. |
 | jacket | | /ˈdʒækɪt/ | áo khoác | 19 | It's a blue jacket. |

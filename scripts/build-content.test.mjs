@@ -245,7 +245,7 @@ describe('build-content Starters words', () => {
   const findWord = (id) => words.find((word) => word.id === id)
 
   test('mix evenly with the book words from the start, each list in its own order', () => {
-    assert.deepEqual(words.slice(0, 4).map((word) => word.id), ['ball', 'arm', 'leg', 'book'])
+    assert.deepEqual(words.slice(0, 5).map((word) => word.id), ['ball', 'arm', 'leg', 'body', 'book'])
     const isStarters = (word) => word.unit > LAST_BOOK_UNIT
     const half = words.slice(0, Math.floor(words.length / 2))
     const startersShareInFirstHalf = half.filter(isStarters).length / half.length

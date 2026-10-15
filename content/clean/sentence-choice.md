@@ -152,6 +152,20 @@
 | I can see a ___. | hippo | sweets | meat | eight | hippo | 18 |
 | I can see an ___. | elephant | cow | nuts | six | elephant | 18 |
 | I can see a ___. | spider | lemons | juice | nine | spider | 18 |
+| I can see a ___. | pig | lemons | milk | six | pig | 18 |
+| I can see a ___. | rabbit | nuts | water | seven | rabbit | 18 |
+| I can see a ___. | buffalo | bananas | chips | eight | buffalo | 18 |
+| I can see a ___. | lion | noodles | milk | nine | lion | 18 |
+| I can see a ___. | bear | grapes | water | ten | bear | 18 |
+| I can see a ___. | zebra | peas | rice | six | zebra | 18 |
+| I can see a ___. | kangaroo | beans | bread | seven | kangaroo | 18 |
+| I can see a ___. | panda | sweets | meat | eight | panda | 18 |
+| I can see a ___. | bee | lemons | juice | nine | bee | 18 |
+| I can see a ___. | butterfly | nuts | rice | ten | butterfly | 18 |
+| I can see an ___. | ant | cow | nuts | seven | ant | 18 |
+| I can see a ___. | whale | grapes | milk | six | whale | 18 |
+| I can see a ___. | shark | bananas | water | eight | shark | 18 |
+| I can see a ___. | dolphin | peas | juice | nine | dolphin | 18 |
 | She has purple ___. | glasses | dress | shirt | running | glasses | 19 |
 | Look at the ___. | clothes | is | a | my | clothes | 19 |
 | It's a blue ___. | jacket | trousers | jeans | is | jacket | 19 |
@@ -384,6 +398,20 @@
 | hippo | hippos | 18 |
 | elephant | elephants | 18 |
 | spider | spiders | 18 |
+| pig | pigs | 18 |
+| rabbit | rabbits | 18 |
+| buffalo | buffaloes | 18 |
+| lion | lions | 18 |
+| bear | bears | 18 |
+| zebra | zebras | 18 |
+| kangaroo | kangaroos | 18 |
+| panda | pandas | 18 |
+| bee | bees | 18 |
+| butterfly | butterflies | 18 |
+| ant | ants | 18 |
+| whale | whales | 18 |
+| shark | sharks | 18 |
+| dolphin | dolphins | 18 |
 | jacket | jackets | 19 |
 | sock | socks | 19 |
 | handbag | handbags | 19 |
