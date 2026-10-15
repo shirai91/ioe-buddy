@@ -256,6 +256,7 @@
 | This is my ___. | rubber | nine | running | are | rubber | 23 |
 | I can ___ a cat. | draw | is | a | am | draw | 23 |
 | I like ___. | music | ball | dog | car | music | 23 |
+| I like ___. | English | bag | pen | cat | english | 23 |
 | ___ the door. | Open | Is | I | A | open | 23 |
 | ___ the door. | Close | Is | My | The | close | 23 |
 | This is a ___. | tick | milk | nuts | six | tick | 23 |

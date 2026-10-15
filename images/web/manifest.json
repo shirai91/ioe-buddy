@@ -278,5 +278,13 @@
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
     "note": "Dashing away emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "English",
+    "file": "english.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f1ec-1f1e7.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Flag of the United Kingdom emoji, rendered from SVG to 512x512 PNG on a white background"
   }
 ]

@@ -24,7 +24,7 @@
 ## Rules
 
 - Each row is one flash card. The row order sets the order in which the new words come in.
-- The picture is `images/starters/<id>.png`. `images/starters/manifest.json` gives the page and the box of each crop.
+- The picture is `images/starters/<id>.png`. "English" is only in the A-Z wordlist, so its picture is the UK flag in `images/web/`. `images/starters/manifest.json` gives the page and the box of each crop.
 - The colour cards use plain colour pictures from `images/starters/`, because a book picture of a coloured thing looks the same as the card for that thing.
 - A word that is already a card from the Tieng Anh 1 book is not in this list.
 
@@ -156,6 +156,7 @@
 | rubber | | /ˈrʌbə(r)/ | cục tẩy | 23 | This is my rubber. |
 | draw | | /drɔː/ | vẽ | 23 | I can draw a cat. |
 | music | | /ˈmjuːzɪk/ | âm nhạc | 23 | I like music. |
+| English | english | /ˈɪŋɡlɪʃ/ | tiếng Anh | 23 | I like English. |
 | open | | /ˈəʊpən/ | mở | 23 | Open the door. |
 | close | | /kləʊz/ | đóng | 23 | Close the door. |
 | tick | | /tɪk/ | dấu tích | 23 | This is a tick. |
