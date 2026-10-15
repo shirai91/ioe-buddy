@@ -3,6 +3,7 @@ import { MILLISECONDS_PER_DAY, TOP_BOX } from './srs.js'
 export const SESSION_SIZE = 10
 export const MAX_NEW_PER_SESSION = 4
 export const MAX_TRICKY_PER_SESSION = 4
+export const MAX_WEAK_WORDS = 8
 export const MIN_RECALL_GAP = 3
 export const NEW_CARD_SHARE_OF_SESSION = 0.6
 export const EXAM_POOL_MINIMUM = 6
@@ -36,12 +37,17 @@ export function cardState(progress, now = Date.now()) {
   return 'resting'
 }
 
-function seenWordCount(words, progressByWordId) {
-  return words.filter((word) => progressByWordId.has(word.id)).length
+export function isWeak(progress, now = Date.now()) {
+  if (!progress) return false
+  return isTricky(progress) || (boxOf(progress) <= 1 && progress.dueAt <= now)
 }
 
-function newWordLimit({ words, progressByWordId, unlockedWords }) {
-  return Math.max(0, unlockedWords - seenWordCount(words, progressByWordId))
+function weakWordCount(words, progressByWordId, now) {
+  return words.filter((word) => isWeak(progressByWordId.get(word.id), now)).length
+}
+
+function newWordLimit({ words, progressByWordId, now }) {
+  return Math.max(0, MAX_WEAK_WORDS - weakWordCount(words, progressByWordId, now))
 }
 
 function groupWordsByState(words, progressByWordId, now) {
@@ -128,11 +134,11 @@ function addRepeats(plan) {
   for (const card of trickyFirst.slice(0, plan.freeSlots())) plan.add(card.word, 'repeat', card.key, MIN_REPEAT_GAP)
 }
 
-function selectSessionCards({ words, progressByWordId, now, random, unlockedWords }) {
+function selectSessionCards({ words, progressByWordId, now, random }) {
   const progressOf = (word) => progressByWordId.get(word.id)
   const groups = groupWordsByState(words, progressByWordId, now)
   const unseenWords = [...groups.new]
-  const totalNewLimit = newWordLimit({ words, progressByWordId, unlockedWords })
+  const totalNewLimit = newWordLimit({ words, progressByWordId, now })
   const sessionNewLimit = Math.min(MAX_NEW_PER_SESSION, totalNewLimit)
   const plan = createSessionPlan()
 
@@ -234,8 +240,8 @@ function arrangeCards(cards) {
   return ordered
 }
 
-export function buildSession({ words, progressByWordId = new Map(), now = Date.now(), random = Math.random, unlockedWords = Infinity }) {
-  const cards = selectSessionCards({ words, progressByWordId, now, random, unlockedWords })
+export function buildSession({ words, progressByWordId = new Map(), now = Date.now(), random = Math.random }) {
+  const cards = selectSessionCards({ words, progressByWordId, now, random })
   return arrangeCards(cards).map(({ word, key, kind }) => ({ ...word, key, kind, box: boxOf(progressByWordId.get(word.id)) }))
 }
 

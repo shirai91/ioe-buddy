@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { pictureChance, STARTING_WORDS, starChange, starsAfterExam, unlockedWordCount } from './stars.js'
+import { pictureChance, starChange, starsAfterExam } from './stars.js'
 
 describe('starChange', () => {
   it('gives +5 for all right, 0 for half right and -5 for none right', () => {
@@ -24,15 +24,6 @@ describe('starsAfterExam', () => {
     expect(starsAfterExam(10, 9, 10)).toBe(14)
     expect(starsAfterExam(10, 2, 10)).toBe(7)
     expect(starsAfterExam(2, 0, 10)).toBe(0)
-  })
-})
-
-describe('unlockedWordCount', () => {
-  it('starts with the first words and opens one more word for each 2 stars', () => {
-    expect(unlockedWordCount(0)).toBe(STARTING_WORDS)
-    expect(unlockedWordCount(1)).toBe(STARTING_WORDS)
-    expect(unlockedWordCount(2)).toBe(STARTING_WORDS + 1)
-    expect(unlockedWordCount(68)).toBe(STARTING_WORDS + 34)
   })
 })
 

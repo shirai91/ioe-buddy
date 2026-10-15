@@ -120,6 +120,19 @@ describe('flashcards', () => {
     expect(body.cards.find((card) => card.kind === 'warmup')).toMatchObject({ box: 1 })
   })
 
+  it('stops new words while 8 weak words wait and opens them after practice, with no stars', async () => {
+    useClock(new Date(2026, 9, 13, 9))
+    const firstEight = words.slice(0, 8)
+    const newCardIds = async () => (await call('flashcards')).body.cards.filter((card) => card.kind === 'new').map((card) => card.id)
+
+    for (const word of firstEight) await rate(word.id, 'hard')
+    expect(await newCardIds()).toEqual([])
+
+    for (const word of firstEight) await rate(word.id, 'easy')
+    expect(await newCardIds()).toEqual(words.slice(8, 12).map((word) => word.id))
+    expect((await call('profile')).body.stars).toBe(0)
+  })
+
   it('rejects a bad rating and an unknown word', async () => {
     expect(await rate('ball', 'great')).toEqual({ status: 400, body: { error: expect.any(String) } })
     expect((await call('flashcards/ball/rate', { method: 'POST' })).status).toBe(400)
@@ -217,16 +230,6 @@ describe('exams', () => {
     expect((await call('exams/fill-in/results', jsonInit('POST', { correct: 8, total: 10 }))).body).toEqual({ stars: 3, change: 3 })
     expect((await call('exams/fill-in/results', jsonInit('POST', { correct: 0, total: 10 }))).body).toEqual({ stars: 0, change: -3 })
     expect((await call('exams/fill-in/results', jsonInit('POST', { correct: 0, total: 0 }))).body).toEqual({ stars: 0, change: 0 })
-  })
-
-  it('opens new flash card words as the stars go up', async () => {
-    useClock(new Date(2026, 9, 13, 9))
-    for (const word of words.slice(0, 5)) await rate(word.id, 'easy')
-    const newCardIds = async () => (await call('flashcards')).body.cards.filter((card) => card.kind === 'new').map((card) => card.id)
-
-    expect(await newCardIds()).toEqual([])
-    await call('exams/match-up/results', jsonInit('POST', { correct: 10, total: 10 }))
-    expect(await newCardIds()).toEqual(words.slice(5, 7).map((word) => word.id))
   })
 
   it('rejects bad scores and unknown exam types', async () => {
