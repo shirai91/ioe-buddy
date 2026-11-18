@@ -11,7 +11,7 @@ export default defineConfig({
           name: 'backend',
           environment: 'node',
           include: ['src/sw/**/*.test.js', 'src/sw.test.js'],
-          setupFiles: ['fake-indexeddb/auto'],
+          setupFiles: ['fake-indexeddb/auto', './vitest.setup.backend.js'],
         },
       },
       {

@@ -1,3 +1,5 @@
+import { matchPrecache } from 'workbox-precaching'
+
 const INDEX_PATH = 'content/index.json'
 const SUPPORTED_CONTENT_VERSION = 2
 
@@ -12,7 +14,7 @@ function contentUrl(path) {
 async function precachedResponse(url) {
   if (!globalThis.caches) return null
   try {
-    return (await globalThis.caches.match(url, { ignoreSearch: true })) ?? null
+    return (await matchPrecache(url)) ?? null
   } catch {
     return null
   }

@@ -1,7 +1,8 @@
-import { CLAIM_CLIENTS_MESSAGE, OFFLINE_PROGRESS_MESSAGE, SAVE_FOR_OFFLINE_MESSAGE, SKIP_WAITING_MESSAGE } from '../lib/workerMessages.js'
+import { CLAIM_CLIENTS_MESSAGE, SAVE_FOR_OFFLINE_MESSAGE, SKIP_WAITING_MESSAGE } from '../lib/workerMessages.js'
 
 const API_ROOT = 'api/'
 export const UPDATE_GIVE_UP_MS = 120000
+const PARALLEL_DOWNLOADS = 4
 
 export class ApiError extends Error {
   constructor(message, status) {
@@ -70,6 +71,7 @@ async function startBackend() {
 }
 
 let waitingWorker = null
+let updateRegistration = null
 const updateListeners = new Set()
 
 function reportUpdateWhenWaiting(container, registration) {
@@ -85,6 +87,7 @@ function followNewWorker(container, registration, worker) {
 }
 
 function watchForUpdates(container, registration) {
+  updateRegistration = registration
   reportUpdateWhenWaiting(container, registration)
   followNewWorker(container, registration, registration.installing)
   registration.addEventListener('updatefound', () => followNewWorker(container, registration, registration.installing))
@@ -103,27 +106,51 @@ function nextControllerChange(container) {
   return new Promise((resolve) => container.addEventListener('controllerchange', () => resolve(), { once: true }))
 }
 
-function saveFilesForOffline(container, onProgress) {
+function activation(worker) {
   return new Promise((resolve) => {
-    function listen(event) {
-      if (event.data?.type !== OFFLINE_PROGRESS_MESSAGE) return
-      const { done, total } = event.data
-      onProgress(done, total)
-      if (done < total) return
-      container.removeEventListener('message', listen)
-      resolve()
+    const resolveWhenActive = () => {
+      if (worker?.state === 'activated') resolve()
     }
-    container.addEventListener('message', listen)
-    container.controller.postMessage({ type: SAVE_FOR_OFFLINE_MESSAGE })
+    worker?.addEventListener('statechange', resolveWhenActive)
+    resolveWhenActive()
   })
 }
 
-async function switchToNewVersion(onProgress) {
+async function switchToNewVersion() {
   const container = globalThis.navigator.serviceWorker
-  const switched = nextControllerChange(container)
-  waitingWorker?.postMessage({ type: SKIP_WAITING_MESSAGE })
+  const newVersion = updateRegistration?.waiting ?? waitingWorker
+  const switched = Promise.race([nextControllerChange(container), activation(newVersion)])
+  newVersion?.postMessage({ type: SKIP_WAITING_MESSAGE })
   await switched
-  await saveFilesForOffline(container, onProgress)
+}
+
+async function downloadFile(path) {
+  try {
+    const response = await fetch(path)
+    await response.arrayBuffer()
+  } catch {
+    return
+  }
+}
+
+async function saveFilesForOffline(onProgress) {
+  const { files } = await request('offline-files')
+  const queue = [...files]
+  let done = 0
+  onProgress(done, files.length)
+  const lane = async () => {
+    while (queue.length > 0) {
+      await downloadFile(queue.shift())
+      done += 1
+      onProgress(done, files.length)
+    }
+  }
+  await Promise.all(Array.from({ length: PARALLEL_DOWNLOADS }, lane))
+}
+
+async function updateToNewVersion(onProgress) {
+  await switchToNewVersion()
+  await saveFilesForOffline(onProgress).catch(() => {})
 }
 
 function giveUpAfter(delayMs) {
@@ -131,7 +158,7 @@ function giveUpAfter(delayMs) {
 }
 
 export async function installUpdate(onProgress = () => {}) {
-  await Promise.race([switchToNewVersion(onProgress), giveUpAfter(UPDATE_GIVE_UP_MS)])
+  await Promise.race([updateToNewVersion(onProgress), giveUpAfter(UPDATE_GIVE_UP_MS)])
   window.location.reload()
 }
 

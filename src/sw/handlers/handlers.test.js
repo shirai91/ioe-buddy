@@ -45,6 +45,18 @@ describe('removed unit routes and credits', () => {
   })
 })
 
+describe('offline files', () => {
+  it('lists every word picture and clip once, with no change to the caches', async () => {
+    const { status, body } = await call('offline-files')
+
+    expect(status).toBe(200)
+    expect(body.files).toContain('content/images/ball.png')
+    expect(body.files).toContain('content/audio/ball.mp3')
+    expect(body.files).toContain('content/audio/find-the-ball.mp3')
+    expect(new Set(body.files).size).toBe(body.files.length)
+  })
+})
+
 describe('profile', () => {
   it('starts with the defaults', async () => {
     expect(await call('profile')).toEqual({ status: 200, body: { name: 'Buddy', stars: 0 } })

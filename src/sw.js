@@ -9,6 +9,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(self.clients.claim())
 })
 
+// Pages from an older version wait for these messages while they update.
 function reportOfflineProgress(client) {
   return (done, total) => client?.postMessage({ type: OFFLINE_PROGRESS_MESSAGE, done, total })
 }

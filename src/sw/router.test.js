@@ -102,6 +102,7 @@ describe('api routes', () => {
       'GET exams/:type',
       'POST exams/:type/results',
       'GET credits',
+      'GET offline-files',
       'POST reset',
     ])
   })

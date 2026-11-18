@@ -1,6 +1,7 @@
 import { getCredits } from './handlers/credits.js'
 import { getExam, postExamResult } from './handlers/exams.js'
 import { listFlashcards, rateFlashcard } from './handlers/flashcards.js'
+import { listOfflineFiles } from './handlers/offlineFiles.js'
 import { getProfile, updateProfile } from './handlers/profile.js'
 import { resetProgress } from './handlers/reset.js'
 import { getWordOfTheDay } from './handlers/wordOfTheDay.js'
@@ -18,6 +19,7 @@ export const apiRoutes = [
   ['GET', 'exams/:type', getExam],
   ['POST', 'exams/:type/results', postExamResult],
   ['GET', 'credits', getCredits],
+  ['GET', 'offline-files', listOfflineFiles],
   ['POST', 'reset', resetProgress],
 ]
 

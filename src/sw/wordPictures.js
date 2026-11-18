@@ -17,8 +17,13 @@ export async function respondWithWordPicture(request) {
   return respondWithKeptFile(await wordPictureCacheName(), request)
 }
 
+export async function wordPicturePaths() {
+  const words = await loadWords()
+  return words.map((word) => word.image).filter(Boolean)
+}
+
 export async function wordPicturesToKeep() {
-  const [cacheName, words] = await Promise.all([wordPictureCacheName(), loadWords()])
+  const [cacheName, paths] = await Promise.all([wordPictureCacheName(), wordPicturePaths()])
   await deleteOldVersions(WORD_PICTURE_CACHE_PREFIX, cacheName)
-  return { cacheName, paths: words.map((word) => word.image).filter(Boolean) }
+  return { cacheName, paths }
 }

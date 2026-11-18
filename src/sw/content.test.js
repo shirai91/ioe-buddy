@@ -1,13 +1,19 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { matchPrecache } from 'workbox-precaching'
 import { loadCountWords, loadGrammar, loadIndex, loadSentenceChoices, loadWords } from './content.js'
 import { SCOPE, contentIndex, countWords, grammar, sentenceChoices, useFreshBackend, words } from './testSupport.js'
+
+vi.mock('workbox-precaching', () => ({ matchPrecache: vi.fn() }))
 
 let fetchMock
 
 beforeEach(async () => {
   fetchMock = await useFreshBackend()
 })
-afterEach(() => vi.unstubAllGlobals())
+afterEach(() => {
+  vi.unstubAllGlobals()
+  matchPrecache.mockReset()
+})
 
 describe('content', () => {
   it('fetches the index relative to the service worker scope and keeps it in memory', async () => {
@@ -67,13 +73,22 @@ describe('content', () => {
     expect(await loadIndex()).toEqual(contentIndex)
   })
 
-  it('reads precached files before the network', async () => {
+  it('reads the precached file of this version before the network', async () => {
     const cachedIndex = { ...contentIndex, credits: [] }
-    const match = vi.fn(async (url) => (url === `${SCOPE}content/index.json` ? Response.json(cachedIndex) : undefined))
-    vi.stubGlobal('caches', { match })
+    const olderIndex = { ...contentIndex, credits: ['older version'] }
+    vi.stubGlobal('caches', { match: vi.fn(async () => Response.json(olderIndex)) })
+    matchPrecache.mockImplementation(async (url) => (url === `${SCOPE}content/index.json` ? Response.json(cachedIndex) : undefined))
 
     expect(await loadIndex()).toEqual(cachedIndex)
-    expect(match).toHaveBeenCalledWith(`${SCOPE}content/index.json`, { ignoreSearch: true })
+    expect(globalThis.caches.match).not.toHaveBeenCalled()
     expect(fetchMock).not.toHaveBeenCalled()
+  })
+
+  it('fetches a file that this version did not precache', async () => {
+    vi.stubGlobal('caches', { match: vi.fn() })
+    matchPrecache.mockResolvedValue(undefined)
+
+    expect(await loadIndex()).toEqual(contentIndex)
+    expect(fetchMock).toHaveBeenCalled()
   })
 })

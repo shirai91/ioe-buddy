@@ -20,13 +20,13 @@ export async function respondWithWordAudio(request) {
   return asksForPart ? createPartialResponse(request, response) : response
 }
 
+export async function wordAudioPaths() {
+  const [words, sentenceChoices, countWords] = await Promise.all([loadWords(), loadSentenceChoices(), loadCountWords()])
+  return spokenPhrases(words, sentenceChoices, countWords).map(clipPath)
+}
+
 export async function wordAudioToKeep() {
-  const [cacheName, words, sentenceChoices, countWords] = await Promise.all([
-    wordAudioCacheName(),
-    loadWords(),
-    loadSentenceChoices(),
-    loadCountWords(),
-  ])
+  const [cacheName, paths] = await Promise.all([wordAudioCacheName(), wordAudioPaths()])
   await deleteOldVersions(WORD_AUDIO_CACHE_PREFIX, cacheName)
-  return { cacheName, paths: spokenPhrases(words, sentenceChoices, countWords).map(clipPath) }
+  return { cacheName, paths }
 }

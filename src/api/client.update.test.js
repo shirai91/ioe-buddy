@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { OFFLINE_PROGRESS_MESSAGE, SAVE_FOR_OFFLINE_MESSAGE, SKIP_WAITING_MESSAGE } from '../lib/workerMessages.js'
+import { SKIP_WAITING_MESSAGE } from '../lib/workerMessages.js'
 
 class FakeWorker extends EventTarget {
   constructor(state) {
@@ -38,9 +38,6 @@ class FakeContainer extends EventTarget {
     this.dispatchEvent(new Event('controllerchange'))
   }
 
-  sendFromWorker(data) {
-    this.dispatchEvent(new MessageEvent('message', { data }))
-  }
 }
 
 let client
@@ -113,26 +110,96 @@ describe('update detection', () => {
   })
 })
 
+function serveFiles(files, { failList = false } = {}) {
+  const fetchMock = vi.fn(async (url) => {
+    if (url === 'api/offline-files') return failList ? new Response('{}', { status: 404 }) : Response.json({ files })
+    return new Response('file')
+  })
+  vi.stubGlobal('fetch', fetchMock)
+  return fetchMock
+}
+
 describe('installUpdate', () => {
   it('switches to the waiting version, downloads its files with progress, then reloads', async () => {
     const waiting = new FakeWorker('installed')
     await startWith({ active: new FakeWorker('activated'), waiting })
+    const fetchMock = serveFiles(['content/images/ball.png', 'content/audio/ball.mp3'])
     const progress = vi.fn()
 
     const installing = client.installUpdate(progress)
     expect(waiting.postMessage).toHaveBeenCalledWith({ type: SKIP_WAITING_MESSAGE })
+    expect(fetchMock).not.toHaveBeenCalled()
 
     container.switchTo(waiting)
-    await vi.waitFor(() => expect(waiting.postMessage).toHaveBeenCalledWith({ type: SAVE_FOR_OFFLINE_MESSAGE }))
-    container.sendFromWorker({ type: OFFLINE_PROGRESS_MESSAGE, done: 1, total: 2 })
-    expect(reload).not.toHaveBeenCalled()
-    container.sendFromWorker({ type: OFFLINE_PROGRESS_MESSAGE, done: 2, total: 2 })
     await installing
 
+    expect(fetchMock.mock.calls.map(([url]) => url)).toEqual(['api/offline-files', 'content/images/ball.png', 'content/audio/ball.mp3'])
     expect(progress.mock.calls).toEqual([
+      [0, 2],
       [1, 2],
       [2, 2],
     ])
+    expect(reload).toHaveBeenCalledTimes(1)
+  })
+
+  it('goes on when the new version is active, even with no controller change event', async () => {
+    const waiting = new FakeWorker('installed')
+    await startWith({ active: new FakeWorker('activated'), waiting })
+    serveFiles(['content/audio/ball.mp3'])
+    const progress = vi.fn()
+
+    const installing = client.installUpdate(progress)
+    waiting.becomes('activated')
+    await installing
+
+    expect(progress).toHaveBeenLastCalledWith(1, 1)
+    expect(reload).toHaveBeenCalledTimes(1)
+  })
+
+  it('starts the newest waiting version when a newer one replaced the first', async () => {
+    const first = new FakeWorker('installed')
+    await startWith({ active: new FakeWorker('activated'), waiting: first })
+    serveFiles([])
+    const newest = new FakeWorker('installed')
+    registration.waiting = newest
+    first.becomes('redundant')
+
+    const installing = client.installUpdate()
+    expect(newest.postMessage).toHaveBeenCalledWith({ type: SKIP_WAITING_MESSAGE })
+    expect(first.postMessage).not.toHaveBeenCalledWith({ type: SKIP_WAITING_MESSAGE })
+    container.switchTo(newest)
+    await installing
+
+    expect(reload).toHaveBeenCalledTimes(1)
+  })
+
+  it('counts a file that fails to download as done, so the progress always ends', async () => {
+    const waiting = new FakeWorker('installed')
+    await startWith({ active: new FakeWorker('activated'), waiting })
+    const fetchMock = serveFiles(['content/audio/ball.mp3', 'content/audio/book.mp3'])
+    fetchMock.mockImplementation(async (url) => {
+      if (url === 'api/offline-files') return Response.json({ files: ['content/audio/ball.mp3', 'content/audio/book.mp3'] })
+      throw new Error('offline')
+    })
+    const progress = vi.fn()
+
+    const installing = client.installUpdate(progress)
+    container.switchTo(waiting)
+    await installing
+
+    expect(progress).toHaveBeenLastCalledWith(2, 2)
+    expect(reload).toHaveBeenCalledTimes(1)
+  })
+
+  it('reloads when the new version cannot list its files', async () => {
+    const waiting = new FakeWorker('installed')
+    await startWith({ active: new FakeWorker('activated'), waiting })
+    serveFiles([], { failList: true })
+
+    const installing = client.installUpdate()
+    container.switchTo(waiting)
+    await installing
+
     expect(reload).toHaveBeenCalledTimes(1)
   })
 
