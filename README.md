@@ -56,7 +56,7 @@ The MVP has no login. All progress stays on the device.
 
 - The app plays recorded clips, not the browser voice, because the browser voice on Android is slow and sometimes silent.
 - `audio/` holds one `.mp3` for each text the app can say: each word, its sentence, "Find the <word>", the letters, the cheers, "Great job!" and "Try again". `src/lib/clips.js` lists these texts and gives each clip its file name.
-- `npm run audio` makes the missing clips with the macOS `say` voice "Ava (Premium)" and `ffmpeg`, and removes clips that no text uses. `npm run audio -- --all` makes all clips again. `npm run audio -- --voice Samantha` uses a different installed voice. To get Ava, open System Settings > Accessibility > Spoken Content > System Voice > Manage Voices, and download "Ava (Premium)".
+- `npm run audio` makes the missing clips with the macOS `say` voice "Samantha" and `ffmpeg`, and removes clips that no text uses. `npm run audio -- --all` makes all clips again. `npm run audio -- --voice "Ava (Premium)"` uses a different installed voice. Ava said some short words wrong (for example "cow"), so the app uses Samantha. To add a voice, open System Settings > Accessibility > Spoken Content > System Voice > Manage Voices.
 - Run `npm run audio` after you change words, sentences or cheers, and commit `audio/`. CI does not make clips.
 - The content build copies `audio/` to `public/content/audio/`. The service worker keeps the clips for offline use and answers range requests from its cache.
 - If a clip is missing or fails to play, `speak()` uses the browser voice for that text.

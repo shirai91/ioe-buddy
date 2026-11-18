@@ -10,7 +10,7 @@ import { buildContent } from './build-content.mjs'
 const run = promisify(execFile)
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const AUDIO_DIR = path.join(projectRoot, 'audio')
-const DEFAULT_VOICE = 'Ava (Premium)'
+const DEFAULT_VOICE = 'Samantha'
 const WORDS_PER_MINUTE = '140'
 const SAMPLE_RATE = '48000'
 const MP3_BITRATE = '96k'
