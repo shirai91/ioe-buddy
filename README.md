@@ -42,12 +42,13 @@ The MVP has no login. All progress stays on the device.
 - `content/clean/starters-words.md` adds the words of the Cambridge Pre A1 Starters Wordlist Picture Book as units 17-27. The build mixes them evenly with the 16 book units, so both books come in at the same speed. Their pictures are in `images/starters/`, cut from the book pages. `images/starters/manifest.json` gives the page and the box of each picture.
 - `content/clean/sentence-choice.md` is the Sentence Quiz question bank. The build checks each row and writes `public/content/sentence-choices.json`. A question comes only after the learner sees its word.
 - Units and lessons are hidden metadata (`unit`, `lesson`, `rank`). The app never shows them. `rank` sets the order in which new words come in.
+- `content/clean/exam-words.md` lists the words of the IOE exam rounds (`content/raw/ioe-rounds.md`). These words come first as new words. See [docs/ioe-exam-analysis.md](docs/ioe-exam-analysis.md).
 - Each word gets its picture from `images/unit-XX/` first, then from any other `images/` folder. The script copies only the pictures that words use, to `public/content/images/<id>.png`.
 - `npm run dev` and `npm run build` run the content build first.
 
 ### Pictures from the internet
 
-- `images/web/` holds pictures that the book does not have (one to five, fish and chips, many animals, fruits and rooms, market). Most come from Twemoji (CC-BY 4.0). Some come from SVG Repo, Wikimedia Commons and Streamline.
+- `images/web/` holds pictures that the book does not have (one to five, fish and chips, many animals, fruits and rooms, market, school, clock, pillow). Most come from Twemoji (CC-BY 4.0). Some come from SVG Repo, Wikimedia Commons and Streamline.
 - `images/web/manifest.json` lists the source, author and license of each file. The content build puts them in the credits, and the app shows them on the Credits screen.
 - To add a picture: put the PNG in `images/web/`, add an entry to the manifest, and run `npm run content`.
 

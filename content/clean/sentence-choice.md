@@ -1,7 +1,7 @@
 # Sentence choice
 
 - Type: sentence-choice
-- Source: the sentence patterns, speech bubbles and example sentences of Units 1-16, the number words, and the Starters words (Units 17-27, see `starters-words.md`).
+- Source: the sentence patterns, speech bubbles and example sentences of Units 1-16, the number words, the Starters words (Units 17-27, see `starters-words.md`), and the questions of the IOE rounds 6-15 (see `exam-words.md`).
 - Game: Sentence Quiz. The learner reads a sentence with one blank and picks A, B, C or D.
 
 ## Rules
@@ -351,6 +351,42 @@
 | The monkey is ___ the box. | in front of | a | is | I | in-front-of | 27 |
 | The monkey is ___ the box. | next to | an | am | have | next-to | 27 |
 | The monkey is ___ the boxes. | between | a | is | my | between | 27 |
+| Hi, ___ Ba. | I'm | my | is | are | hi | 1 |
+| ___, I'm Bill. | Hi | Bye | I have | This is | hi | 1 |
+| I ___ Ann. | am | is | are | an | i | 1 |
+| An ___. | apple | cat | bike | cake | apple | 3 |
+| This is ___ apple. | an | a | are | am | apple | 3 |
+| I have an ___. | apple | cake | car | bag | apple | 3 |
+| I have ___ cake. | a | an | two | is | cake | 2 |
+| I ___ a cup. | have | hi | an | bye | have | 2 |
+| Bill ___ a cat. | has | have | am | are | have | 2 |
+| This is my ___. | cat | a cat | an cat | is cat | cat | 2 |
+| I like milk ___ chicken. | and | a | the | an | and | 2 |
+| Nam has a pen, a pencil ___ an apple. | and | a | the | is | pencil | 6 |
+| There are apples ___ the bag. | in | an | a | is | in | 3 |
+| There's a cat on the hat. It's ___ the hat. | on | an | a | is | on | 3 |
+| There ___ an apple. | is | are | am | have | there | 7 |
+| There are ___ apples. | two | one | an | a | two | 9 |
+| This ___ my duck. | is | are | am | have | duck | 4 |
+| This is ___ desk. | a | an | are | am | desk | 4 |
+| The duck ___ near the bed. | is | are | am | have | near | 4 |
+| ___ is a bell. | This | They | He | These | bell | 6 |
+| This is a red ___. | pen | apples | an | is | pen | 6 |
+| I ___ fish and chips. | like | likes | liking | a | fish-and-chips | 5 |
+| I have a ___ bag. | yellow | an | apple | is | yellow | 19 |
+| I go to the ___ market with my mum. | street | school | bedroom | door | street | 25 |
+| This is my ___. | school | is | are | an | school | 23 |
+| This is my ___. | room | is | are | an | room | 22 |
+| This is a ___. | clock | milk | nuts | seven | clock | 22 |
+| You kick it and play with it. It's a ___. | ball | bed | cake | door | ball | 1 |
+| You drink milk from it. It's a ___. | cup | bag | hat | dog | cup | 2 |
+| It is a pet. It says meow. It's a ___. | cat | duck | car | cup | cat | 2 |
+| You open it to go in or out of a room. It's a ___. | door | desk | bed | cup | door | 4 |
+| You sit at it to read and write. It's a ___. | desk | door | cat | ball | desk | 4 |
+| You sleep on it at night. It's a ___. | bed | door | cup | car | bed | 22 |
+| It is soft. You put your head on it. It's a ___. | pillow | desk | car | cup | pillow | 22 |
+| It is small and it gives you light at night. It's a ___. | lamp | bed | door | duck | lamp | 22 |
+| You can see the sky and trees from it. It's a ___. | window | desk | cup | bed | window | 16 |
 
 ## Count words
 
@@ -447,4 +483,7 @@
 | boat | boats | 25 |
 | plane | planes | 25 |
 | helicopter | helicopters | 25 |
+| can | cans | 3 |
+| pillow | pillows | 22 |
+| clock | clocks | 22 |
 | motorbike | motorbikes | 25 |

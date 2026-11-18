@@ -3,7 +3,7 @@ import { MILLISECONDS_PER_DAY, TOP_BOX } from './srs.js'
 export const SESSION_SIZE = 10
 export const MAX_NEW_PER_SESSION = 4
 export const MAX_TRICKY_PER_SESSION = 4
-export const MAX_WEAK_WORDS = 8
+export const MAX_WEAK_WORDS = 20
 export const MIN_RECALL_GAP = 3
 export const NEW_CARD_SHARE_OF_SESSION = 0.6
 export const EXAM_POOL_MINIMUM = 6
@@ -145,7 +145,7 @@ function selectSessionCards({ words, progressByWordId, now, random }) {
   const trickyWords = [...groups.tricky].sort(oldestReviewFirst(progressOf)).slice(0, MAX_TRICKY_PER_SESSION)
   for (const word of trickyWords) plan.add(word, 'tricky')
 
-  const reservedSlots = sessionNewLimit > 0 && unseenWords.length > 0 ? SLOTS_PER_NEW_WORD : 0
+  const reservedSlots = Math.min(sessionNewLimit, unseenWords.length) * SLOTS_PER_NEW_WORD
   const dueWords = [...groups.due].sort(duePriority(progressOf)).slice(0, Math.max(0, plan.freeSlots() - reservedSlots))
   for (const word of dueWords) plan.add(word, 'due')
 

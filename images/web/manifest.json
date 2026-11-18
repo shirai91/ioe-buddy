@@ -598,5 +598,37 @@
     "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
     "license": "CC-BY 4.0",
     "note": "Dolphin emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "room",
+    "file": "room.png",
+    "source": "https://www.svgrepo.com/svg/490316/room",
+    "author": "SVG Repo (Home Assistant Outlined Icons collection)",
+    "license": "Public Domain",
+    "note": "House outline with a sofa, a lamp and a picture inside, standing for a room, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "pillow",
+    "file": "pillow.png",
+    "source": "https://www.svgrepo.com/svg/287696/pillow",
+    "author": "SVG Repo (Daily Routine Objects Actions 2 collection)",
+    "license": "CC0",
+    "note": "Pink pillow with buttons, flat outlined clipart, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "clock",
+    "file": "clock.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/23f0.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "Alarm clock emoji, rendered from SVG to 512x512 PNG on a white background"
+  },
+  {
+    "word": "school",
+    "file": "school.png",
+    "source": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.3/assets/svg/1f3eb.svg",
+    "author": "Twitter, Inc and other contributors (Twemoji, jdecked/twemoji)",
+    "license": "CC-BY 4.0",
+    "note": "School building emoji, rendered from SVG to 512x512 PNG on a white background"
   }
 ]

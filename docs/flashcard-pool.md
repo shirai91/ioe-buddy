@@ -1,6 +1,6 @@
 # Flash card pool
 
-The learner never sees units or lessons. The app keeps them as hidden metadata on each word and pattern. The metadata sets the order in which new words come in. The Tieng Anh 1 words (Unit 1 Lesson 1 first, then later lessons) and the Starters words (row order) are mixed evenly, so both books come in at the same speed.
+The learner never sees units or lessons. The app keeps them as hidden metadata on each word and pattern. The metadata sets the order in which new words come in. The IOE exam words come first (see `content/clean/exam-words.md`). After them, the Tieng Anh 1 words (Unit 1 Lesson 1 first, then later lessons) and the Starters words (row order) are mixed evenly, so both books come in at the same speed.
 
 ## Content metadata
 
@@ -19,7 +19,7 @@ Hidden fields:
 |---|---|
 | `unit` | Book unit number, 1-16. Starters topic number, 17-27. |
 | `lesson` | First lesson (1-3) of that unit where the word or pattern is printed. Vocabulary words not found in a lesson get 1. |
-| `rank` | Words: the position (1, 2, 3...) in the mixed order. The build sorts each book by `unit * 1000 + lesson * 100 + position` (`position` = order of first appearance in that lesson), then mixes the two lists evenly. Patterns: `unit * 1000 + lesson * 100 + position`. Lower rank = taught earlier. Ranks are unique. |
+| `rank` | Words: the position (1, 2, 3...) in the final order. The exam words of `content/clean/exam-words.md` come first, in the row order. The build sorts each book by `unit * 1000 + lesson * 100 + position` (`position` = order of first appearance in that lesson), takes out the exam words, then mixes the two lists evenly after them. Patterns: `unit * 1000 + lesson * 100 + position`. Lower rank = taught earlier. Ranks are unique. |
 
 No screen shows `unit`, `lesson` or `rank`. No API route takes a unit.
 
@@ -29,6 +29,7 @@ No screen shows `unit`, `lesson` or `rank`. No API route takes a unit.
 - Sight words: `content/clean/extra-words.md`. These are greetings, verbs, adjectives and small words that the children say in the songs, chants and speech bubbles (hi, bye, have, like, look, see, sunny, he, she...). Each row gives the word, an optional id, ipa, vi, unit, lesson and the book sentence. These words get `sight: true`.
 - A sight word goes in the lesson from its row. Its picture is `images/web/<id>.png` (Twemoji), or none.
 - Starters words: `content/clean/starters-words.md`. These are the labelled pictures of the Cambridge Pre A1 Starters Wordlist Picture Book. Each row gives the word, an optional id, ipa, vi, unit (17-27) and a sentence. All Starters words are in lesson 1, in the row order. Their picture is `images/starters/<id>.png`.
+- Exam words: `content/clean/exam-words.md` lists word ids from the IOE rounds, most used first. It adds no words. It only moves these words to the front of the rank order. See [ioe-exam-analysis.md](ioe-exam-analysis.md).
 - An id must be unique. Use the `Id` column when two words have the same spelling (`can` the noun, `can-verb` the verb).
 - Articles (a, an, the) and "is", "are", "at", "to" are not cards.
 
@@ -69,13 +70,13 @@ Limits:
 | `SESSION_SIZE` | 10 |
 | `MAX_NEW_PER_SESSION` | 4 |
 | `MAX_TRICKY_PER_SESSION` | 4 |
-| `MAX_WEAK_WORDS` | 8. New words allowed = `8 - weak words`. At 8 or more weak words, no new words come. |
+| `MAX_WEAK_WORDS` | 20. New words allowed = `20 - weak words`. At 20 or more weak words, no new words come. |
 | `MIN_RECALL_GAP` | 3 cards between a new word and its recall |
 
 Fill order:
 
 1. **Tricky**: tricky words, oldest `reviewedAt` first, up to 4.
-2. **Reserve**: if new words are allowed and some exist, keep 2 slots free for one new word.
+2. **Reserve**: keep 2 slots free for each new word that this session allows (at most 4 words, 8 slots). New words come before due words.
 3. **Due**: due words, lowest box first, then most overdue, then lowest rank. Fill up to the reserve.
 4. **New**: unseen words in strict `rank` order. Each new word takes 2 slots: a `new` card and a `recall` card later. Count = min(allowed, free slots / 2).
 5. **Warm-up**: other seen words, picked with weighted random. Weight = `(6 - box) * (1 + daysSinceReviewed / 7)`. Low-box and old words come more often.
@@ -91,7 +92,7 @@ Order:
 
 Each card in the response: the word fields plus `{ key, kind, box }`. `kind` is `new | recall | tricky | due | warmup | repeat`. `key` is unique in the session (`<wordId>:<n>`).
 
-First session for a new learner: 5 new words by rank (`ball`, `arm`, `leg`, `book`, `body`), each with a recall = 10 cards.
+First session for a new learner: 5 new words by rank (`bike`, `I`, `bag`, `this`, `cake`), each with a recall = 10 cards.
 
 ## Stars
 

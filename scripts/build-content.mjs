@@ -497,6 +497,26 @@ export function mixEvenly(first, second) {
   return mixed
 }
 
+const EXAM_WORD_COLUMNS = 2
+
+export function parseExamWordIds(markdown) {
+  return tableRows(markdown)
+    .filter((cells) => cells.length === EXAM_WORD_COLUMNS && /^\d+$/.test(cells[1]))
+    .map(([wordId]) => wordId)
+}
+
+export function examWordsThenMix(bookWords, startersWords, examWordIds) {
+  const wordById = new Map([...bookWords, ...startersWords].map((word) => [word.id, word]))
+  const examIds = new Set()
+  for (const wordId of examWordIds) {
+    if (!wordById.has(wordId)) throw new Error(`Exam word "${wordId}" is not a known word`)
+    if (examIds.has(wordId)) throw new Error(`Exam word "${wordId}" is listed twice`)
+    examIds.add(wordId)
+  }
+  const isLaterWord = (word) => !examIds.has(word.id)
+  return [...examWordIds.map((wordId) => wordById.get(wordId)), ...mixEvenly(bookWords.filter(isLaterWord), startersWords.filter(isLaterWord))]
+}
+
 function withRankByPosition(items) {
   return items.map((item, index) => ({ ...item, rank: index + 1 }))
 }
@@ -532,6 +552,7 @@ export function buildContent({
   const glossary = parseGlossary(readText(path.join(contentDir, 'glossary.md')))
   const extraWords = parseExtraWords(readText(path.join(contentDir, 'extra-words.md')))
   const startersWords = parseStartersWords(readText(path.join(contentDir, 'starters-words.md')))
+  const examWordIds = parseExamWordIds(readText(path.join(contentDir, 'exam-words.md')))
   const sentenceChoiceMarkdown = readText(path.join(contentDir, 'sentence-choice.md'))
   const sentenceChoiceRows = parseSentenceChoices(sentenceChoiceMarkdown)
   const countWordRows = parseCountWords(sentenceChoiceMarkdown)
@@ -630,7 +651,7 @@ export function buildContent({
 
   const bookWords = sortedByUniqueRank(unsortedWords, 'word')
   const startersWordsInOrder = sortedByUniqueRank(unsortedStartersWords, 'word')
-  const words = withRankByPosition(mixEvenly(bookWords, startersWordsInOrder))
+  const words = withRankByPosition(examWordsThenMix(bookWords, startersWordsInOrder, examWordIds))
   const grammar = sortedByUniqueRank(unsortedGrammar, 'pattern')
 
   const sentenceChoices = buildSentenceChoices(sentenceChoiceRows, words)

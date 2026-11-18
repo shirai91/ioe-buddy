@@ -3,11 +3,13 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { after, before, describe, test } from 'node:test'
-import { buildContent, buildCountWords, buildSentenceChoices, folderFingerprint, isSameWord, mixEvenly } from './build-content.mjs'
+import { buildContent, buildCountWords, buildSentenceChoices, examWordsThenMix, folderFingerprint, isSameWord, mixEvenly, parseExamWordIds } from './build-content.mjs'
 
 const LAST_BOOK_UNIT = 16
 const LAST_STARTERS_UNIT = 27
 const temporaryDirs = []
+const examWordIds = parseExamWordIds(fs.readFileSync(new URL('../content/clean/exam-words.md', import.meta.url), 'utf8'))
+const isExamWord = (word) => examWordIds.includes(word.id)
 
 function makeTemporaryDir(prefix) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix))
@@ -93,11 +95,18 @@ describe('build-content with the book content', () => {
     words.forEach((word, index) => assert.equal(word.rank, index + 1))
   })
 
-  test('the first book words are ball, book and bike from unit 1 lesson 1', () => {
-    assert.deepEqual(
-      words.filter((word) => word.unit <= LAST_BOOK_UNIT).slice(0, 3).map(({ word, unit, lesson }) => ({ word, unit, lesson })),
-      ['ball', 'book', 'bike'].map((word) => ({ word, unit: 1, lesson: 1 })),
-    )
+  test('the exam words come first, in the order of the exam list', () => {
+    assert.ok(examWordIds.length > 50)
+    assert.deepEqual(words.slice(0, examWordIds.length).map((word) => word.id), examWordIds)
+    assert.deepEqual(examWordIds.slice(0, 4), ['bike', 'i', 'bag', 'this'])
+  })
+
+  test('after the exam words, the book words keep the unit and lesson order', () => {
+    const laterBookWords = words.filter((word) => !isExamWord(word) && word.unit <= LAST_BOOK_UNIT)
+    for (let position = 1; position < laterBookWords.length; position += 1) {
+      const [before, after] = [laterBookWords[position - 1], laterBookWords[position]]
+      assert.ok(before.unit * 10 + before.lesson <= after.unit * 10 + after.lesson, `${before.id} before ${after.id}`)
+    }
   })
 
   test('every word has id, word, letter, unit, lesson and rank', () => {
@@ -120,7 +129,7 @@ describe('build-content with the book content', () => {
   test('does not list banana and bananas both', () => {
     assert.ok(findWord('bananas'))
     assert.equal(findWord('banana'), undefined)
-    assert.equal(findWord('clock'), undefined)
+    assert.equal(words.filter((word) => word.word === 'clock' && word.unit <= LAST_BOOK_UNIT).length, 0)
   })
 
   test('grammar has patterns with unit, lesson and unique sorted ranks', () => {
@@ -166,7 +175,7 @@ describe('build-content with the book content', () => {
   })
 
   test('adds glossary words of the unit that the vocabulary line misses', () => {
-    const unit9Words = words.filter((word) => word.unit === 9).map((word) => word.word)
+    const unit9Words = words.filter((word) => word.unit === 9 && !isExamWord(word)).map((word) => word.word)
     assert.deepEqual(unit9Words.slice(0, 4), ['locks', 'clocks', 'mops', 'pots'])
   })
 
@@ -203,7 +212,7 @@ describe('build-content extra words', () => {
 
   test('puts a sight word in the lesson where the child says it', () => {
     assert.deepEqual(
-      words.filter((word) => word.unit <= LAST_BOOK_UNIT).slice(0, 6).map(({ word, unit, lesson }) => `${word} ${unit}.${lesson}`),
+      ['ball', 'book', 'bike', 'hi', 'i', 'bye'].map((id) => words.find((word) => word.id === id)).map(({ word, unit, lesson }) => `${word} ${unit}.${lesson}`),
       ['ball 1.1', 'book 1.1', 'bike 1.1', 'hi 1.3', 'I 1.3', 'bye 1.3'],
     )
     assert.deepEqual(
@@ -244,14 +253,15 @@ describe('build-content Starters words', () => {
 
   const findWord = (id) => words.find((word) => word.id === id)
 
-  test('mix evenly with the book words from the start, each list in its own order', () => {
-    assert.deepEqual(words.slice(0, 5).map((word) => word.id), ['ball', 'arm', 'leg', 'body', 'book'])
+  test('come after the exam words, mixed with the book words, each list in its own order', () => {
+    const laterWords = words.filter((word) => !isExamWord(word))
+    assert.deepEqual(laterWords.slice(0, 5).map((word) => word.id), ['girl', 'arm', 'leg', 'body', 'eye'])
     const isStarters = (word) => word.unit > LAST_BOOK_UNIT
-    const half = words.slice(0, Math.floor(words.length / 2))
+    const half = laterWords.slice(0, Math.floor(laterWords.length / 2))
     const startersShareInFirstHalf = half.filter(isStarters).length / half.length
-    const startersShare = words.filter(isStarters).length / words.length
+    const startersShare = laterWords.filter(isStarters).length / laterWords.length
     assert.ok(Math.abs(startersShareInFirstHalf - startersShare) < 0.02)
-    assert.deepEqual(words.filter(isStarters).slice(0, 3).map(({ id, unit, lesson }) => `${id} ${unit}.${lesson}`), ['arm 17.1', 'leg 17.1', 'body 17.1'])
+    assert.deepEqual(laterWords.filter(isStarters).slice(0, 3).map(({ id, unit, lesson }) => `${id} ${unit}.${lesson}`), ['arm 17.1', 'leg 17.1', 'body 17.1'])
   })
 
   test('keep the row id, ipa, vi, sentence and the Starters picture', () => {
@@ -359,6 +369,28 @@ describe('mixEvenly', () => {
     assert.deepEqual(mixEvenly(['a1', 'a2'], ['b1', 'b2', 'b3', 'b4']), ['a1', 'b1', 'b2', 'a2', 'b3', 'b4'])
     assert.deepEqual(mixEvenly(['a1', 'a2'], []), ['a1', 'a2'])
     assert.deepEqual(mixEvenly([], ['b1']), ['b1'])
+  })
+})
+
+describe('examWordsThenMix', () => {
+  const bookWords = ['ball', 'book', 'bag', 'cat'].map((id) => ({ id }))
+  const startersWords = ['arm', 'leg', 'bed', 'eye'].map((id) => ({ id }))
+  const ids = (words) => words.map((word) => word.id)
+
+  test('puts the exam words first in the list order, then mixes the other words evenly', () => {
+    assert.deepEqual(ids(examWordsThenMix(bookWords, startersWords, ['bed', 'ball', 'bag'])), ['bed', 'ball', 'bag', 'book', 'arm', 'leg', 'cat', 'eye'])
+    assert.deepEqual(ids(examWordsThenMix(bookWords, startersWords, [])), ids(mixEvenly(bookWords, startersWords)))
+  })
+
+  test('rejects an unknown word and a word listed twice', () => {
+    assert.throws(() => examWordsThenMix(bookWords, startersWords, ['bus']), /not a known word/)
+    assert.throws(() => examWordsThenMix(bookWords, startersWords, ['bag', 'bag']), /listed twice/)
+  })
+})
+
+describe('parseExamWordIds', () => {
+  test('reads the ids from the table rows in order', () => {
+    assert.deepEqual(parseExamWordIds('| Id | Rounds |\n|---|---|\n| bag | 10 |\n| this | 9 |\n'), ['bag', 'this'])
   })
 })
 

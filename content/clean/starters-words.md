@@ -25,7 +25,7 @@
 
 - Each row is one flash card. The row order sets the order in which the new words come in.
 - The picture is `images/starters/<id>.png`. "English" is only in the A-Z wordlist, so its picture is the UK flag in `images/web/`. `images/starters/manifest.json` gives the page and the box of each crop.
-- Some words are not in the picture pages: the animals after "spider", the fruits after "watermelon", the rooms after "hall", "street" and "market". "stairs" and "street" are crops from the book. The other pictures are in `images/web/`.
+- Some words are not in the picture pages: the animals after "spider", the fruits after "watermelon", the rooms after "hall", the words "room", "pillow", "clock" and "school", and "street" and "market". "stairs" and "street" are crops from the book. The other pictures are in `images/web/`.
 - The colour cards use plain colour pictures from `images/starters/`, because a book picture of a coloured thing looks the same as the card for that thing.
 - A word that is already a card from the Tieng Anh 1 book is not in this list.
 
@@ -186,6 +186,10 @@
 | painting | | /ˈpeɪntɪŋ/ | bức tranh | 22 | Look at the painting. |
 | doll | | /dɒl/ | búp bê | 22 | This is my doll. |
 | flower | | /ˈflaʊə(r)/ | bông hoa | 22 | Look at the flower. |
+| room | | /ruːm/ | căn phòng | 22 | This is my room. |
+| pillow | | /ˈpɪləʊ/ | cái gối | 22 | This is my pillow. |
+| clock | | /klɒk/ | đồng hồ | 22 | This is a clock. |
+| school | | /skuːl/ | trường học | 23 | This is my school. |
 | classroom | | /ˈklɑːsruːm/ | lớp học | 23 | This is my classroom. |
 | teacher | | /ˈtiːtʃə(r)/ | giáo viên | 23 | This is my teacher. |
 | board | | /bɔːd/ | cái bảng | 23 | Look at the board. |

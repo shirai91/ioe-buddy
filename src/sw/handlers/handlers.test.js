@@ -120,13 +120,13 @@ describe('flashcards', () => {
     expect(body.cards.find((card) => card.kind === 'warmup')).toMatchObject({ box: 1 })
   })
 
-  it('stops new words while 8 weak words wait and opens them after practice, with no stars', async () => {
+  it('opens new words while fewer than 20 words are weak, and more after practice, with no stars', async () => {
     useClock(new Date(2026, 9, 13, 9))
     const firstEight = words.slice(0, 8)
     const newCardIds = async () => (await call('flashcards')).body.cards.filter((card) => card.kind === 'new').map((card) => card.id)
 
     for (const word of firstEight) await rate(word.id, 'hard')
-    expect(await newCardIds()).toEqual([])
+    expect(await newCardIds()).toEqual(words.slice(8, 11).map((word) => word.id))
 
     for (const word of firstEight) await rate(word.id, 'easy')
     expect(await newCardIds()).toEqual(words.slice(8, 12).map((word) => word.id))

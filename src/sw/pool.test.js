@@ -137,9 +137,8 @@ describe('buildSession limits', () => {
 
     expect(cards).toHaveLength(SESSION_SIZE)
     expect(idsOfKind(cards, 'tricky').sort()).toEqual(['w01', 'w02', 'w03', 'w04'])
-    expect(idsOfKind(cards, 'due')).toHaveLength(4)
-    expect(idsOfKind(cards, 'new')).toEqual(['w17'])
-    expect(cards[0].kind).toBe('due')
+    expect(idsOfKind(cards, 'new')).toEqual(['w17', 'w18', 'w19'])
+    expect(idsOfKind(cards, 'due')).toEqual([])
     expectWellFormed(cards)
   })
 
@@ -156,7 +155,7 @@ describe('buildSession limits', () => {
     trickyPositions.slice(1).forEach((position, index) => expect(position - trickyPositions[index]).toBeGreaterThan(1))
   })
 
-  it('adds no new words while 8 weak words wait for practice', () => {
+  it('adds no new words while 20 weak words wait for practice', () => {
     const words = numberedWords(25)
     const tricky = words.slice(0, 4).map((word) => [word, { rating: 'hard', box: 0, dueAt: NOW }])
     const dueAndWeak = words.slice(4, MAX_WEAK_WORDS).map((word) => [word, { box: 1, dueAt: daysFromNow(-1) }])
@@ -169,11 +168,22 @@ describe('buildSession limits', () => {
 
   it('adds fewer new words as the weak words grow', () => {
     const words = numberedWords(25)
-    const dueAndWeak = words.slice(0, 6).map((word) => [word, { box: 1, dueAt: daysFromNow(-1) }])
+    const dueAndWeak = words.slice(0, MAX_WEAK_WORDS - 2).map((word) => [word, { box: 1, dueAt: daysFromNow(-1) }])
 
     const cards = session(words, progressFor(dueAndWeak))
 
-    expect(idsOfKind(cards, 'new')).toEqual(['w07', 'w08'])
+    expect(idsOfKind(cards, 'new')).toEqual(['w19', 'w20'])
+    expectWellFormed(cards)
+  })
+
+  it('keeps slots for new words before due words', () => {
+    const words = numberedWords(25)
+    const due = words.slice(0, 10).map((word) => [word, { box: 3, dueAt: daysFromNow(-1) }])
+
+    const cards = session(words, progressFor(due))
+
+    expect(idsOfKind(cards, 'new')).toEqual(['w11', 'w12', 'w13', 'w14'])
+    expect(idsOfKind(cards, 'due')).toHaveLength(2)
     expectWellFormed(cards)
   })
 
@@ -189,7 +199,7 @@ describe('buildSession limits', () => {
 
   it('ignores progress rows of words that are no longer in the content', () => {
     const words = numberedWords(25)
-    const removedWeakWords = numberedWords(40).slice(25, 25 + MAX_WEAK_WORDS)
+    const removedWeakWords = numberedWords(25 + MAX_WEAK_WORDS).slice(25)
     const progress = progressFor(removedWeakWords.map((word) => [word, { rating: 'hard', box: 0, dueAt: NOW }]))
     expect(idsOfKind(session(words, progress), 'new')).toEqual(['w01', 'w02', 'w03', 'w04', 'w05'])
   })
